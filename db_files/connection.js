@@ -25,4 +25,4 @@ const con=pool.getConnection(function(err, connection) {
       // Don't use the connection here, it has been returned to the pool.
     });
   });
-module.exports=con;
+module.exports={con,pool};

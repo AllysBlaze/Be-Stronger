@@ -1,17 +1,18 @@
+//PACKAGES
 const express=require('express');
 const app=express();
 
+//MODULES
+const {connect,pool} = require('./db_files/connection');
+const authRouter=require('./routes/auth')
 
-const connect = require('./db_files/connection');
-
+//APP USE
+app.use('/auth',authRouter);
 
 app.get('/',(req,res)=>{
     res.send('hello world')
 })
 
-app.get('/login',(req,res)=>{
-    res.send('<h1>login page</h1>')
-})
 
 const start= async()=>{
     try{
