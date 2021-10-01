@@ -9,8 +9,7 @@ DROP TABLE IF EXISTS users;
 
 
 CREATE TABLE users (
-    id_user INT PRIMARY KEY AUTO_INCREMENT,
-    user_name VARCHAR(100) NOT NULL,
+    user_name VARCHAR(100) PRIMARY KEY NOT NULL,
     email VARCHAR(100),
     user_password VARCHAR(100) NOT NULL
 );

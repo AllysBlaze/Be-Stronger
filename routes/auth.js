@@ -1,9 +1,22 @@
-const express=require('express');
-const router=express.Router();
+const express = require('express');
+const router = express.Router();
 
-const addUser=require('../db_files/query')
 
-router.get('/signup',function(req, res){addUser('test1','test1')});
-router.post('/login');
 
-module.exports=router;
+const {
+    addUser,
+    getUserPassword
+} = require('../model/user')
+
+const signUp=require('../controller/auth')
+
+//router.get('/signup',function(req, res){addUser(["est1","test1"])});
+router.get('/signup', function (req, res, next) {
+    res.render('sign-up');
+});
+
+router.post('/signup',signUp)
+
+//router.get('/login',function(req, res){getUserPassword(["est1"])});
+
+module.exports = router;
