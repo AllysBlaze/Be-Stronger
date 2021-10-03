@@ -1,8 +1,9 @@
+const hashPassword=require('../middleware/passwords');
+
 const {addUser,getUserPassword} = require('../model/user');
 
 
 const passwordMatch=async function(user_password,confirm_password){
-    console.log('here')
     return user_password===confirm_password;
 }
 const signUp = async(req,res)=>{
@@ -11,11 +12,12 @@ const signUp = async(req,res)=>{
     const conf=req.body.confirm_password;
     const doPasswordsMatch=await(passwordMatch(pass,conf));
     if(doPasswordsMatch){
-        
-        //await addUser([req.body.user_name,pass])
-        await addUser([req.body.user_name,pass])
+        const hashedPass=await hashPassword(pass);
+        await addUser([req.body.user_name,hashedPass])
+        res.redirect('/')
         return;
     }
+    res.redirect('/auth/signup')
     return //ERROR
 }
 

@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (
     user_name VARCHAR(100) PRIMARY KEY NOT NULL,
     email VARCHAR(100),
-    user_password VARCHAR(100) NOT NULL
+    user_password CHAR(60) NOT NULL
 );
 
 INSERT INTO users 
