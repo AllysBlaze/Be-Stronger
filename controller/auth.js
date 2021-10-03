@@ -1,6 +1,6 @@
-const hashPassword=require('../middleware/passwords');
+const {hashPassword,comparePassowrds}=require('../middleware/passwords');
 
-const {addUser,getUserPassword} = require('../model/user');
+const {addUser,getUser} = require('../model/user');
 
 
 const passwordMatch=async function(user_password,confirm_password){
@@ -21,4 +21,23 @@ const signUp = async(req,res)=>{
     return //ERROR
 }
 
-module.exports=signUp;
+
+
+const login=async(req,res)=>{
+    const user_name=req.body.user_name;
+    const user_password=req.body.user_password;
+    const userData= await getUser(user_name);
+    if (userData.length===1){
+        const resultCompare=await comparePasswords(user_password,userData[0].user_password)
+        if(resultCompare){
+            req.session.loggedin = true;
+			req.session.username = user_name;
+            res.redirect('/')
+            return
+        }
+    }
+    res.redirect('/auth/login')
+    return //error
+};
+
+module.exports={signUp,login};

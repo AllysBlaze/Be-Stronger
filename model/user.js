@@ -6,12 +6,10 @@ const { get } = require('../routes/auth');
 
 addUser = (values) => { //wszystkie dane usera
     return new Promise((resolve, reject) => {
-        console.log(values)
         pool.query("INSERT INTO users (user_name,user_password) VALUES (?)",[values], (error, elements)=> {
             if (error) {
                 return reject(error);
             }
-            console.log('Dodano')
             return resolve(elements);
         });
     });
@@ -19,11 +17,11 @@ addUser = (values) => { //wszystkie dane usera
 
 getUser=(values)=>{ //user_name
     return new Promise((resolve,reject)=>{
-        pool.query('SELECT * FROM users WHERE user_name= ? LIMIT 1',values,(error,elements)=>{
+        pool.query('SELECT * FROM users WHERE user_name= ?',values,(error,elements)=>{
             if (error){
                 return reject(error) //nie znaleziono użytkownika
             }
-            return elements[0]; //zwraca wszystkie info o użytkowniku
+            return resolve(elements); //zwraca wszystkie info o użytkowniku
         });
     });
 };
@@ -34,7 +32,6 @@ getUserPassword=(values)=>{ //user_name
             if (error){
                 return reject(error) //nie znaleziono użytkownika
             }
-            console.log('Dodano')
             return elements[0].user_password; //zwraca wszystkie info o użytkowniku
         });
     });
@@ -44,4 +41,4 @@ getUserPassword=(values)=>{ //user_name
 
 //UPDATE USER INFO
 
-module.exports = {addUser,getUserPassword};
+module.exports = {addUser,getUser};

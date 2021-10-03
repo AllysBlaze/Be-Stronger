@@ -8,10 +8,21 @@ hashPassword = (password) => {
             if (error) {
                 return reject(error);
             }
-            console.log(hash)
             return resolve(hash);
         });
     });
 }
 
-module.exports=hashPassword;
+comparePasswords=(password,hashedPassword)=>{
+    return new Promise((resolve,reject)=>{
+        bcrypt.compare(password,hashedPassword,function(error,result)
+        {
+            if(error){
+                return reject(error)//hasła nie pasują
+            }
+            return resolve(result)
+        })
+    })
+}
+
+module.exports={hashPassword,comparePasswords};

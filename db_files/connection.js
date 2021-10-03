@@ -1,12 +1,12 @@
 const mysql=require('mysql');
-
+const {db_host,db_user,db_pass, db_name}=require('../config');
 
 const pool = mysql.createPool({
     connectionLimit: 10,    
-    password: 'password',
-    user: 'root',
-    database: 'projekt',
-    host: 'localhost'
+    password: db_pass,
+    user: db_user,
+    database: db_name,
+    host: db_host
   
 }); 
 
