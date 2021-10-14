@@ -1,34 +1,36 @@
-//PACKAGES
 const express=require('express');
 const bodyparser = require('body-parser');
-const session = require('express-session')
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
+const {connect,pool} = require('./utils/connection');
+const {authenticateRoute,parseJwt}=require('./middleware/authToken')
+const{port,accessTokenSecret}=require('./config')
 
-//MODULES
-const {connect,pool} = require('./db_files/connection');
-const authRouter=require('./routes/auth')
-const{port,cookie_secret}=require('./config')
+const {login,signup}=require('./controllers/authRouter')
+const homeRouter=require('./controllers/homeRouter')
 
-//APP SET UP
+
 const app=express();
 app.set('view engine', 'ejs');
-
-//APP USE
+app.use(cookieParser())
 app.use(bodyparser.urlencoded({extended:false}))
 app.use(bodyparser.json())
-app.use(cookieParser())
-app.use(session({ 
-    secret: 'cookie_secret',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 60000 }
-  }))
 
-app.use('/auth',authRouter);
 
-app.get('/',(req,res)=>{
-    res.send('hello world')
+
+app.get('/login', function (req, res, next) {
+    res.render('login');
+});
+
+app.post('/login', login)
+
+app.get('/sign-up',function (req, res, next) {
+    res.render('sign-up');
 })
+
+app.post('/sign-up',signup)
+
+
+app.use('/home', authenticateRoute, homeRouter);
 
 
 const start= async()=>{

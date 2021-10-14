@@ -1,8 +1,5 @@
-const {
-    connection,
-    pool
-} = require('../db_files/connection');
-const { get } = require('../routes/auth');
+const 
+    pool= require('../utils/connection');
 
 addUser = (values) => { //wszystkie dane usera
     return new Promise((resolve, reject) => {

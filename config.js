@@ -1,7 +1,7 @@
 const dotenv = require('dotenv');
 dotenv.config();
 module.exports = {
-  secret: process.env.COOKIE_SECRET,
+  accessTokenSecret: process.env.COOKIE_SECRET,
   port: process.env.PORT,
   db_user: process.env.DB_USER,
   db_pass: process.env.DB_PASS,

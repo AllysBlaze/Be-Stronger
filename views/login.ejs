@@ -3,10 +3,18 @@
 <head>
 </head>
 <body>
-    <form method="post" action="/auth/login">
-    <input type="text" placeholder="User Name" name="user_name" required>
-    <input type="password" placeholder="Password" name="user_password" required>
-    <input type="submit"/>
-</form>
-</body>
-</html>
+
+        <div class="center">
+          <h6>Please Log In </h6>
+          <br>
+          <form method="post" action="/login">
+            <div class="form-group">
+              <input name="username" type="username" class="form-control" id="username" placeholder="Username" required>
+              <input name="passw" type="password" class="form-control" id="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn btn-dark btn-block">Login</button>
+          </form>
+          <p class="createaccount">Not registered? <a href="#">Create an ac-count</a></p>
+        </div>
+  </body>
+  </html>
