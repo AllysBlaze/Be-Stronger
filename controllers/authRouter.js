@@ -7,16 +7,16 @@ const {
 
 const {
     addUser,
-    getUser
+    getUser,
 } = require('../models/user');
 
-const accessTokenSecret=require('../config')
+const {accessTokenSecret}=require('../config')
 
 const login = async (req, res) => {
     const user_name = req.body.username;
     const user_password = req.body.passw;
     const userData = await getUser(user_name);
-
+    console.log(accessTokenSecret)
     if (userData.length === 1) {
         const resultCompare = await comparePasswords(user_password, userData[0].user_password)
 

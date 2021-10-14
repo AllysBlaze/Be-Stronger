@@ -16,7 +16,7 @@ CREATE TABLE users (
     user_name VARCHAR(100) NOT NULL,
     email VARCHAR(100),
     user_password CHAR(60) NOT NULL,
-    user_weigth FLOAT,
+    user_weight FLOAT,
     user_height FLOAT,
     user_birth DATE,
     user_gender CHAR(1)

@@ -14,39 +14,39 @@ addUser = (values) => { //wszystkie dane usera
 
 getUser=(values)=>{ //user_name
     return new Promise((resolve,reject)=>{
-        pool.query('SELECT user_password FROM users WHERE user_name= ?',values,(error,elements)=>{
+        pool.query('SELECT user_name,user_password FROM users WHERE user_name= ?',values,(error,elements)=>{
             if (error){
-                return reject(error) //nie znaleziono użytkownika
+                return reject(error) 
             }
-            return resolve(elements); //zwraca wszystkie info o użytkowniku
+            return resolve(elements); 
         });
     });
 };
 
 getUserExtended=(values)=>{
     return new Promise((resolve,reject)=>{
-        pool.query('SELECT user_password FROM users WHERE user_name= ?',values,(error,elements)=>{
+        pool.query('SELECT * FROM users WHERE user_name= ?',values,(error,elements)=>{
             if (error){
-                return reject(error) //nie znaleziono użytkownika
+                return reject(error) 
             }
+            console.log(elements)
             return resolve(elements); //zwraca wszystkie info o użytkowniku
         });
     })
 }
 
-getUserPassword=(values)=>{ //user_name
+updateUser=(weigth,height,birth,gender,id)=>{
+    const values=[weigth,height,birth,gender,id];
     return new Promise((resolve,reject)=>{
-        pool.query('SELECT user_password FROM users WHERE user_name= ? LIMIT 1',values,(error,elements)=>{
+        pool.query('UPDATE users SET user_weigth= ? ,user_height= ? ,user_birth= ? , user_gender = ? '+
+        'WHERE user_id= ? ',values,(error,elements)=>{
             if (error){
-                return reject(error) //nie znaleziono użytkownika
+                return reject(error) 
             }
-            return elements[0].user_password; //zwraca wszystkie info o użytkowniku
+            return resolve(elements); 
         });
-    });
-};
+    })
 
+}
 
-
-//UPDATE USER INFO
-
-module.exports = {addUser,getUser};
+module.exports = {addUser,getUser,updateUser, getUserExtended};
