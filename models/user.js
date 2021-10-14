@@ -14,7 +14,7 @@ addUser = (values) => { //wszystkie dane usera
 
 getUser=(values)=>{ //user_name
     return new Promise((resolve,reject)=>{
-        pool.query('SELECT * FROM users WHERE user_name= ?',values,(error,elements)=>{
+        pool.query('SELECT user_password FROM users WHERE user_name= ?',values,(error,elements)=>{
             if (error){
                 return reject(error) //nie znaleziono użytkownika
             }
@@ -22,6 +22,17 @@ getUser=(values)=>{ //user_name
         });
     });
 };
+
+getUserExtended=(values)=>{
+    return new Promise((resolve,reject)=>{
+        pool.query('SELECT user_password FROM users WHERE user_name= ?',values,(error,elements)=>{
+            if (error){
+                return reject(error) //nie znaleziono użytkownika
+            }
+            return resolve(elements); //zwraca wszystkie info o użytkowniku
+        });
+    })
+}
 
 getUserPassword=(values)=>{ //user_name
     return new Promise((resolve,reject)=>{
