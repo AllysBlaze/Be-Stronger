@@ -3,7 +3,6 @@ const{accessTokenSecret}=require('../config')
 
 function authenticateRoute(req,res,next){
     var token=req.cookies['id']
-    console.log(token)
     jwt.verify(token,accessTokenSecret,function(err,decoded){
         if (err || !decoded) {
             console.log("invalid token");

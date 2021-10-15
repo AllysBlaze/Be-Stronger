@@ -5,17 +5,16 @@ const {
     comparePasswords
 } = require('../utils/passwords');
 
-const {
-    addUser,
-    getUser,
-} = require('../models/user');
+const user = require('../models/user');
 
-const {accessTokenSecret}=require('../config')
+const {
+    accessTokenSecret
+} = require('../config')
 
 const login = async (req, res) => {
     const user_name = req.body.username;
     const user_password = req.body.passw;
-    const userData = await getUser(user_name);
+    const userData = await user.getUser(user_name);
     console.log(accessTokenSecret)
     if (userData.length === 1) {
         const resultCompare = await comparePasswords(user_password, userData[0].user_password)
@@ -49,7 +48,7 @@ const signup = async (req, res) => {
     const doPasswordsMatch = await (passwordMatch(pass, conf));
     if (doPasswordsMatch) {
         const hashedPass = await hashPassword(pass);
-        await addUser([req.body.user_name, hashedPass])
+        await user.addUser([req.body.user_name, hashedPass])
         res.redirect('/login')
         return;
     }
