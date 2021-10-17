@@ -3,9 +3,8 @@ const pool = require('../utils/connection');
 
 getUserTrainingHistory = (values) => { //user_id
     return new Promise((resolve, reject) => {
-        pool.query("SELECT trainings.training_id, trainings.training_category, training_sets.set_name, COUNT(set_excercise.excercise_id) AS excercise_count, trainings.training_date,trainings.training_duration"
+        pool.query("SELECT trainings.training_id, trainings.training_category, training_sets.set_name, trainings.training_date,trainings.training_duration"
         +" FROM trainings "
-        +" LEFT JOIN set_excercise ON trainings.training_custom_id=set_excercise.set_id "
         +" LEFT JOIN training_sets ON trainings.training_custom_id=training_sets.set_id "
         +" WHERE trainings.user_id= ? "
         +" GROUP BY training_custom_id "
@@ -41,7 +40,16 @@ addCustomTraining = (values) => { //[user_id, training_date,training_duration,tr
     });
 }
 
-
+deleteTraining=(values)=>{//training_id
+    return new Promise((resolve,reject)=>{
+        pool.query('DELETE FROM trainings WHERE training_id= ? ',values,(error,elements)=>{
+            if (error) {
+                return reject(error);
+            }
+            return resolve(elements);
+        })
+    })
+}
 
 const training = {
     getUserTrainingHistory,
