@@ -31,16 +31,25 @@ VALUES
 (3,5,10,1),(3,3,1,2),(3,1,10,3),(3,6,10,4),
 (4,2,10,1),(4,3,1,2),(4,1,10,3),(4,3,10,4);
 
+
+UPDATE training_sets AS tr,
+(SELECT set_excercise.set_id,SEC_TO_TIME(SUM( TIME_TO_SEC(single_excercises.excercise_duration) * set_excercise.excercise_repetiton )) AS duration 
+FROM set_excercise
+INNER JOIN single_excercises ON single_excercises.excercise_id = set_excercise.excercise_id
+GROUP BY set_id) AS tr2
+SET tr.set_duration=tr2.duration
+WHERE tr.set_id=tr2.set_id;
+
 INSERT INTO trainings
-(user_id,training_category,training_date)
+(user_id,training_category,training_date,training_duration)
 VALUES
-(1,'rower',NOW()),
-(1,'bieganie',NOW()),
-(2,'rolki',NOW()),
-(4,'plywanie',NOW()),
-(2,'rower',NOW()),
-(6,'rower',NOW()),
-(5,'rower',NOW());
+(1,'rower',NOW(),'00:45:00'),
+(1,'bieganie',NOW(),'01:45:00'),
+(5,'rolki',NOW(),'02:00:00'),
+(4,'plywanie',NOW(),'00:30:00'),
+(2,'rower',NOW(),'00:15:00'),
+(6,'rower',NOW(),'00:45:00'),
+(5,'rower',NOW(),'00:50:00');
 
 INSERT INTO trainings
 (user_id,training_custom_id,training_date)
@@ -53,10 +62,7 @@ VALUES
 (5,3,NOW());
 
 
-SELECT trainings.training_id, trainings.training_category, training_sets.set_name, COUNT(set_excercise.excercise_id) AS excercise_count, trainings.training_date,trainings.training_duration
-FROM trainings
-LEFT JOIN set_excercise ON trainings.training_custom_id=set_excercise.set_id
-LEFT JOIN training_sets ON trainings.training_custom_id=training_sets.set_id
-WHERE trainings.user_id=2
-GROUP BY training_custom_id
-ORDER BY trainings.training_date;
+UPDATE trainings
+JOIN training_sets ON training_custom_id=set_id
+SET trainings.training_duration=training_sets.set_duration
+WHERE training_category='custom';
