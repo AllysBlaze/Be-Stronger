@@ -1,0 +1,61 @@
+body{
+    background-color: aliceblue;
+    background-image: url("/images/cb2.png");
+    background-position: center;
+  }
+
+h1{
+    margin-bottom: 0;
+    padding:35px;
+    color: rgb(187, 187, 187);
+    letter-spacing: 7px;
+    font-family: sans-serif;
+}
+
+#main_container{
+    text-align: center;
+    margin-top: 0;
+    width: 100%;
+    padding: 50px;
+    height:760px;
+    background-image: url("/images/main_5.jpg");
+    background-position:left;
+    background-size: cover;
+}
+
+.logPanel{
+    background-color: rgba(253, 252, 252, 0.774);
+    padding-bottom: 20px;
+   }
+
+#container_header{
+    background-color: rgb(15, 14, 14);
+    margin-bottom: 130px;
+  }
+
+  #container_header1{
+    background-color: rgb(15, 14, 14);
+  }
+
+#log_btn{
+    width: 240px; 
+    height: 60px;
+    margin-top: 30px; 
+}
+
+#info{
+    font-size: xx-large;
+}
+
+#container2{
+    margin-top: 100px;
+    width: 100%;
+    height: 100%;
+}
+
+#footer{
+    height: 60px;
+    text-align: center;
+    color:beige;
+    background-color: rgb(15, 14, 14);
+}

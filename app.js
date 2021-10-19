@@ -32,7 +32,7 @@ app.use(bodyparser.json())
 
 
 app.get('/login', function (req, res, next) {
-    res.render('login');
+    res.render('logowanie');
 });
 
 app.post('/login', login)
