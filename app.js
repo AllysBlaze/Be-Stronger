@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const connect = require('./utils/connection');
 
 const {
-    authenticateRoute
+    authenticateRoute,isNotAuthenticated
 } = require('./middleware/authToken')
 
 const {
@@ -32,19 +32,19 @@ app.use(bodyparser.json())
 app.use(express.static(__dirname + '/public'));
 
 
-app.get('/login', function (req, res, next) {
+app.get('/login',isNotAuthenticated, function (req, res, next) {
     res.render('logowanie');
 });
 
 app.post('/login', login)
 
-app.get('/sign-up', function (req, res, next) {
+app.get('/sign-up',isNotAuthenticated, function (req, res, next) {
     res.render('sign-up');
 })
 
 app.post('/sign-up', signup)
 
-app.get('/',function(req,res,next){
+app.get('/',isNotAuthenticated,function(req,res,next){
     res.render('index');
 })
 
