@@ -33,7 +33,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.static('public'));
 
 app.get('/login',isNotAuthenticated, function (req, res, next) {
-    res.render('logowanie');
+    res.render('login');
 });
 
 app.post('/login', login)

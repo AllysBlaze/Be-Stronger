@@ -4,21 +4,26 @@ const{accessTokenSecret}=require('../config')
 function authenticateRoute(req,res,next){
     var token=req.cookies['id']
     jwt.verify(token,accessTokenSecret,function(err,decoded){
-        if (err || !decoded) {
-            console.log("invalid token");
-            res.sendStatus(403);
-        }
-        else if (decoded && (!decoded.access || decoded.access == "unauthenticated")) {
-            console.log("unauthenticated token");
-            res.sendStatus(403);
-        }
-        else if (decoded && decoded.access == "authenticated") {
+        if (decoded && decoded.access == "authenticated") {
             console.log("valid token")
             next();
         }
         else {
             console.log("something suspicious")
-            res.sendStatus(403);
+            res.redirect('/');
+        }
+    })
+}
+
+function isNotAuthenticated(req,res,next){
+    var token=req.cookies['id']
+    jwt.verify(token,accessTokenSecret,function(err,decoded){
+        if (!decoded || decoded.access == "unauthenticated") {
+            next();
+        }
+        else {
+            console.log("already logged in")
+            res.redirect('/home');
         }
     })
 }
@@ -33,4 +38,4 @@ function parseJwt (token) {
     return JSON.parse(jsonPayload);
 };
 
-module.exports={authenticateRoute,parseJwt};
+module.exports={authenticateRoute,parseJwt,isNotAuthenticated};
