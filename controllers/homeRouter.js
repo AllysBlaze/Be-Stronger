@@ -5,14 +5,10 @@ const {parseJwt}=require('../middleware/authToken');
 const user =require('../models/user');
 const training=require('../models/training');
 
-
-
-
-
 router.get('/', async function (req, res) {
     const username=parseJwt(req.cookies['id']).username;
     const user_data= await user.getUserExtended(username)
-    res.send(`${user_data[0].user_weight}`)
+    res.send(user_data)
 });
 
 router.get('/history', async function(req,res){
@@ -21,5 +17,9 @@ router.get('/history', async function(req,res){
     const history= await training.getUserTrainingHistory(id[0].user_id);
     res.send(history)
 })
+
+
+router.get('/user',function (req, res, next) {
+    res.render('profil');})
 
 module.exports=router

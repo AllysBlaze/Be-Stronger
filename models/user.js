@@ -2,7 +2,7 @@ const pool = require('../utils/connection');
 
 addUser = (values) => { //wszystkie dane usera
     return new Promise((resolve, reject) => {
-        pool.query("INSERT INTO users (user_name,user_password) VALUES (?)", [values], (error, elements) => {
+        pool.query("INSERT INTO users (user_name,email,user_password) VALUES (?)", [values], (error, elements) => {
             if (error) {
                 return reject(error);
             }
