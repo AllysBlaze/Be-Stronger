@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (
     user_id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
     user_name VARCHAR(100) NOT NULL,
-    email VARCHAR(100),
+    email VARCHAR(100) NOT NULL UNIQUE,
     user_password CHAR(60) NOT NULL,
     user_weight FLOAT,
     user_height FLOAT,

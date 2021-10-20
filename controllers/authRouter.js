@@ -12,13 +12,12 @@ const {
 } = require('../config')
 
 const login = async (req, res) => {
-    const user_name = req.body.username;
+    const email = req.body.email;
     const user_password = req.body.passw;
-    const userData = await user.getUser(user_name);
-    console.log(accessTokenSecret)
+    console.log(email)
+    const userData = await user.getUser(email);
     if (userData.length === 1) {
         const resultCompare = await comparePasswords(user_password, userData[0].user_password)
-
         if (resultCompare) {
             const accessToken = jwt.sign({
                 'access': 'authenticated',
@@ -30,7 +29,6 @@ const login = async (req, res) => {
                 sameSite: true,
                 maxAge: expDate
             });
-
             res.redirect('/home')
         }
     } else {

@@ -28,7 +28,7 @@ app.use(bodyparser.urlencoded({
     extended: false
 }))
 app.use(bodyparser.json())
-
+app.use(express.static(__dirname + '/public'));
 
 
 app.get('/login', function (req, res, next) {
@@ -43,6 +43,9 @@ app.get('/sign-up', function (req, res, next) {
 
 app.post('/sign-up', signup)
 
+app.get('/',function(req,res,next){
+    res.render('index');
+})
 
 app.use('/home', authenticateRoute, homeRouter);
 

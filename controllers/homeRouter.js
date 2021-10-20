@@ -17,7 +17,6 @@ router.get('/', async function (req, res) {
 
 router.get('/history', async function(req,res){
     const username=parseJwt(req.cookies['id']).username; //do poprawy
-
     const id= await user.getUserID(username)
     const history= await training.getUserTrainingHistory(id[0].user_id);
     res.send(history)

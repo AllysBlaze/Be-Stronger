@@ -11,9 +11,9 @@ addUser = (values) => { //wszystkie dane usera
     });
 };
 
-getUser = (values) => { //user_name
+getUser = (values) => { //user_email
     return new Promise((resolve, reject) => {
-        pool.query('SELECT user_name,user_password FROM users WHERE user_name= ?', values, (error, elements) => {
+        pool.query('SELECT user_name,user_password FROM users WHERE email= ?', values, (error, elements) => {
             if (error) {
                 return reject(error)
             }
@@ -24,15 +24,15 @@ getUser = (values) => { //user_name
 
 
 getUserID = (values) => { //user_name
-        return new Promise((resolve, reject) => {
-            pool.query('SELECT user_id FROM users WHERE user_name= ?', values, (error, elements) => {
-                if (error) {
-                    return reject(error)
-                }
-                return resolve(elements);
-            });
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT user_id FROM users WHERE user_name= ?', values, (error, elements) => {
+            if (error) {
+                return reject(error)
+            }
+            return resolve(elements);
         });
-    };
+    });
+};
 
 
 getUserExtended = (values) => {
@@ -61,10 +61,12 @@ updateUser = (weigth, height, birth, gender, id) => {
 
 }
 
-const user={    addUser,
+const user = {
+    addUser,
     getUser,
     updateUser,
     getUserExtended,
-getUserID}
+    getUserID
+}
 
 module.exports = user;

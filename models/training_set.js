@@ -57,8 +57,45 @@ const updateSetDuration=(values)=>{ //set_id
 }
 
 
+//PRZEKOMPLIKOWANE, DO POPRAWY
+const getUserSets=(values)=>{//user_id
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT training_sets.set_id,set_name, users.user_name, set_duration'
+        +' COUNT(set_excercise.excercise_id) AS excercise_count '
+        +' FROM training_sets'
+        +' INNER JOIN set_excercise ON training_sets.set_id=set_excercise.set_id'
+        +' INNER JOIN users ON training_sets.set_author_id=users.user_id'
+        +' WHERE users.user_id= ? ', values, (error, elements) => {
+            if (error) {
+                return reject(error);
+            }
+            return resolve(elements);
+        })
+    })
+}
+
+const getSetDetails =(values)=>{//set_id
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT excercise_name, excercise_repetition '
+        +' FROM set_excercise'
+        +' JOIN single_excercises USING (excercise_id)'
+        +' WHERE set_id= ? ',values,(error,elements)=>{
+            if (error) {
+                return reject(error);
+            }
+            return resolve(elements);
+        })
+    })
+}
+
+const getAllSets=()=>{
+
+}
+
 trainingSet = {
-    addNewSet
+    addNewSet,
+    getSetDetails,
+    getUserSets
 };
 
 module.exports = trainingSet;
