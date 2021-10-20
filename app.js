@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const connect = require('./utils/connection');
 
 const {
-    authenticateRoute
+    authenticateRoute,isNotAuthenticated
 } = require('./middleware/authToken')
 
 const {
@@ -15,7 +15,8 @@ const {
 
 const {
     login,
-    signup
+    signup,
+    logout
 } = require('./controllers/authRouter')
 
 const homeRouter = require('./controllers/homeRouter')
@@ -31,8 +32,8 @@ app.use(bodyparser.json())
 app.use(express.static(__dirname + '/public'));
 app.use(express.static('public'));
 
-app.get('/login', function (req, res, next) {
-    res.render('login');
+app.get('/login',isNotAuthenticated, function (req, res, next) {
+    res.render('logowanie');
 });
 
 app.post('/login', login)
@@ -43,13 +44,18 @@ app.get('/sign-up', function (req, res, next) {
 
 app.post('/sign-up', signup)
 
-app.get('/',function(req,res,next){
+app.get('/',isNotAuthenticated,function(req,res,next){
     res.render('index');
 })
 
 app.use('/home', authenticateRoute, homeRouter);
 
+app.get('/logout',logout)
 
+
+app.get('*', function(req, res){
+    res.sendStatus(404); 
+  });
 const start = async () => {
     try {
         await connect;

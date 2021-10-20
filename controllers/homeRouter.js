@@ -11,8 +11,8 @@ const training=require('../models/training');
 
 router.get('/', async function (req, res) {
     const username=parseJwt(req.cookies['id']).username;
-    const user_data= await user.getUserExtended(username)[0]
-    res.send(user_data)
+    const user_data= await user.getUserExtended(username)
+    res.send(`${user_data[0].user_weight}`)
 });
 
 router.get('/history', async function(req,res){
