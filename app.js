@@ -15,7 +15,8 @@ const {
 
 const {
     login,
-    signup
+    signup,
+    logout
 } = require('./controllers/authRouter')
 
 const homeRouter = require('./controllers/homeRouter')
@@ -50,6 +51,11 @@ app.get('/',function(req,res,next){
 app.use('/home', authenticateRoute, homeRouter);
 
 
+
+
+app.get('*', function(req, res){
+    res.sendStatus(404); 
+  });
 const start = async () => {
     try {
         await connect;
