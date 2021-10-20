@@ -50,7 +50,7 @@ app.get('/',function(req,res,next){
 
 app.use('/home', authenticateRoute, homeRouter);
 
-
+app.get('/logout',logout)
 
 
 app.get('*', function(req, res){

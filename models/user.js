@@ -41,7 +41,6 @@ getUserExtended = (values) => {
             if (error) {
                 return reject(error)
             }
-            console.log(elements)
             return resolve(elements); //zwraca wszystkie info o użytkowniku
         });
     })

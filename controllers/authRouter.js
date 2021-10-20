@@ -14,7 +14,6 @@ const {
 const login = async (req, res) => {
     const email = req.body.email;
     const user_password = req.body.passw;
-    console.log(email)
     const userData = await user.getUser(email);
     if (userData.length === 1) {
         const resultCompare = await comparePasswords(user_password, userData[0].user_password)
@@ -34,6 +33,11 @@ const login = async (req, res) => {
     } else {
         res.send('Username or Password incorrect')
     }
+}
+
+const logout=async(req,res)=>{
+    res.cookie('id','',{maxAge :1});
+    res.redirect('/')
 }
 
 const passwordMatch = async function (user_password, confirm_password) {
@@ -57,5 +61,6 @@ const signup = async (req, res) => {
 
 module.exports = {
     login,
-    signup
+    signup,
+    logout
 }
