@@ -1,0 +1,37 @@
+<%- include('header.ejs') %>
+
+<body>
+<div class="container-fluid" id="container_header">
+    <h1>BStronger</h1>
+  </div>
+  <div class="container-fluid logPanel col-sm-4 mt-5 fixed-center">
+    <div class=" mx-auto">
+      <h2 class="py-3 text-center">Rejestracja</h2>
+      <form method="post" action="/sign-up">
+        <div class="form-group">
+          <label for="InputNick2">Wybierz nick</label>
+          <input type="text" class="form-control" id="InputNick2" aria-describedby="emailHelp" placeholder="MocnyJanusz76">
+        </div>
+        <div class="form-group">
+          <label for="InputEmail2">Adres mailowy</label>
+          <input type="email" class="form-control" id="InputEmail2" aria-describedby="emailHelp" placeholder="MocnyJanusz76@polsl.pl">
+        </div>
+        <div class="form-group">
+          <label for="InputPassword2">Hasło</label>
+          <input type="password" class="form-control" id="InputPassword2" placeholder="Hasło">
+        </div>
+        <div class="form-group">
+          <label for="InputPassword3">Powtórz hasło</label>
+          <input type="password" class="form-control" id="InputPassword3" placeholder="Hasło">
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-warning btn-lg">Zaloguj</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <%- include('footer.ejs') %>
+  </body>
+
+</html>

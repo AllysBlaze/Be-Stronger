@@ -29,16 +29,16 @@ app.use(bodyparser.urlencoded({
 }))
 app.use(bodyparser.json())
 app.use(express.static(__dirname + '/public'));
-
+app.use(express.static('public'));
 
 app.get('/login', function (req, res, next) {
-    res.render('logowanie');
+    res.render('login');
 });
 
 app.post('/login', login)
 
 app.get('/sign-up', function (req, res, next) {
-    res.render('sign-up');
+    res.render('register');
 })
 
 app.post('/sign-up', signup)
