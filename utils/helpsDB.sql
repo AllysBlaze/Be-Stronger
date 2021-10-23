@@ -40,3 +40,13 @@ UPDATE trainings
 JOIN training_sets ON training_custom_id=set_id
 SET trainings.training_duration=training_sets.set_duration
 WHERE training_category='custom';
+
+
+SELECT training_category, COUNT(training_category) FROM trainings
+WHERE user_id=5
+GROUP BY training_category;
+
+SELECT COUNT(*),week(training_date,1), SEC_TO_TIME(SUM(TIME_TO_SEC(training_duration))) 
+FROM trainings
+WHERE user_id=5
+GROUP BY week(training_date,1);
