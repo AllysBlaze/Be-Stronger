@@ -46,7 +46,7 @@ SELECT training_category, COUNT(training_category) FROM trainings
 WHERE user_id=5
 GROUP BY training_category;
 
-SELECT COUNT(*),week(training_date,1), SEC_TO_TIME(SUM(TIME_TO_SEC(training_duration))) 
+SELECT COUNT(*) AS training_count,week(training_date,1) AS "week", SEC_TO_TIME(SUM(TIME_TO_SEC(training_duration))) AS "time"
 FROM trainings
 WHERE user_id=5
 GROUP BY week(training_date,1);

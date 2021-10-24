@@ -2,10 +2,16 @@
 
 <body>
     <script src="https://cdn.plot.ly/plotly-2.4.2.min.js"></script>
-    <div id="tester" style="width:600px;height:250px;"></div>
-
+    <div id="pie"></div>
+    <div id="bar"></div>
     <script>
-        TESTER = document.getElementById('tester');
+        // do edycji
+        var layout = {
+            height: 400,
+            width: 500
+        };
+        pieChart = document.getElementById('pie');
+        barChart=document.getElementById('bar');
         const x1 = "<%= x1 %>".split(',')
         const y1 = "<%= y1 %>".split(',')
         var d = [{
@@ -13,11 +19,16 @@
             labels: x1,
             type: 'pie'
         }]
-        var layout = {
-            height: 400,
-            width: 500
-        };
-        Plotly.newPlot(TESTER, d, layout);
+        
+        Plotly.newPlot(pieChart, d,layout);
+
+        const x2 = "<%= x2 %>".split(',')
+        const y2 = "<%= y2 %>".split(',')
+        Plotly.newPlot(barChart,[{
+            x:x2,
+            y:y2,
+            type: 'bar'
+        }],layout)
     </script>
 </body>
 
