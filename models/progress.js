@@ -3,7 +3,7 @@ const pool = require('../utils/connection');
 // RODZAJE TRENINGÓW
 const getTrainingCategories=(values)=>{ //user_id
     return new Promise((resolve,reject)=>{
-        pool.query('SELECT training_category, COUNT(training_category)'
+        pool.query('SELECT training_category, COUNT(training_category) AS training_count'
         +' FROM trainings WHERE user_id= ? '
         +' GROUP BY training_category',values,(error,elements)=>{
             if (error) {
