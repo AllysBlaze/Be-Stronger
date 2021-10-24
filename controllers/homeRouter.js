@@ -41,7 +41,6 @@ router.get('/progress', async function (req, res) {
         x1.push(data1[i].training_category);
         y1.push(data1[i].training_count);
     }
-    console.log(typeof(x1))
     res.render('progress', {
         x1:x1,
         y1:y1
