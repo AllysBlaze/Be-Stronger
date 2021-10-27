@@ -1,6 +1,9 @@
 <%- include('header.ejs') %>
 
 <body>
+    <%- include('sideBarMenu.ejs') %>
+    <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Otwórz menu</button>
+    <div>
     <script src="https://cdn.plot.ly/plotly-2.4.2.min.js"></script>
     <div id="pie"></div>
     <div id="bar"></div>
@@ -43,6 +46,7 @@
             type: 'bar'
         }], layoutBar)
     </script>
+    </div>
     <%- include('footer.ejs') %>
 </body>
 

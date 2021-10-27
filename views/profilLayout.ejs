@@ -1,112 +1,8 @@
 <%- include('header.ejs') %>
-<style>
-  .sidebar {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    padding-top: 60px;
-    transition: 0.5s;
-  }
 
-  .sidebarLinks a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 20px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-  }
-
-  .sidebar a:hover {
-    color: #f1f1f1;
-  }
-
-  .sidebar .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
-
-  .listItem {
-    color: aliceblue;
-    list-style-type: none;
-    font-size: 14px;
-    word-wrap: inherit;
-  }
-
-  .listItem a {
-    color: aliceblue;
-  }
-
-  .userName {
-    color: aliceblue;
-  }
-
-  img {
-    width: 70px;
-    height: 70px;
-  }
-
-  #main {
-    transition: margin-left .5s;
-    padding: 20px;
-  }
-
-
-  @media (max-width: 500px) {
-    .sidebar {
-      padding-top: 15px;
-    }
-
-    .sidebar a {
-      font-size: 18px;
-    }
-  }
-</style>
 
 <body>
-  <div id="mySidebar" class="sidebar">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <div class="container-fluid">
-      <h5 class="text-center userName"><%= user_name %></h5>
-      <div class="row">
-        <div class="col-sm-3">
-          <img src="/images/jobs.png" alt="userPhoto">
-        </div>
-        <div class="col-sm-3">
-          <ul class="lista1">
-            <li class="listItem"><a href="/home/weigth">Uaktualnij_wagę</a></li>
-            <li class="listItem"><a href="/home/user">Profil</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="row">
-        <div class="sidebarLinks">
-          <a href="/home/history">Historia treningów</a>
-          <a href="/home/newtraining">Dodaj aktywność</a>
-          <!-- Czy to musi być link???? -->
-          <a href="/home/begin">Rozpocznij trening</a>
-          <ul class="menu-lista">
-            <li><a class="lista" href="/home/start">Wybierz przygotowany trening</a></li>
-            <li><a class="lista" href="/home/new">Ułóż nowy trening na własnych zasadach</a></li>
-          </ul>
-          <a href="/home/progress">Twoje postępy</a>
-        </div>
-      </div>
-      <div class="row padding">
-        <a href="/logout"><button id="logout_btn" type="button" class="btn btn-warning btn-lg">Wyloguj
-            się</button><br /></a>
-      </div>
-    </div>
-
-  </div>
+<%- include('sideBarMenu.ejs') %>
 
   <div id="main">
     <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Otwórz menu</button>
@@ -151,17 +47,6 @@
       Etiam sed semper eros. Pellentesque quam neque, malesuada at rhoncus nec, lobortis ut est.</p>
   </div>
 
-  <script>
-    function openNav() {
-      document.getElementById("mySidebar").style.width = "250px";
-      document.getElementById("main").style.marginLeft = "250px";
-    }
-
-    function closeNav() {
-      document.getElementById("mySidebar").style.width = "0";
-      document.getElementById("main").style.marginLeft = "0";
-    }
-  </script>
 
   <%- include('footer.ejs') %>
 
