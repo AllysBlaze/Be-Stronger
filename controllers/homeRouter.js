@@ -8,6 +8,7 @@ const {
 const user = require('../models/user');
 const training = require('../models/training');
 const progress = require('../models/progress')
+const training_sets=require('../models/training_set')
 
 
 router.get('/', async function (req, res) {
@@ -27,7 +28,7 @@ router.get('/history', async function (req, res) {
 })
 
 
-router.get('/user', function (req, res, next) {
+router.get('/user', async function (req, res, next) {
     res.render('profil');
 })
 
@@ -57,4 +58,11 @@ router.get('/progress', async function (req, res) {
     })
 })
 
+
+router.get('/start',async function(req,res){
+    const username = parseJwt(req.cookies['id']).username; //do poprawy
+    const id = await user.getUserID(username);
+    const data= await training_sets.getSets(id[0].user_id)
+    res.send(data)
+})
 module.exports = router
