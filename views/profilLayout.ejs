@@ -1,8 +1,8 @@
 <%- include('header.ejs') %>
 <style>
-    .sidebar {
+  .sidebar {
     height: 100%;
-    width: 0; 
+    width: 0;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -11,126 +11,160 @@
     overflow-x: hidden;
     padding-top: 60px;
     transition: 0.5s;
-    }
+  }
 
-    .sidebarLinks a {
+  .sidebarLinks a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 20px;
     color: #818181;
     display: block;
     transition: 0.3s;
-    }
+  }
 
-    .sidebar a:hover {
+  .sidebar a:hover {
     color: #f1f1f1;
-    }
+  }
 
-    .sidebar .closebtn {
+  .sidebar .closebtn {
     position: absolute;
     top: 0;
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
-    }
+  }
 
-    .listItem{
+  .listItem {
     color: aliceblue;
     list-style-type: none;
     font-size: 14px;
     word-wrap: inherit;
-    }
+  }
 
-    .listItem a{
+  .listItem a {
     color: aliceblue;
-    }
+  }
 
-    .userName{
+  .userName {
     color: aliceblue;
-    }
+  }
 
-    img{
+  img {
     width: 70px;
     height: 70px;
-    }
+  }
 
-    #main {
+  #main {
     transition: margin-left .5s;
     padding: 20px;
-    }
+  }
 
 
-    @media (max-width: 500px) {
-    .sidebar {padding-top: 15px;}
-    .sidebar a {font-size: 18px;}
+  @media (max-width: 500px) {
+    .sidebar {
+      padding-top: 15px;
     }
+
+    .sidebar a {
+      font-size: 18px;
+    }
+  }
 </style>
+
 <body>
-    <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <div class="container-fluid">
-          <h5 class="text-center userName"><%= user_name %></h5>
-          <div class="row">
-            <div class="col-sm-3"> 
-              <img src="/images/jobs.png" alt="userPhoto">
-            </div>
-            <div class="col-sm-3"> 
-              <ul class="lista1">
-                <li class="listItem"><a href="/home/weigth">Uaktualnij_wagę</a></li>
-                <li class="listItem"><a href="/home/user">Profil</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="row">
-            <div class="sidebarLinks">
-              <a href="/home/history">Historia treningów</a>
-              <a href="/home/newtraining">Dodaj aktywność</a>
-              <!-- Czy to musi być link???? -->
-              <a href="/home/begin">Rozpocznij trening</a>
-              <ul class="menu-lista">
-                <li><a class="lista" href="/home/start">Wybierz przygotowany trening</a></li>
-                <li><a class="lista" href="/home/new">Ułóż nowy trening na własnych zasadach</a></li>
-              </ul>
-              <a href="/home/progress">Twoje postępy</a>
-            </div>
-          </div>
-          <div class="row padding">
-            <a href="/logout"><button id="logout_btn" type="button" class="btn btn-warning btn-lg">Wyloguj się</button><br/></a>
+  <div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="container-fluid">
+      <h5 class="text-center userName"><%= user_name %></h5>
+      <div class="row">
+        <div class="col-sm-3">
+          <img src="/images/jobs.png" alt="userPhoto">
         </div>
+        <div class="col-sm-3">
+          <ul class="lista1">
+            <li class="listItem"><a href="/home/weigth">Uaktualnij_wagę</a></li>
+            <li class="listItem"><a href="/home/user">Profil</a></li>
+          </ul>
         </div>
-
       </div>
-      
-      <div id="main">
-        <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Otwórz menu</button>
-        <h2>Costam</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean laoreet 
-          
-          
-          tristique sem vitae pulvinar. Ut auctor dolor id turpis rutrum lacinia. Nulla pharetra lacus eget mauris maximus interdum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu dui eu neque aliquet convallis eu id dui. In consectetur, erat quis rhoncus egestas, ex purus consectetur erat, vitae volutpat mauris metus vitae sapien. Fusce fermentum tempus lorem a consectetur. Donec sagittis justo non magna cursus, sit amet fermentum quam semper.
-          
-          Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec magna tortor, porta non nisl in, fringilla sodales lectus. Praesent vel imperdiet leo. Aenean sagittis ac ipsum ut imperdiet. Donec pulvinar odio vitae hendrerit ultricies. Sed tristique laoreet imperdiet. Donec quis vestibulum ipsum. Nunc congue elit sit amet nunc condimentum, non malesuada augue pretium. Quisque fringilla arcu vitae tortor mollis finibus. Nullam nec massa scelerisque, sagittis purus venenatis, consequat nisi. Vestibulum lectus sem, scelerisque ut leo non, ullamcorper ultrices odio. Pellentesque efficitur turpis eget aliquam dapibus. Nam ut risus imperdiet, tempus mauris eget, rhoncus eros.
-          
-          Maecenas purus ex, molestie sit amet mollis et, pharetra at erat. Fusce consectetur risus eu sem ornare ultricies in non tellus. Donec commodo ultricies ipsum, id iaculis lacus vestibulum nec. Integer id tortor cursus, feugiat nunc non, suscipit nisi. Suspendisse nec odio ut dolor semper elementum. Sed blandit nibh id fringilla rhoncus. Integer nec lectus quis justo commodo sollicitudin ut sollicitudin dui. Nunc eu elementum lorem, vitae cursus lectus. Mauris ac tortor nec ante gravida feugiat. Praesent est tellus, vulputate id ipsum non, lacinia viverra tortor. Sed libero libero, iaculis mollis aliquet quis, convallis vitae lectus. Vestibulum purus arcu, blandit in nulla sed, consequat accumsan nibh. Duis luctus nisl id risus hendrerit, quis consectetur ipsum convallis.
-          
-          Fusce id fermentum leo, sed dignissim ex. Vestibulum consequat, magna non tempor commodo, magna ante ornare magna, et sodales nulla nisi sed eros. Phasellus sodales sollicitudin lacus a posuere. Duis cursus et justo et venenatis. Quisque porta accumsan orci non euismod. Sed metus sapien, sodales nec dolor et, faucibus vulputate mauris. Sed ultrices est et libero egestas, eget porttitor metus suscipit. Donec at feugiat nisl. Morbi in dictum eros, non finibus nisl. Donec commodo ullamcorper mauris eu consequat. Sed mollis est eget dolor elementum consequat.
-          
-          Mauris sed mi felis. Nullam lacinia semper nunc elementum condimentum. Mauris gravida posuere arcu commodo luctus. Integer luctus vel quam et ornare. Maecenas pretium mattis aliquam. Phasellus mauris mi, luctus quis dolor at, pellentesque ultricies nulla. Integer id nunc laoreet dui fringilla malesuada a nec magna. Aliquam et purus vestibulum, accumsan justo id, condimentum mi. Vivamus id ante consectetur, ornare neque non, iaculis felis. Nulla quis metus tortor. Etiam cursus, velit at vehicula dictum, arcu orci accumsan diam, non aliquet odio ligula eget purus. Cras odio nisi, sollicitudin sed mauris quis, porta tincidunt turpis. Proin vehicula at massa sed feugiat. Etiam sed semper eros. Pellentesque quam neque, malesuada at rhoncus nec, lobortis ut est.</p>
+      <div class="row">
+        <div class="sidebarLinks">
+          <a href="/home/history">Historia treningów</a>
+          <a href="/home/newtraining">Dodaj aktywność</a>
+          <!-- Czy to musi być link???? -->
+          <a href="/home/begin">Rozpocznij trening</a>
+          <ul class="menu-lista">
+            <li><a class="lista" href="/home/start">Wybierz przygotowany trening</a></li>
+            <li><a class="lista" href="/home/new">Ułóż nowy trening na własnych zasadach</a></li>
+          </ul>
+          <a href="/home/progress">Twoje postępy</a>
+        </div>
       </div>
-      
-    <script>
-      function openNav() {
-        document.getElementById("mySidebar").style.width = "250px";
-        document.getElementById("main").style.marginLeft = "250px";
-      }
+      <div class="row padding">
+        <a href="/logout"><button id="logout_btn" type="button" class="btn btn-warning btn-lg">Wyloguj
+            się</button><br /></a>
+      </div>
+    </div>
 
-      function closeNav() {
-        document.getElementById("mySidebar").style.width = "0";
-        document.getElementById("main").style.marginLeft = "0";
-      }
-    </script>
+  </div>
+
+  <div id="main">
+    <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Otwórz menu</button>
+    <h2>Costam</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean laoreet
+
+
+      tristique sem vitae pulvinar. Ut auctor dolor id turpis rutrum lacinia. Nulla pharetra lacus eget mauris maximus
+      interdum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu dui eu neque aliquet convallis eu id
+      dui. In consectetur, erat quis rhoncus egestas, ex purus consectetur erat, vitae volutpat mauris metus vitae
+      sapien. Fusce fermentum tempus lorem a consectetur. Donec sagittis justo non magna cursus, sit amet fermentum quam
+      semper.
+
+      Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec magna tortor, porta
+      non nisl in, fringilla sodales lectus. Praesent vel imperdiet leo. Aenean sagittis ac ipsum ut imperdiet. Donec
+      pulvinar odio vitae hendrerit ultricies. Sed tristique laoreet imperdiet. Donec quis vestibulum ipsum. Nunc congue
+      elit sit amet nunc condimentum, non malesuada augue pretium. Quisque fringilla arcu vitae tortor mollis finibus.
+      Nullam nec massa scelerisque, sagittis purus venenatis, consequat nisi. Vestibulum lectus sem, scelerisque ut leo
+      non, ullamcorper ultrices odio. Pellentesque efficitur turpis eget aliquam dapibus. Nam ut risus imperdiet, tempus
+      mauris eget, rhoncus eros.
+
+      Maecenas purus ex, molestie sit amet mollis et, pharetra at erat. Fusce consectetur risus eu sem ornare ultricies
+      in non tellus. Donec commodo ultricies ipsum, id iaculis lacus vestibulum nec. Integer id tortor cursus, feugiat
+      nunc non, suscipit nisi. Suspendisse nec odio ut dolor semper elementum. Sed blandit nibh id fringilla rhoncus.
+      Integer nec lectus quis justo commodo sollicitudin ut sollicitudin dui. Nunc eu elementum lorem, vitae cursus
+      lectus. Mauris ac tortor nec ante gravida feugiat. Praesent est tellus, vulputate id ipsum non, lacinia viverra
+      tortor. Sed libero libero, iaculis mollis aliquet quis, convallis vitae lectus. Vestibulum purus arcu, blandit in
+      nulla sed, consequat accumsan nibh. Duis luctus nisl id risus hendrerit, quis consectetur ipsum convallis.
+
+      Fusce id fermentum leo, sed dignissim ex. Vestibulum consequat, magna non tempor commodo, magna ante ornare magna,
+      et sodales nulla nisi sed eros. Phasellus sodales sollicitudin lacus a posuere. Duis cursus et justo et venenatis.
+      Quisque porta accumsan orci non euismod. Sed metus sapien, sodales nec dolor et, faucibus vulputate mauris. Sed
+      ultrices est et libero egestas, eget porttitor metus suscipit. Donec at feugiat nisl. Morbi in dictum eros, non
+      finibus nisl. Donec commodo ullamcorper mauris eu consequat. Sed mollis est eget dolor elementum consequat.
+
+      Mauris sed mi felis. Nullam lacinia semper nunc elementum condimentum. Mauris gravida posuere arcu commodo luctus.
+      Integer luctus vel quam et ornare. Maecenas pretium mattis aliquam. Phasellus mauris mi, luctus quis dolor at,
+      pellentesque ultricies nulla. Integer id nunc laoreet dui fringilla malesuada a nec magna. Aliquam et purus
+      vestibulum, accumsan justo id, condimentum mi. Vivamus id ante consectetur, ornare neque non, iaculis felis. Nulla
+      quis metus tortor. Etiam cursus, velit at vehicula dictum, arcu orci accumsan diam, non aliquet odio ligula eget
+      purus. Cras odio nisi, sollicitudin sed mauris quis, porta tincidunt turpis. Proin vehicula at massa sed feugiat.
+      Etiam sed semper eros. Pellentesque quam neque, malesuada at rhoncus nec, lobortis ut est.</p>
+  </div>
+
+  <script>
+    function openNav() {
+      document.getElementById("mySidebar").style.width = "250px";
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidebar").style.width = "0";
+      document.getElementById("main").style.marginLeft = "0";
+    }
+  </script>
 
   <%- include('footer.ejs') %>
 
-  </body>
+</body>
+
 </html>

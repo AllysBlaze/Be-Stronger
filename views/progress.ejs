@@ -4,14 +4,14 @@
     <script src="https://cdn.plot.ly/plotly-2.4.2.min.js"></script>
     <div id="pie"></div>
     <div id="bar"></div>
+
+
     <script>
-        // do edycji
-        var layout = {
+        var layoutPie = { // zmiana rozmiaru wykresu
             height: 400,
             width: 500
         };
         pieChart = document.getElementById('pie');
-        barChart=document.getElementById('bar');
         const x1 = "<%= x1 %>".split(',')
         const y1 = "<%= y1 %>".split(',')
         var d = [{
@@ -19,17 +19,31 @@
             labels: x1,
             type: 'pie'
         }]
-        
-        Plotly.newPlot(pieChart, d,layout);
 
+        Plotly.newPlot(pieChart, d, layoutPie);
+
+
+        var layoutBar = {
+            height: 400,
+            width: 500,
+            xaxis: {
+                ticks: 'outside',
+                dtick: 1
+            },
+            yaxis: {
+                dtick: 1
+            }
+        };
+        barChart = document.getElementById('bar');
         const x2 = "<%= x2 %>".split(',')
         const y2 = "<%= y2 %>".split(',')
-        Plotly.newPlot(barChart,[{
-            x:x2,
-            y:y2,
+        Plotly.newPlot(barChart, [{
+            x: x2,
+            y: y2,
             type: 'bar'
-        }],layout)
+        }], layoutBar)
     </script>
+    <%- include('footer.ejs') %>
 </body>
 
 </html>
