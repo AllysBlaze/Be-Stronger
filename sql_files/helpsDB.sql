@@ -50,3 +50,10 @@ SELECT COUNT(*) AS training_count,week(training_date,1) AS "week", SEC_TO_TIME(S
 FROM trainings
 WHERE user_id=5
 GROUP BY week(training_date,1);
+
+SELECT set_name, user_name, set_duration FROM training_sets
+JOIN users ON set_author_id=user_id
+WHERE set_author_id=1
+UNION
+SELECT set_name, user_name, set_duration FROM training_sets
+JOIN users ON set_author_id=user_id;
