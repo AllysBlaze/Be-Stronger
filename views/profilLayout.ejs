@@ -69,28 +69,29 @@
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div class="container-fluid">
-          <h5 class="text-center userName">MocnyJanusz76</h5>
+          <h5 class="text-center userName"><%= user_name %></h5>
           <div class="row">
             <div class="col-sm-3"> 
               <img src="/images/jobs.png" alt="userPhoto">
             </div>
             <div class="col-sm-3"> 
               <ul class="lista1">
-                <li class="listItem"><a href="#">Uaktualnij_wagę</a></li>
-                <li class="listItem"><a href="#">Profil</a></li>
+                <li class="listItem"><a href="/home/weigth">Uaktualnij_wagę</a></li>
+                <li class="listItem"><a href="/home/user">Profil</a></li>
               </ul>
             </div>
           </div>
           <div class="row">
             <div class="sidebarLinks">
-              <a href="#">Historia treningów</a>
-              <a href="#">Dodaj aktywność</a>
-              <a href="#">Rozpocznij trening</a>
+              <a href="/home/history">Historia treningów</a>
+              <a href="/home/newtraining">Dodaj aktywność</a>
+              <!-- Czy to musi być link???? -->
+              <a href="/home/begin">Rozpocznij trening</a>
               <ul class="menu-lista">
-                <li><a class="lista" href="#">Wybierz przygotowany trening</a></li>
-                <li><a class="lista" href="#">Ułóż nowy trening na własnych zasadach</a></li>
+                <li><a class="lista" href="/home/start">Wybierz przygotowany trening</a></li>
+                <li><a class="lista" href="/home/new">Ułóż nowy trening na własnych zasadach</a></li>
               </ul>
-              <a href="#">Twoje postępy</a>
+              <a href="/home/progress">Twoje postępy</a>
             </div>
           </div>
           <div class="row padding">

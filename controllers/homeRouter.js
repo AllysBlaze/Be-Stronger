@@ -13,8 +13,8 @@ const progress = require('../models/progress')
 router.get('/', async function (req, res) {
     const username = parseJwt(req.cookies['id']).username;
     const user_data = await user.getUserExtended(username)
-    console.log(res)
-    res.send(user_data)
+    //res.send(user_data)
+    res.render('profilLayout',{user_name:user_data[0].user_name})
 });
 
 router.get('/history', async function (req, res) {
@@ -43,7 +43,7 @@ router.get('/progress', async function (req, res) {
     var x2=[];
     var y2=[];
     for (var i=0;i<data2.length;i++){
-        x2.push(data2[i].time);
+        x2.push(data2[i].week);
         y2.push(data2[i].training_count);
     }
 
