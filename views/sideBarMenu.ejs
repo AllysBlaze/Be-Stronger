@@ -1,45 +1,55 @@
 
 <div id="mySidebar" class="sidebar">
+  <div class="container-fluid">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <div class="container-fluid">
-      <h5 class="text-center userName"><%= user_name %></h5>
-      <div class="row">
-        <div class="col-sm-3">
-          <img src="/images/jobs.png" alt="userPhoto">
-        </div>
-        <div class="col-sm-3">
-          <ul class="lista1">
-            <li class="listItem"><a href="/home/weigth">Uaktualnij_wagę</a></li>
-            <li class="listItem"><a href="/home/user">Profil</a></li>
+    <h5 class="text-center py-3 my-0 border-top userName">MocnyJanusz76</h5>
+  
+      <div class="row mt-0 pb-1">
+          <img src="/images/jobs.png" alt="userPhoto" class="img-fluid mx-auto border-dark" id="user_photo">
+      </div>
+        <div class="row border-bottom text-center"> 
+          <ul class="lista1 ml-3">
+            <li class="listItem mt-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+                <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"/>
+              </svg>
+              <a href="/home/user">Profil</a>
+            </li>
+            <li class="listItem mt-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-speedometer2" viewBox="0 0 16 16">
+                <path d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4zM3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.389.389 0 0 0-.029-.518z"/>
+                <path fill-rule="evenodd" d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A7.988 7.988 0 0 1 0 10zm8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3z"/>
+              </svg>
+              <a href="/home/weight">Uaktualnij wagę</a></li>
           </ul>
         </div>
-      </div>
-      <div class="row">
+      <div class="row mt-4">
         <div class="sidebarLinks">
-          <a href="/home/history">Historia treningów</a>
-          <a href="/home/newtraining">Dodaj aktywność</a>
-          <!-- Czy to musi być link???? -->
-          <!--Nie musi, to i tak będę zmieniać bo tu chce dać rozwinają opcję-->
-          <a href="/home/begin">Rozpocznij trening</a>
-          <ul class="menu-lista">
-            <li><a class="lista" href="/home/start">Wybierz przygotowany trening</a></li>
-            <li><a class="lista" href="/home/new">Ułóż nowy trening na własnych zasadach</a></li>
-          </ul>
-          <a href="/home/progress">Twoje postępy</a>
+          <button class="btn btn-dark"><a href="home/history">Historia treningów</a></button>
+          <button class="btn btn-dark"><a href="home/newtraining">Dodaj aktywność</a></button>
+          <div class="dropdown">
+            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <a href="/home/begin">Rozpocznij trening</a>
+            </button>
+            <ul class="dropdown-menu dropMenu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="/home/start">Wybierz przygotowany trening</a></li>
+              <li><a class="dropdown-item" href="/home/new">Ułóż własny trening</a></li>
+            </ul>
+          </div>
+          <button class="btn btn-dark"><a href="/home/progress">Twoje postępy</a></button>
         </div>
       </div>
-      <div class="row padding">
-        <a href="/logout"><button id="logout_btn" type="button" class="btn btn-warning btn-lg">Wyloguj
-            się</button><br /></a>
+      <div class="row">
+        <a href="/logout" id="logout_btn"> <button class="btn btn-warning logoutbtn">Wyloguj</button></a>
       </div>
     </div>
-
 
   </div>
   <script>
     function openNav() {
-      document.getElementById("mySidebar").style.width = "250px";
-      document.getElementById("main").style.marginLeft = "250px";
+      document.getElementById("mySidebar").style.width = "270px";
+      document.getElementById("main").style.marginLeft = "270px";
     }
 
     function closeNav() {

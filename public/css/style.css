@@ -64,71 +64,89 @@ h1{
     background-color: rgb(15, 14, 14);
 }
 .sidebar {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    padding-top: 60px;
-    transition: 0.5s;
-  }
+  height: 100%; 
+  width: 0; 
+  position: fixed; 
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.5s;
+}
 
-.sidebarLinks a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 20px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-  }
+.btn-dark a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 20px;
+  color: aliceblue;
+  transition: 0.3s;
+  display: block;
+}
+
 
 .sidebar a:hover {
-    color: #f1f1f1;
-  }
+  color: rgb(236, 221, 10);
+}
+
+.dropMenu a:hover{
+  color: rgb(113, 113, 114);
+}
+
 
 .sidebar .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
 
-.listItem {
-    color: aliceblue;
-    list-style-type: none;
-    font-size: 14px;
-    word-wrap: inherit;
-  }
+.listItem{
+  color: aliceblue;
+  list-style-type: none;
+  font-size: 16px;
+}
 
-.listItem a {
-    color: aliceblue;
-  }
+.listItem a{
+  color: aliceblue;
+  text-decoration: none;
+  margin-left: 10px;
+}
 
-.userName {
-    color: aliceblue;
-  }
+.listItem a:hover{
+  color: rgb(236, 221, 10);
+}
+.userName{
+  color: aliceblue;
+}
 
-img {
-    width: 70px;
-    height: 70px;
-  }
+#user_photo{
+  width: 90px;
+  height: 90px;
+  margin-left:18px;
+}
+
+.logoutbtn{
+  position: absolute;
+  bottom: 10px;
+  left: 90px;
+}
 
 #main {
-    transition: margin-left .5s;
-    padding: 20px;
-  }
-
+  transition: margin-left .5s; 
+  padding: 20px;
+}
 
 @media (max-width: 500px) {
-    .sidebar {
-      padding-top: 15px;
-    }
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
 
-.sidebar a {
-      font-size: 18px;
-    }
-  }
+
+.sidebarLinks button{
+  width: 100%;
+  background-color: black;
+  padding-right: 30px;
+}
