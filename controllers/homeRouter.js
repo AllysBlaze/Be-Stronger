@@ -24,14 +24,14 @@ router.get('/history', async function (req, res) {
     const id = await user.getUserID(username)
     const history = await training.getUserTrainingHistory(id[0].user_id);
     res.send(history)
-})
+});
 
 
 router.get('/user', async function (req, res, next) {
     
     const username = parseJwt(req.cookies['id']).username;
     res.render('profil',{user_name:username});
-})
+});
 
 router.get('/progress', async function (req, res) {
     const username = parseJwt(req.cookies['id']).username; //do poprawy
@@ -58,7 +58,7 @@ router.get('/progress', async function (req, res) {
         y2: y2,
         user_name: username
     })
-})
+});
 
 
 router.get('/start',async function(req,res){
@@ -66,5 +66,20 @@ router.get('/start',async function(req,res){
     const id = await user.getUserID(username);
     const data= await training_sets.getSets(id[0].user_id)
     res.send(data)
+});
+
+router.post('/weigth',async function(req,res){
+    res.send('waga')
 })
+router.post('/weigth',changeWeigth);
+
+// FUNKCJE
+
+const changeWeigth=async(req,res)=>{
+    const username = parseJwt(req.cookies['id']).username; //do poprawy
+    const id = await user.getUserID(username);
+    const newWeigth=req.body.weigth;
+    await user.updateUserWeigth(newWeigth,id[0].user_id)
+}
+
 module.exports = router
