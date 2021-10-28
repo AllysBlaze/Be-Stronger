@@ -1,6 +1,6 @@
 const express = require('express');
 
-const router = express.Router();
+
 
 const {
     parseJwt
@@ -9,6 +9,28 @@ const user = require('../models/user');
 const training = require('../models/training');
 const progress = require('../models/progress')
 const training_sets=require('../models/training_set')
+
+// #region FUNKCJE
+
+const changeWeigth=async(req,res)=>{
+    const username = parseJwt(req.cookies['id']).username; //do poprawy
+    const id = await user.getUserID(username);
+    const newWeigth=req.body.weigth;
+    await user.updateUserWeigth(newWeigth,id[0].user_id)
+}
+
+const newTraining=async (req,res)=>{
+    const username = parseJwt(req.cookies['id']).username; //do poprawy
+    const id = await user.getUserID(username);
+   const tDate= req.body.tDate;
+   const tCategory=req.body.tCategory;
+   const tDuration=req.body.tDuration;
+   await training.addTraining([id[0].user_id,tDate,tCategory,tDuration])
+}
+ // #endregion
+
+// #region Router
+ const router = express.Router();
 
 router.get('/', async function (req, res) {
     const username = parseJwt(req.cookies['id']).username;
@@ -68,18 +90,17 @@ router.get('/start',async function(req,res){
     res.send(data)
 });
 
-router.post('/weigth',async function(req,res){
+router.get('/weigth',async function(req,res){
     res.send('waga')
 })
 router.post('/weigth',changeWeigth);
 
-// FUNKCJE
 
-const changeWeigth=async(req,res)=>{
-    const username = parseJwt(req.cookies['id']).username; //do poprawy
-    const id = await user.getUserID(username);
-    const newWeigth=req.body.weigth;
-    await user.updateUserWeigth(newWeigth,id[0].user_id)
-}
+router.get('/newtraining', async function(req,res){
+    res.send('nowy trening')
+})
+router.post('/newtraining', newTraining)
+
+// #endregion
 
 module.exports = router
