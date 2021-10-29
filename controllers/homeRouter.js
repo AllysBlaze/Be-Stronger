@@ -97,7 +97,7 @@ router.post('/weigth',changeWeigth);
 
 
 router.get('/newtraining', async function(req,res){
-    res.send('nowy trening')
+    res.render('addNewActivity')
 })
 router.post('/newtraining', newTraining)
 
