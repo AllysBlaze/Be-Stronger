@@ -49,7 +49,7 @@ CREATE TABLE set_excercise(
 CREATE TABLE trainings(
     training_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     user_id INT UNSIGNED NOT NULL,
-    training_category ENUM('rower','bieganie','rolki','custom','chodzenie','plywanie') DEFAULT 'custom',
+    training_category ENUM('custom', 'jazda na rowerze', 'jazda na rolkach', 'trekking', 'joga', 'skakanie na skakance', 'pływanie','bieganie') DEFAULT 'custom',
     training_custom_id INT UNSIGNED,
     training_duration TIME NOT NULL DEFAULT '00:00:00',
     training_date DATETIME NOT NULL,

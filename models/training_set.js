@@ -60,11 +60,11 @@ const updateSetDuration=(values)=>{ //set_id
 //PRZEKOMPLIKOWANE, DO POPRAWY
 const getSets=(values)=>{//user_id
     return new Promise((resolve, reject) => {
-        pool.query('SELECT set_name, user_name, set_duration FROM training_sets'
+        pool.query('SELECT set_id, set_name, user_name, set_duration FROM training_sets'
             +' JOIN users ON set_author_id=user_id'
             +' WHERE set_author_id=1 '
             +' UNION'
-            +' SELECT set_name, user_name, set_duration FROM training_sets'
+            +' SELECT set_id, set_name, user_name, set_duration FROM training_sets'
             +' JOIN users ON set_author_id=user_id', values, (error, elements) => {
             if (error) {
                 return reject(error);
