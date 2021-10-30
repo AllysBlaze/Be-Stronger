@@ -11,19 +11,17 @@ const getUsernameID = require('../middleware/usernameID')
 // #region FUNKCJE
 
 const changeWeigth = async (req, res) => {
-    const username = parseJwt(req.cookies['id']).username; //do poprawy
-    const id = await user.getUserID(username);
+    const id=res.get('id')
     const newWeigth = req.body.weigth;
-    await user.updateUserWeigth(newWeigth, id[0].user_id)
+    await user.updateUserWeigth(newWeigth, id)
 }
 
 const newTraining = async (req, res) => {
-    const username = parseJwt(req.cookies['id']).username; //do poprawy
-    const id = await user.getUserID(username);
+    const id=res.get('id')
     const tDate = req.body.tDate;
     const tCategory = req.body.tCategory;
     const tDuration = req.body.tDuration;
-    await training.addTraining([id[0].user_id, tDate, tCategory, tDuration])
+    await training.addTraining([id, tDate, tCategory, tDuration])
 }
 // #endregion
 
