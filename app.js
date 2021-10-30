@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 
 
 const connect = require('./utils/connection');
-
+const getUsernameID = require('./middleware/usernameID')
 const {
     authenticateRoute,isNotAuthenticated
 } = require('./middleware/authToken')
@@ -48,7 +48,7 @@ app.get('/',isNotAuthenticated,function(req,res,next){
     res.render('index');
 })
 
-app.use('/home', authenticateRoute, homeRouter);
+app.use('/home', authenticateRoute,getUsernameID, homeRouter);
 
 app.get('/logout',logout)
 
