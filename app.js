@@ -39,7 +39,7 @@ app.get('/login',isNotAuthenticated, function (req, res, next) {
 app.post('/login', login)
 
 app.get('/sign-up', function (req, res, next) {
-    res.render('addNewActivity');
+    res.render('register');
 })
 
 app.post('/sign-up', signup)
