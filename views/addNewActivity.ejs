@@ -2,8 +2,9 @@
 
 <body>
     <%- include('sideBarMenu.ejs') %>
-
+    <div id="main">
     <div class="container-fluid">
+      <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Otwórz menu</button>
       <div class="row">
           <div class="col-sm-12 text-center">
               <h1>Dodawanie nowej aktywności</h1>
@@ -37,6 +38,7 @@
             </div>
           </form>
       </div>
+  </div>
   </div>
     
     <%- include('footer.ejs') %>
