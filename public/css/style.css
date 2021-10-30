@@ -16,9 +16,9 @@ h1{
     margin-top: 0;
     width: 100%;
     padding: 50px;
-    height:760px;
+    height:720px;
     background-image: url("/images/main_5.jpg");
-    background-position:left;
+    background-position:center;
     background-size: cover;
 }
 
