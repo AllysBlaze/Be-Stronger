@@ -22,6 +22,16 @@ getUser = (values) => { //user_email
     });
 };
 
+getUserPhoto = (values) => { //user_id
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT user_photo FROM users WHERE user_id= ?', values, (error, elements) => {
+            if (error) {
+                return reject(error)
+            }
+            return resolve(elements);
+        });
+    });
+};
 
 getUserID = (values) => { //user_name
     return new Promise((resolve, reject) => {
@@ -60,10 +70,10 @@ updateUser = (weigth, height, birth, gender, id) => {
 
 }
 
-updateUserWeigth=(weigth,id)=>{
+updateUserWeigth = (weigth, id) => {
     return new Promise((resolve, reject) => {
         pool.query('UPDATE users SET user_weigth= ? ' +
-            'WHERE user_id= ? ',[weigth,id], (error, elements) => {
+            'WHERE user_id= ? ', [weigth, id], (error, elements) => {
                 if (error) {
                     return reject(error)
                 }
@@ -78,7 +88,8 @@ const user = {
     getUser,
     updateUser,
     getUserExtended,
-    getUserID
+    getUserID,
+    getUserPhoto
 }
 
 module.exports = user;

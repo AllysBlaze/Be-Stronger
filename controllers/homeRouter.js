@@ -30,7 +30,8 @@ const router = express.Router();
 router.get('/', async function (req, res) {
     const username = res.get('username');
     res.render('profilLayout', {
-        user_name: username
+        user_name: username,
+        photo_path: res.get('photo')
     })
 });
 
@@ -46,7 +47,8 @@ router.get('/user', async function (req, res, next) {
 
     const username = parseJwt(req.cookies['id']).username;
     res.render('profil', {
-        user_name: username
+        user_name: username,
+        photo_path: res.get('photo')
     });
 });
 
@@ -74,7 +76,8 @@ router.get('/progress', async function (req, res) {
         y1: y1,
         x2: x2,
         y2: y2,
-        user_name: username
+        user_name: username,
+        photo_path: res.get('photo')
     })
 });
 
@@ -94,7 +97,8 @@ router.post('/weigth', changeWeigth);
 router.get('/newtraining', async function (req, res) {
     const username = res.get('username');
     res.render('addNewActivity', {
-        user_name: username
+        user_name: username,
+        photo_path: res.get('photo')
     })
 })
 router.post('/newtraining', newTraining)

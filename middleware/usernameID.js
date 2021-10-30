@@ -8,12 +8,13 @@ const getUsernameID = async function (req, res, next) {
     if (res.get('username') && res.get('id')) {
         next();
     }
-    res.set({
-        'username': username
-    })
+
     const id = await user.getUserID(username);
+    const photo = await user.getUserPhoto(id[0].user_id)
     res.set({
-        'id': id[0].user_id
+        'username': username,
+        'id': id[0].user_id,
+        'photo': photo[0].user_photo
     })
     next();
 }
