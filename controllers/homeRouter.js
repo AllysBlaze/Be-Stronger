@@ -7,17 +7,16 @@ const user = require('../models/user');
 const training = require('../models/training');
 const progress = require('../models/progress')
 const training_sets = require('../models/training_set')
-const getUsernameID = require('../middleware/usernameID')
 // #region FUNKCJE
 
 const changeWeigth = async (req, res) => {
-    const id=res.get('id')
+    const id = res.get('id')
     const newWeigth = req.body.weigth;
     await user.updateUserWeigth(newWeigth, id)
 }
 
 const newTraining = async (req, res) => {
-    const id=res.get('id')
+    const id = res.get('id')
     const tDate = req.body.tDate;
     const tCategory = req.body.tCategory;
     const tDuration = req.body.tDuration;
@@ -35,15 +34,15 @@ router.get('/', async function (req, res) {
     })
 });
 
-router.get('/history',  async function (req, res) {
+router.get('/history', async function (req, res) {
     const username = res.get('username');
-    const id=res.get('id')
+    const id = res.get('id')
     const history = await training.getUserTrainingHistory(id);
     res.send(history)
 });
 
 
-router.get('/user',  async function (req, res, next) {
+router.get('/user', async function (req, res, next) {
 
     const username = parseJwt(req.cookies['id']).username;
     res.render('profil', {
@@ -51,7 +50,7 @@ router.get('/user',  async function (req, res, next) {
     });
 });
 
-router.get('/progress',  async function (req, res) {
+router.get('/progress', async function (req, res) {
     const username = res.get('username');
     const id = res.get('id');
     const data1 = await progress.getTrainingCategories(id);
@@ -80,7 +79,7 @@ router.get('/progress',  async function (req, res) {
 });
 
 
-router.get('/start',  async function (req, res) {
+router.get('/start', async function (req, res) {
     const username = res.get('username');
     const data = await training_sets.getSets(id[0].user_id)
     res.send(data)
@@ -92,9 +91,11 @@ router.get('/weigth', async function (req, res) {
 router.post('/weigth', changeWeigth);
 
 
-router.get('/newtraining',  async function (req, res) {
+router.get('/newtraining', async function (req, res) {
     const username = res.get('username');
-    res.render('addNewActivity',{user_name:username})
+    res.render('addNewActivity', {
+        user_name: username
+    })
 })
 router.post('/newtraining', newTraining)
 

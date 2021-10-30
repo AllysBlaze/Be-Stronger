@@ -6,7 +6,8 @@ const cookieParser = require('cookie-parser');
 const connect = require('./utils/connection');
 const getUsernameID = require('./middleware/usernameID')
 const {
-    authenticateRoute,isNotAuthenticated
+    authenticateRoute,
+    isNotAuthenticated
 } = require('./middleware/authToken')
 
 const {
@@ -32,7 +33,7 @@ app.use(bodyparser.json())
 app.use(express.static(__dirname + '/public'));
 app.use(express.static('public'));
 
-app.get('/login',isNotAuthenticated, function (req, res, next) {
+app.get('/login', isNotAuthenticated, function (req, res, next) {
     res.render('login');
 });
 
@@ -44,18 +45,18 @@ app.get('/sign-up', function (req, res, next) {
 
 app.post('/sign-up', signup)
 
-app.get('/',isNotAuthenticated,function(req,res,next){
+app.get('/', isNotAuthenticated, function (req, res, next) {
     res.render('index');
 })
 
-app.use('/home', authenticateRoute,getUsernameID, homeRouter);
+app.use('/home', authenticateRoute, getUsernameID, homeRouter);
 
-app.get('/logout',logout)
+app.get('/logout', logout)
 
 
-app.get('*', function(req, res){
-    res.sendStatus(404); 
-  });
+app.get('*', function (req, res) {
+    res.sendStatus(404);
+});
 const start = async () => {
     try {
         await connect;
