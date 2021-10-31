@@ -54,8 +54,18 @@ const signup = async (req, res) => {
     if (doPasswordsMatch) {
         const hashedPass = await hashPassword(pass);
         await user.addUser([req.body.user_name, email, hashedPass]).catch((error) => {
+            var message;
+            if(error.sqlMessage.includes('user_name')){
+                message='Użytkownik o podanej nazwie już istnieje'
+            }
+            else if(error.sqlMessage.includes('user_email')){
+                message='Na podany adres email, jest już zarejestrowane konto'
+            }
+            else{
+                message='Coś poszło nie tak'
+            }
             res.render('register', {
-                err_msg: error.sqlMessage
+                err_msg: message
             })
         })
         return;

@@ -40,7 +40,7 @@ app.get('/login', isNotAuthenticated, function (req, res, next) {
 app.post('/login', login)
 
 app.get('/sign-up', function (req, res, next) {
-    res.render('register',{err_msg:""});
+    res.render('register',{err_msg:null});
 })
 
 app.post('/sign-up', signup)
