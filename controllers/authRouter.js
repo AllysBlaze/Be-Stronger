@@ -35,8 +35,10 @@ const login = async (req, res) => {
     }
 }
 
-const logout=async(req,res)=>{
-    res.cookie('id','',{maxAge :1});
+const logout = async (req, res) => {
+    res.cookie('id', '', {
+        maxAge: 1
+    });
     res.redirect('/')
 }
 
@@ -46,16 +48,21 @@ const passwordMatch = async function (user_password, confirm_password) {
 
 const signup = async (req, res) => {
     const pass = req.body.user_password;
-    const email=req.body.email;
+    const email = req.body.email;
     const conf = req.body.confirm_password;
     const doPasswordsMatch = await (passwordMatch(pass, conf));
     if (doPasswordsMatch) {
         const hashedPass = await hashPassword(pass);
-        await user.addUser([req.body.user_name,email, hashedPass])
-        res.redirect('/login')
+        await user.addUser([req.body.user_name, email, hashedPass]).catch((error) => {
+            res.render('register', {
+                err_msg: error.sqlMessage
+            })
+        })
         return;
     }
-    res.redirect('/sign-up')
+    res.render('register', {
+        err_msg: 'Brak zgodności haseł'
+    })
     return //ERROR
 
 }
