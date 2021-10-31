@@ -31,7 +31,7 @@ const login = async (req, res) => {
             res.redirect('/home')
         }
     } else {
-        res.send('Username or Password incorrect')
+        res.render('login',{err_msg:'Nieprawodłowy adres email lub hasło'})
     }
 }
 
@@ -67,8 +67,9 @@ const signup = async (req, res) => {
             res.render('register', {
                 err_msg: message
             })
+            return;
         })
-        return;
+        res.redirect('/login')
     }
     res.render('register', {
         err_msg: 'Brak zgodności haseł'

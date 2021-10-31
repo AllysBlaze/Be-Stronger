@@ -34,13 +34,13 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.static('public'));
 
 app.get('/login', isNotAuthenticated, function (req, res, next) {
-    res.render('login');
+    res.render('login',{err_msg:''});
 });
 
 app.post('/login', login)
 
 app.get('/sign-up', function (req, res, next) {
-    res.render('register',{err_msg:null});
+    res.render('register',{err_msg:''});
 })
 
 app.post('/sign-up', signup)
