@@ -57,26 +57,29 @@ router.get('/progress', async function (req, res) {
     const id = res.get('id');
     const data1 = await progress.getTrainingCategories(id);
     const data2 = await progress.getTrainingWeeklyProgress(id);
+    const goal=await user.getUserGoal(id);
     var x1 = [];
     var y1 = [];
-
     for (var i = 0; i < data1.length; i++) {
         x1.push(data1[i].training_category);
         y1.push(data1[i].training_count);
     }
     var x2 = [];
     var y2 = [];
+    var labels=[];
     for (var i = 0; i < data2.length; i++) {
         x2.push(data2[i].week);
-        y2.push(data2[i].training_count);
+        y2.push(data2[i].time);
+        labels.push(data2[i].time_label);
     }
-
     res.render('progress', {
         x1: x1,
         y1: y1,
         x2: x2,
         y2: y2,
+        labels:labels,
         user_name: username,
+        goal:goal[0].goal,
         photo_path: res.get('photo')
     })
 });

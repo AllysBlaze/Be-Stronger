@@ -18,10 +18,13 @@ const getTrainingCategories=(values)=>{ //user_id
 //PORÓWNANIE TYGODNIOWE
 const getTrainingWeeklyProgress=(values)=>{
     return new Promise((resolve,reject)=>{
-        pool.query('SELECT COUNT(*) AS training_count,week(training_date,1) AS "week", SEC_TO_TIME(SUM(TIME_TO_SEC(training_duration))) AS "time"'
+        pool.query('SELECT COUNT(*) AS training_count,week(training_date,1) AS "week", '
+        +' SUM(TIME_TO_SEC(training_duration)) AS "time",'
+        +' SEC_TO_TIME(SUM(TIME_TO_SEC(training_duration))) AS "time_label"'
         +' FROM trainings'
         +' WHERE user_id= ? '
-        +' GROUP BY week(training_date,1)',[values],(error,elements)=>{
+        +' GROUP BY week(training_date,1)'
+        +' ORDER BY week(training_date,1) ',[values],(error,elements)=>{
             if (error) {
                 return reject(error);
             }

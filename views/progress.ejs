@@ -27,25 +27,47 @@
         Plotly.newPlot(pieChart, d, layoutPie);
 
 
+
+        barChart = document.getElementById('bar');
+        const x2 = "<%= x2 %>".split(',').map(function (item) {
+            return parseInt(item, 10);
+        });
+        const y2 = "<%= y2 %>".split(',').map(function (item) {
+            return parseInt(item, 10);
+        });
+        const labels = "<%= labels %>".split(',').map(time => '2020-01-08 ' + time);
+        const goal = "2020-01-08 " + "<%= goal %>"
+
+        const goals = []
+        for (var i = 0; i < x2.length; i++) {
+            goals.push(goal)
+        }
         var layoutBar = {
             height: 400,
             width: 500,
+            yaxis: {
+                tickformat: '%H:%M:%S',
+            },
             xaxis: {
-                ticks: 'outside',
                 dtick: 1
             },
-            yaxis: {
-                dtick: 1
+            legend: {
+                "orientation": "h"
             }
         };
-        barChart = document.getElementById('bar');
-        const x2 = "<%= x2 %>".split(',')
-        const y2 = "<%= y2 %>".split(',')
         Plotly.newPlot(barChart, [{
-            x: x2,
-            y: y2,
-            type: 'bar'
-        }], layoutBar)
+                x: x2,
+                y: labels,
+                name: 'zapisane aktywności',
+                type: 'bar'
+            },
+            {
+                x: x2,
+                y: goals,
+                name: 'Tygodniowy cel',
+                type: 'scatter'
+            }
+        ], layoutBar)
     </script>
     </div>
     <%- include('footer.ejs') %>

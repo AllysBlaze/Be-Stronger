@@ -82,6 +82,17 @@ updateUserWeigth = (weigth, id) => {
     })
 }
 
+getUserGoal=(values)=>{
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT training_weekly_time_goal AS goal FROM users WHERE user_id= ?', values, (error, elements) => {
+            if (error) {
+                return reject(error)
+            }
+            return resolve(elements);
+        });
+    });
+}
+
 const user = {
     updateUserWeigth,
     addUser,
@@ -89,7 +100,8 @@ const user = {
     updateUser,
     getUserExtended,
     getUserID,
-    getUserPhoto
+    getUserPhoto,
+    getUserGoal
 }
 
 module.exports = user;
