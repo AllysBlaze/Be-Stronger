@@ -1,0 +1,53 @@
+<%- include('header.ejs') %>
+
+<body>
+<div class="container-fluid" id="container_header">
+    <h1>BStronger</h1>
+  </div>
+  <div class="container-fluid logPanel col-sm-4 mt-5 fixed-center">
+    <div class=" mx-auto">
+      <h2 class="py-3 text-center">Podaj kilka dodatkowych informacji</h2>
+      <div class="alert alert-danger" role="alert"> <%= err_msg %></div> <!-- TODO napisać skrypt, żeby się nie pojawiało jak puste-->
+      <form method="post" action="/sign-up">
+        <div class="row">
+          <span>Wybierz płeć</span>
+        </div>
+        <div class="row">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+            <label class="form-check-label" for="exampleRadios1">
+              Kobieta
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <label class="form-check-label" for="exampleRadios2">
+              Mężczyzna
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+            <label class="form-check-label" for="exampleRadios3">
+              Inne
+            </label>
+          </div>
+        </div>
+        <div class="row">
+            <label for="age">Wiek:</label>
+            <input type="number" id="age" name="age" min="1" max="100">
+        </div>
+        <div class="row">
+          <label for="weight">Waga:</label>
+          <input type="number" id="weight" name="weight" min="1" max="300">
+        </div>
+        <div class="text-center">
+          <a href="#"><button type="submit" class="btn btn-warning btn-lg">Zarejestruj</button></a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <%- include('footer.ejs') %>
+  </body>
+
+</html>

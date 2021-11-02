@@ -11,22 +11,22 @@
       <form method="post" action="/sign-up">
         <div class="form-group">
           <label for="InputNick2">Wybierz nick</label>
-          <input name='user_name' type="text" class="form-control" id="InputNick2" aria-describedby="emailHelp" placeholder="MocnyJanusz76">
+          <input name='user_name' type="text" class="form-control" id="InputNick2" aria-describedby="emailHelp" placeholder="MocnyJanusz76" required>
         </div>
         <div class="form-group">
           <label for="InputEmail2">Adres mailowy</label>
-          <input name='email' type="email" class="form-control" id="InputEmail2" aria-describedby="emailHelp" placeholder="MocnyJanusz76@polsl.pl">
+          <input name='email' type="email" class="form-control" id="InputEmail2" aria-describedby="emailHelp" placeholder="MocnyJanusz76@polsl.pl" required>
         </div>
         <div class="form-group">
           <label for="InputPassword2">Hasło</label>
-          <input name='user_password' type="password" class="form-control" id="InputPassword2" placeholder="Hasło">
+          <input name='user_password' type="password" class="form-control" id="InputPassword2" placeholder="Hasło" required>
         </div>
         <div class="form-group">
           <label for="InputPassword3">Powtórz hasło</label>
-          <input name='confirm_password' type="password" class="form-control" id="InputPassword3" placeholder="Hasło">
+          <input name='confirm_password' type="password" class="form-control" id="InputPassword3" placeholder="Hasło" required>
         </div>
         <div class="text-center">
-          <button type="submit" class="btn btn-warning btn-lg">Zaloguj</button>
+          <a href="/register2"><button type="submit" class="btn btn-warning btn-lg">Przejdź dalej</button></a>
         </div>
       </form>
     </div>
