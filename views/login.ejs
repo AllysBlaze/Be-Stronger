@@ -4,11 +4,23 @@
   <div class=container-fluid id="container_header">
     <h1>BStronger</h1>
   </div>
+  
   <div class="container-fluid col-sm-4 logPanel">
     <div class="mx-auto">
       <h2 class="py-5 text-center">Logowanie</h2>
-      <div class="alert alert-danger" role="alert"> <%= err_msg %></div> <!-- TODO napisać skrypt, żeby się nie pojawiało jak puste-->
-      
+      <div class="alert alert-danger" role="alert"> <%= err_msg %></div>
+      <script type="text/javascript">
+        $(document).ready(function () {
+          const msg="<%= err_msg %>"
+            if (msg != "") {
+                $(".alert").text(msg);
+                $(".alert").show();
+            }
+            else {
+                $(".alert").hide();
+            }
+        });
+        </script>
       <form method="post" action="/login">
         <div class="form-group">
           <label for="exampleInputEmail1">Adres mailowy</label>

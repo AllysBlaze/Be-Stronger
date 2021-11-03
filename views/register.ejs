@@ -7,7 +7,19 @@
   <div class="container-fluid logPanel col-sm-4 mt-5 fixed-center">
     <div class=" mx-auto">
       <h2 class="py-3 text-center">Rejestracja</h2>
-      <div class="alert alert-danger" role="alert"> <%= err_msg %></div> <!-- TODO napisać skrypt, żeby się nie pojawiało jak puste-->
+      <div class="alert alert-danger" role="alert"> <%= err_msg %></div> 
+      <script type="text/javascript">
+        $(document).ready(function () {
+          const msg="<%= err_msg %>"
+            if (msg != "") {
+                $(".alert").text(msg);
+                $(".alert").show();
+            }
+            else {
+                $(".alert").hide();
+            }
+        });
+        </script>
       <form method="post" action="/sign-up">
         <div class="form-group">
           <label for="InputNick2">Wybierz nick</label>
