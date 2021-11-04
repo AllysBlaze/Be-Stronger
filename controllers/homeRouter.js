@@ -42,7 +42,32 @@ router.get('/history', async function (req, res) {
     const username = res.get('username');
     const id = res.get('id')
     const history = await training.getUserTrainingHistory(id);
-    res.send(history)
+    var act=[];
+    var duration=[];
+    var date=[]
+    for(var i=0;i<history.length;i++)
+    {
+        if(history[i].training_category=='custom'){
+            act.push(history[i].set_name)
+        }
+        else{
+            act.push(history[i].training_category)
+        }
+        duration.push(history[i].training_duration)
+        var d=history[i].training_date;
+        var month=d.getMonth()+1
+        var year=d.getFullYear()
+        var day=d.getDate()
+        
+        date.push(day.toString()+'.'+month.toString()+'.'+year.toString())
+    }
+    res.render('history', {
+        user_name: username,
+        photo_path: res.get('photo'),
+        act:act,
+        date:date,
+        duration:duration
+    })
 });
 
 

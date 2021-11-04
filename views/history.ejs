@@ -19,34 +19,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <% for (var i=0;i<act.length;i++){ %>
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Bieganie</td>
-                        <td>02:00</td>
+                        <th scope="row"><%= i+1 %></th>
+                        <td><%= act[i] %></td>
+                        <td><%= duration[i] %></td>
                         <td>500 kcal</td>
-                        <td>01.10.2021</td>
+                        <td><%= date[i] %></td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Pływnie</td>
-                        <td>01:00</td>
-                        <td>400 kcal</td>
-                        <td>05.10.2021</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Joga</td>
-                        <td>01:30</td>
-                        <td>300 kcal</td>
-                        <td>07.10.2021</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Trekking</td>
-                        <td>07:00</td>
-                        <td>1300 kcal</td>
-                        <td>20.10.2021</td>
-                    </tr>
+                    <%}%>
                 </tbody>
             </table>
             </div>

@@ -7,7 +7,6 @@ getUserTrainingHistory = (values) => { //user_id
             " FROM trainings " +
             " LEFT JOIN training_sets ON trainings.training_custom_id=training_sets.set_id " +
             " WHERE trainings.user_id= ? " +
-            " GROUP BY training_custom_id " +
             " ORDER BY trainings.training_date", values, (error, elements) => {
                 if (error) {
                     return reject(error);
