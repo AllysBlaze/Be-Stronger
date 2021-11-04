@@ -113,7 +113,13 @@ router.get('/newtraining', async function (req, res) {
 })
 router.post('/newtraining', newTraining)
 
-
+router.get('/cos', async function(req,res){
+    const username = res.get('username');
+    res.render('register2', {
+        user_name: username,
+        photo_path: res.get('photo')
+    })
+})
 
 // #endregion
 
