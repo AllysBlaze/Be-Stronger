@@ -1,0 +1,58 @@
+<%- include('header.ejs') %>
+
+<body>
+    <%- include('sideBarMenu.ejs') %>
+
+    <div id="main">
+        <button class="btn btn-outline-dark openbtn mb-4" onclick="openNav()">&#9776; Otwórz menu</button>
+        <div class="container-fluid"></div>
+            <div class="col-sm-9 mx-auto text-center">
+            <h2 class="m-3">Historia treningów</h2>
+            <table class="table table-secondary">
+                <thead>
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Aktywność</th>
+                    <th scope="col">Czas trwania</th>
+                    <th scope="col">Kalorie</th>
+                    <th scope="col">Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Bieganie</td>
+                        <td>02:00</td>
+                        <td>500 kcal</td>
+                        <td>01.10.2021</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Pływnie</td>
+                        <td>01:00</td>
+                        <td>400 kcal</td>
+                        <td>05.10.2021</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Joga</td>
+                        <td>01:30</td>
+                        <td>300 kcal</td>
+                        <td>07.10.2021</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Trekking</td>
+                        <td>07:00</td>
+                        <td>1300 kcal</td>
+                        <td>20.10.2021</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+
+  <%- include('footer.ejs') %>
+  </body>
+</html>
