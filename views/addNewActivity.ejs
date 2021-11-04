@@ -1,47 +1,47 @@
 <%- include('header.ejs') %>
 
 <body>
-    <%- include('sideBarMenu.ejs') %>
-    <div id="main">
+  <%- include('sideBarMenu.ejs') %>
+  <div id="main">
     <div class="container-fluid">
       <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Otwórz menu</button>
       <div class="row">
-          <div class="col-sm-12 text-center">
-              <h1>Dodawanie nowej aktywności</h1>
-          </div>
+        <div class="col-sm-12 text-center">
+          <h1>Dodawanie nowej aktywności</h1>
+        </div>
       </div>
       <div class="row text-center">
-          <form>
-            <div>
-                <span>Wybierz rodzaj aktywności: </span>
-                <input list="activityList" name="activity">
-                <datalist id="activityList">
-                <option value="Bieganie">
-                <option value="Pływanie">
-                <option value="Jazda na rolkach">
-                <option value="Joga">
-                <option value="Trekking">
-                </datalist>
-            </div>
-            <div>
-                <span>Wybierz czas trwania aktywności: </span>
-                <label for="hours">Godziny:</label>
-                <input type="number" id="hours" name="hours" min="1" max="25">
+        <form method="post" action="/home/newtraining">
+          <div>
+            <span>Wybierz rodzaj aktywności: </span>
+            <input list="activityList" name="activity">
+            <datalist id="activityList">
+              <% for (var i=0;i<categories.length;i++) {%>
+              <% if(categories[i]!='custom'){ %>
+              <option value="<%= categories[i] %>"> </option>
+              <%}}%>
+            </datalist>
+          </div>
+          <div>
+            <span>Wybierz czas trwania aktywności: </span>
+            <label for="hours">Godziny:</label>
+            <input type="number" id="hours" name="hours" min="1" max="25">
 
-                <label for="minutes">Minuty:</label>
-                <input type="number" id="minutes" name="minutes" min="1" max="60">
-              </div>
-              <div>
-                <span></span>
-                <label for="birthday">Wybierz datę aktywności: </label>
-                <input type="date" id="date" name="date">
-              </div>
-              <button class="btn btn-outline-warning" type="submit">Dodaj aktywność</button>
-          </form>
+            <label for="minutes">Minuty:</label>
+            <input type="number" id="minutes" name="minutes" min="1" max="60">
+          </div>
+          <div>
+            <span></span>
+            <label for="birthday">Wybierz datę aktywności: </label>
+            <input type="date" id="date" name="date">
+          </div>
+          <button class="btn btn-outline-warning" type="submit">Dodaj aktywność</button>
+        </form>
       </div>
+    </div>
   </div>
-  </div>
-    
-    <%- include('footer.ejs') %>
-  </body>
+
+  <%- include('footer.ejs') %>
+</body>
+
 </html>

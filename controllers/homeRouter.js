@@ -16,11 +16,14 @@ const changeWeigth = async (req, res) => {
 }
 
 const newTraining = async (req, res) => {
-    const id = res.get('id')
-    const tDate = req.body.tDate;
-    const tCategory = req.body.tCategory;
-    const tDuration = req.body.tDuration;
+    const id = parseInt(res.get('id'))
+    const tDate = req.body.date;
+    const tCategory = req.body.activity;
+    const hours = req.body.hours;
+    const minutes=req.body.minutes;
+    const tDuration=hours.toString()+':'+minutes.toString()+':00'
     await training.addTraining([id, tDate, tCategory, tDuration])
+    res.redirect('/home/newtraining')
 }
 // #endregion
 
@@ -99,12 +102,24 @@ router.post('/weigth', changeWeigth);
 
 router.get('/newtraining', async function (req, res) {
     const username = res.get('username');
+    var categories=await training.getCategories();
+    categories=categories[0].cat.replace('(','').replace(')','').split(',')
+    categories=categories.map(x=>x.replace(/'/g,''))
     res.render('addNewActivity', {
+        user_name: username,
+        photo_path: res.get('photo'),
+        categories:categories
+    })
+})
+router.post('/newtraining', newTraining)
+
+router.get('/cos', async function(req,res){
+    const username = res.get('username');
+    res.render('register2', {
         user_name: username,
         photo_path: res.get('photo')
     })
 })
-router.post('/newtraining', newTraining)
 
 // #endregion
 

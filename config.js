@@ -7,4 +7,6 @@ module.exports = {
   db_pass: process.env.DB_PASS,
   db_host: process.env.DB_HOST,
   db_name: process.env.DB_NAME,
+  category: process.env.CATEGORY,
+  table: process.env.TABLE
 };

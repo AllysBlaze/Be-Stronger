@@ -57,3 +57,15 @@ WHERE set_author_id=1
 UNION
 SELECT set_name, user_name, set_duration FROM training_sets
 JOIN users ON set_author_id=user_id;
+
+
+SELECT SUBSTRING(COLUMN_TYPE,5)
+FROM information_schema.COLUMNS
+WHERE TABLE_SCHEMA='projekt' 
+    AND TABLE_NAME='trainings'
+    AND COLUMN_NAME='training_category';
+
+INSERT INTO trainings
+(user_id,training_category,training_date,training_duration)
+VALUES
+(1,'jazda na rowerze','2021-10-10','1:1:00');
