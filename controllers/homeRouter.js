@@ -106,6 +106,7 @@ router.get('/newtraining', async function (req, res) {
 })
 router.post('/newtraining', newTraining)
 
+
 // #endregion
 
 module.exports = router
