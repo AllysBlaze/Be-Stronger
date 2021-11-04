@@ -10,32 +10,33 @@
               <h1>Dodawanie nowej aktywności</h1>
           </div>
       </div>
-      <div class="row">
+      <div class="row text-center">
           <form>
-            <div class="col-sm-4">
-                    <input list="activityList" name="activity">
-                    <datalist id="activityList">
-                    <option value="Bieganie">
-                    <option value="Pływanie">
-                    <option value="Jazda na rolkach">
-                    <option value="Joga">
-                    <option value="Trekking">
-                    </datalist>
-                    <input type="submit">
+            <div>
+                <span>Wybierz rodzaj aktywności: </span>
+                <input list="activityList" name="activity">
+                <datalist id="activityList">
+                <option value="Bieganie">
+                <option value="Pływanie">
+                <option value="Jazda na rolkach">
+                <option value="Joga">
+                <option value="Trekking">
+                </datalist>
             </div>
-            <div class="col-sm-4">
+            <div>
+                <span>Wybierz czas trwania aktywności: </span>
                 <label for="hours">Godziny:</label>
                 <input type="number" id="hours" name="hours" min="1" max="25">
 
                 <label for="minutes">Minuty:</label>
                 <input type="number" id="minutes" name="minutes" min="1" max="60">
-
-                <input type="submit" value="Submit">
-            </div>
-            <div class="col-sm-4">
-                <label for="birthday">Data:</label>
+              </div>
+              <div>
+                <span></span>
+                <label for="birthday">Wybierz datę aktywności: </label>
                 <input type="date" id="date" name="date">
-            </div>
+              </div>
+              <button class="btn btn-outline-warning" type="submit">Dodaj aktywność</button>
           </form>
       </div>
   </div>
