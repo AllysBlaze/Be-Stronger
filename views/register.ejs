@@ -4,9 +4,9 @@
 <div class="container-fluid" id="container_header">
     <h1>BStronger</h1>
   </div>
-  <div class="container-fluid logPanel col-sm-4 mt-5 fixed-center">
+  <div class="container-fluid logPanel col-sm-4 mt-2 fixed-center">
     <div class=" mx-auto">
-      <h2 class="py-3 text-center">Rejestracja</h2>
+      <h2 class="py-4 text-center">Rejestracja</h2>
       <div class="alert alert-danger" role="alert"> <%= err_msg %></div> 
       <script type="text/javascript">
         $(document).ready(function () {
@@ -37,9 +37,47 @@
           <label for="InputPassword3">Powtórz hasło</label>
           <input name='confirm_password' type="password" class="form-control" id="InputPassword3" placeholder="Hasło" required>
         </div>
-        <div class="text-center">
-          <a href="/register2"><button type="submit" class="btn btn-warning btn-lg">Przejdź dalej</button></a>
+        <div class="row">
+          <span class="ml-3">Wybierz płeć</span>
         </div>
+        <div class="row">
+          <div class="form-check m-3">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+            <label class="form-check-label" for="exampleRadios1">
+              Kobieta
+            </label>
+          </div>
+          <div class="form-check m-3">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <label class="form-check-label" for="exampleRadios2">
+              Mężczyzna
+            </label>
+          </div>
+          <div class="form-check m-3">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+            <label class="form-check-label" for="exampleRadios3">
+              Inne
+            </label>
+          </div>
+        </div>
+        </div>
+          <div class="form-outline">
+            <label class="form-label" for="age">Wiek</label>
+            <input type="number" id="age" name="age" class="form-control" min=1 max=120/>
+          </div>
+
+          <div class="form-outline">
+            <label class="form-label" for="weight">Waga:</label>
+            <input type="number" id="weight" name="weight" class="form-control" min="1" max="300">
+          </div>
+   
+          <div class="form-outline">
+            <label class="form-label" for="weight">Wzrost(cm):</label>
+            <input type="number" id="height" name="height" class="form-control" min="1" max="230">
+          </div>
+        
+        <div class="text-center">
+          <a href="#"><button type="submit" class="btn btn-warning btn-lg mt-2">Zarejestruj</button></a>
       </form>
     </div>
   </div>
