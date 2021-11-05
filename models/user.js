@@ -47,7 +47,7 @@ getUserID = (values) => { //user_name
 
 getUserExtended = (values) => {
     return new Promise((resolve, reject) => {
-        pool.query('SELECT user_name,email, user_weight,user_height,user_birth,user_gender FROM users WHERE user_name= ?', values, (error, elements) => {
+        pool.query('SELECT * FROM users WHERE user_id= ?', values, (error, elements) => {
             if (error) {
                 return reject(error)
             }

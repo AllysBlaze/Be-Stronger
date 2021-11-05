@@ -20,8 +20,8 @@ const newTraining = async (req, res) => {
     const tDate = req.body.date;
     const tCategory = req.body.activity;
     const hours = req.body.hours;
-    const minutes=req.body.minutes;
-    const tDuration=hours.toString()+':'+minutes.toString()+':00'
+    const minutes = req.body.minutes;
+    const tDuration = hours.toString() + ':' + minutes.toString() + ':00'
     await training.addTraining([id, tDate, tCategory, tDuration])
     res.redirect('/home/newtraining')
 }
@@ -31,52 +31,53 @@ const newTraining = async (req, res) => {
 const router = express.Router();
 
 router.get('/', async function (req, res) {
-    const username = res.get('username');
-    res.render('profilLayout', {
-        user_name: username,
-        photo_path: res.get('photo')
-    })
+    res.redirect('/home/profile')
 });
 
 router.get('/history', async function (req, res) {
     const username = res.get('username');
     const id = res.get('id')
     const history = await training.getUserTrainingHistory(id);
-    var act=[];
-    var duration=[];
-    var date=[]
-    for(var i=0;i<history.length;i++)
-    {
-        if(history[i].training_category=='custom'){
+    var act = [];
+    var duration = [];
+    var date = []
+    for (var i = 0; i < history.length; i++) {
+        if (history[i].training_category == 'custom') {
             act.push(history[i].set_name)
-        }
-        else{
+        } else {
             act.push(history[i].training_category)
         }
         duration.push(history[i].training_duration)
-        var d=history[i].training_date;
-        var month=d.getMonth()+1
-        var year=d.getFullYear()
-        var day=d.getDate()
-        
-        date.push(day.toString()+'.'+month.toString()+'.'+year.toString())
+        var d = history[i].training_date;
+        var month = d.getMonth() + 1
+        var year = d.getFullYear()
+        var day = d.getDate()
+
+        date.push(day.toString() + '.' + month.toString() + '.' + year.toString())
     }
     res.render('history', {
         user_name: username,
         photo_path: res.get('photo'),
-        act:act,
-        date:date,
-        duration:duration
+        act: act,
+        date: date,
+        duration: duration
     })
 });
 
 
-router.get('/user', async function (req, res, next) {
-
-    const username = parseJwt(req.cookies['id']).username;
+router.get('/profile', async function (req, res) {
+    const username = res.get('username');
+    const id = res.get('id');
+    const us = await user.getUserExtended(id)
+    var age = '';
+    if (us[0].user_birth)
+        age = new Date().getFullYear() - us[0].user_birth.getFullYear()
     res.render('profil', {
         user_name: username,
-        photo_path: res.get('photo')
+        photo_path: res.get('photo'),
+        weigth: us[0].user_weight,
+        heigth: us[0].user_height,
+        age: age
     });
 });
 
@@ -85,7 +86,7 @@ router.get('/progress', async function (req, res) {
     const id = res.get('id');
     const data1 = await progress.getTrainingCategories(id);
     const data2 = await progress.getTrainingWeeklyProgress(id);
-    const goal=await user.getUserGoal(id);
+    const goal = await user.getUserGoal(id);
     var x1 = [];
     var y1 = [];
     for (var i = 0; i < data1.length; i++) {
@@ -94,7 +95,7 @@ router.get('/progress', async function (req, res) {
     }
     var x2 = [];
     var y2 = [];
-    var labels=[];
+    var labels = [];
     for (var i = 0; i < data2.length; i++) {
         x2.push(data2[i].week);
         y2.push(data2[i].time);
@@ -105,9 +106,9 @@ router.get('/progress', async function (req, res) {
         y1: y1,
         x2: x2,
         y2: y2,
-        labels:labels,
+        labels: labels,
         user_name: username,
-        goal:goal[0].goal,
+        goal: goal[0].goal,
         photo_path: res.get('photo')
     })
 });
@@ -127,20 +128,20 @@ router.post('/weigth', changeWeigth);
 
 router.get('/newtraining', async function (req, res) {
     const username = res.get('username');
-    var categories=await training.getCategories();
-    categories=categories[0].cat.replace('(','').replace(')','').split(',')
-    categories=categories.map(x=>x.replace(/'/g,''))
+    var categories = await training.getCategories();
+    categories = categories[0].cat.replace('(', '').replace(')', '').split(',')
+    categories = categories.map(x => x.replace(/'/g, ''))
     res.render('addNewActivity', {
         user_name: username,
         photo_path: res.get('photo'),
-        categories:categories
+        categories: categories
     })
 })
 router.post('/newtraining', newTraining)
 
-router.get('/cos', async function(req,res){
+router.get('/cos', async function (req, res) {
     const username = res.get('username');
-    res.render('profil', {
+    res.render('register2', {
         user_name: username,
         photo_path: res.get('photo')
     })
