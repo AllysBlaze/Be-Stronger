@@ -9,10 +9,10 @@ const progress = require('../models/progress')
 const training_sets = require('../models/training_set')
 // #region FUNKCJE
 
-const changeWeigth = async (req, res) => {
+const changeweight = async (req, res) => {
     const id = res.get('id')
-    const newWeigth = req.body.weigth;
-    await user.updateUserWeigth(newWeigth, id)
+    const newWeight = req.body.weight;
+    await user.updateUserweight(newWeight, id)
 }
 
 const newTraining = async (req, res) => {
@@ -75,8 +75,8 @@ router.get('/profile', async function (req, res) {
     res.render('profil', {
         user_name: username,
         photo_path: res.get('photo'),
-        weigth: us[0].user_weight,
-        heigth: us[0].user_height,
+        weight: us[0].user_weight,
+        height: us[0].user_height,
         age: age
     });
 });
@@ -120,10 +120,14 @@ router.get('/start', async function (req, res) {
     res.send(data)
 });
 
-router.get('/weigth', async function (req, res) {
-    res.send('waga')
+router.get('/weight', async function (req, res) {
+    
+    const username = res.get('username');
+    res.render('weight', {
+        user_name: username,
+        photo_path: res.get('photo')})
 })
-router.post('/weigth', changeWeigth);
+//router.post('/weight', changeweight);
 
 
 router.get('/newtraining', async function (req, res) {
