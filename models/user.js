@@ -56,6 +56,18 @@ getUserExtended = (values) => {
     })
 }
 
+getUserWeight = (values) => {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT user_weight FROM users WHERE user_id= ?', values, (error, elements) => {
+            if (error) {
+                return reject(error)
+            }
+            return resolve(elements); 
+        });
+    })
+}
+
+
 updateUser = (weight, height, birth, gender, id) => {
     const values = [weight, height, birth, gender, id];
     return new Promise((resolve, reject) => {
@@ -101,7 +113,8 @@ const user = {
     getUserExtended,
     getUserID,
     getUserPhoto,
-    getUserGoal
+    getUserGoal,
+    getUserWeight
 }
 
 module.exports = user;

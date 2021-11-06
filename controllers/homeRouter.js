@@ -121,11 +121,21 @@ router.get('/start', async function (req, res) {
 });
 
 router.get('/weight', async function (req, res) {
-    
+
     const username = res.get('username');
+
+    const id = await user.getUserID(username);
+
+    const curWeight = await user.getUserWeight(id[0].user_id)
+    var cw=curWeight[0].user_weight
+    if (cw==null){
+       cw=50 
+    }
     res.render('weight', {
         user_name: username,
-        photo_path: res.get('photo')})
+        photo_path: res.get('photo'),
+        curWeight: cw
+    })
 })
 //router.post('/weight', changeweight);
 
