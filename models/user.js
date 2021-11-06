@@ -56,11 +56,11 @@ getUserExtended = (values) => {
     })
 }
 
-updateUser = (weigth, height, birth, gender, id) => {
-    const values = [weigth, height, birth, gender, id];
+updateUser = (weight, height, birth, gender, id) => {
+    const values = [weight, height, birth, gender, id];
     return new Promise((resolve, reject) => {
-        pool.query('UPDATE users SET user_weigth= ? ,user_height= ? ,user_birth= ? , user_gender = ? ' +
-            'WHERE user_id= ? ', values, (error, elements) => {
+        pool.query('UPDATE users SET user_weight= ? ,user_height= ? ,user_birth= ? , user_gender = ? ' +
+            'WHERE user_name= ? ', values, (error, elements) => {
                 if (error) {
                     return reject(error)
                 }
@@ -70,10 +70,10 @@ updateUser = (weigth, height, birth, gender, id) => {
 
 }
 
-updateUserWeigth = (weigth, id) => {
+updateUserweight = (weight, id) => {
     return new Promise((resolve, reject) => {
-        pool.query('UPDATE users SET user_weigth= ? ' +
-            'WHERE user_id= ? ', [weigth, id], (error, elements) => {
+        pool.query('UPDATE users SET user_weight= ? ' +
+            'WHERE user_id= ? ', [weight, id], (error, elements) => {
                 if (error) {
                     return reject(error)
                 }
@@ -94,7 +94,7 @@ getUserGoal=(values)=>{
 }
 
 const user = {
-    updateUserWeigth,
+    updateUserweight,
     addUser,
     getUser,
     updateUser,

@@ -52,10 +52,11 @@ const signup = async (req, res) => {
     const pass = req.body.user_password;
     const email = req.body.email;
     const conf = req.body.confirm_password;
+    const user_name=req.body.user_name
     const doPasswordsMatch = await (passwordMatch(pass, conf));
     if (doPasswordsMatch) {
         const hashedPass = await hashPassword(pass);
-        await user.addUser([req.body.user_name, email, hashedPass]).catch((error) => {
+        await user.addUser([user_name, email, hashedPass]).catch((error) => {
             var message;
             if (error.sqlMessage.includes('user_name')) {
                 message = 'Użytkownik o podanej nazwie już istnieje'
@@ -69,7 +70,13 @@ const signup = async (req, res) => {
             })
             return;
         })
+        const weight=req.body.weight;
+        const height=req.body.height;
+        const birth='1999-12-21';
+        const gender='K';
+        user.updateUser(weight, height, birth, gender, user_name)
         res.redirect('/login')
+        return
     }
     res.render('register', {
         err_msg: 'Brak zgodności haseł'
