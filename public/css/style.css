@@ -113,6 +113,12 @@ h1{
   margin-left:18px;
 }
 
+#profile_photo{
+  width: 150px;
+  height: 150px;
+  margin-right: 0;
+}
+
 
 #main {
   transition: margin-left .5s; 
