@@ -155,7 +155,7 @@ router.post('/newtraining', newTraining)
 
 router.get('/cos', async function (req, res) {
     const username = res.get('username');
-    res.render('weight', {
+    res.render('appTraining', {
         user_name: username,
         photo_path: res.get('photo')
     })
