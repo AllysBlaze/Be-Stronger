@@ -1,0 +1,58 @@
+<%- include('header.ejs') %>
+
+<body>
+    <%- include('sideBarMenu.ejs') %>
+
+    <div id="main">
+        <button class="btn btn-outline-dark openbtn mb-4" onclick="openNav()">&#9776; Otwórz menu</button>
+        <div class="container-fluid mx-auto"></div>
+            <div class="col-lg-9 mx-auto text-center">
+                <h2 class="my-5">Stwórz własny trening</h2>
+                <div class="row text-center">
+                    <div class="card m-2 mx-auto bg-light" style="width: 21rem;">
+                        <img src="/images/icons.jpg" class="card-img-top" alt="Ikony sportowe">
+                        <div class="card-body">
+                            <h5 class="card-title">Górne partie ciała</h5>
+                        </div>
+                        
+                        <div class="card-body">
+                            <a href="#" class="btn btn-warning">Zobacz ćwiczenia</a>
+                        </div>
+                    </div>
+                    <div class="card m-2 mx-auto bg-light" style="width: 21rem;">
+                        <img src="/images/icons.jpg" class="card-img-top" alt="Ikony sportowe">
+                        <div class="card-body">
+                            <h5 class="card-title">Dolne partie ciała</h5>
+                        </div>
+                        
+                        <div class="card-body">
+                            <a href="#" class="btn btn-warning">Zobacz ćwiczenia</a>
+                        </div>
+                    </div>
+                    <div class="card m-2 mx-auto bg-light" style="width: 21rem;">
+                        <img src="/images/icons.jpg" class="card-img-top" alt="Ikony sportowe">
+                        <div class="card-body">
+                            <h5 class="card-title">Ćwiczenia rozgrzewkowe</h5>
+                        </div>
+                        
+                        <div class="card-body">
+                            <a href="#" class="btn btn-warning">Zobacz ćwiczenia</a>
+                        </div>
+                    </div>
+                    <div class="card m-2 mx-auto bg-light" style="width: 21rem;">
+                        <img src="/images/icons.jpg" class="card-img-top" alt="Ikony sportowe">
+                        <div class="card-body">
+                            <h5 class="card-title">Ćwiczenia rozciągające</h5>
+                        </div>
+                        
+                        <div class="card-body">
+                            <a href="#" class="btn btn-warning">Zobacz ćwiczenia</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+  <%- include('footer.ejs') %>
+  </body>
+</html>
