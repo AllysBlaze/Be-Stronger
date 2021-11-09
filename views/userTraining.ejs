@@ -49,6 +49,18 @@
                             <a href="#" class="btn btn-warning">Zobacz ćwiczenia</a>
                         </div>
                     </div>
+                    <%for (var i=0;i<set_id.length ; i++) { %>
+                        <div class="card m-2 mx-auto bg-light" style="width: 21rem;">
+                            <img src="/images/icons.jpg" class="card-img-top" alt="Ikony sportowe">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= set_name[i] %></h5>
+                            </div>
+                            
+                            <div class="card-body">
+                                <a href="#" class="btn btn-warning" value="<%= set_id[i] %>">Zobacz ćwiczenia</a>
+                            </div>
+                        </div>
+                        <%}%>
                 </div>
             </div>
         </div>
