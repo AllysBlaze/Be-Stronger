@@ -116,20 +116,22 @@ router.get('/progress', async function (req, res) {
 
 router.get('/start', async function (req, res) {
     const username = res.get('username');
-    
-    const id = await user.getUserID(username);
+
+    var id = await user.getUserID(username)
+    id = id[0].user_id;
     const data = await training_sets.getSets(id)
-    var set_id=[];
-    var set_name=[];
-    for (var i=0;i<data.length;i++){
+    var set_id = [];
+    var set_name = [];
+    for (var i = 0; i < data.length; i++) {
         set_id.push(data[i].set_id);
         set_name.push(data[i].set_name);
     }
+
     res.render('userTraining', {
         user_name: username,
         photo_path: res.get('photo'),
-        set_name:set_name,
-        set_id:set_id
+        set_name: set_name,
+        set_id: set_id
     })
 });
 
@@ -140,9 +142,9 @@ router.get('/weight', async function (req, res) {
     const id = await user.getUserID(username);
 
     const curWeight = await user.getUserWeight(id[0].user_id)
-    var cw=curWeight[0].user_weight
-    if (cw==null){
-       cw=50 
+    var cw = curWeight[0].user_weight
+    if (cw == null) {
+        cw = 50
     }
     res.render('weight', {
         user_name: username,

@@ -69,3 +69,7 @@ INSERT INTO trainings
 (user_id,training_category,training_date,training_duration)
 VALUES
 (1,'jazda na rowerze','2021-10-10','1:1:00');
+
+
+
+Select set_id, set_name FROM training_sets WHERE set_name LIKE "trening #%"
