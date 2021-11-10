@@ -1,5 +1,6 @@
 body{
     background-position: center;
+    min-height: 600px;
   }
 
 h1{
@@ -128,6 +129,11 @@ h1{
 @media (max-width: 500px) {
   .sidebar {padding-top: 15px;}
   .sidebar a {font-size: 18px;}
+}
+
+@media (min-width: 700px){
+  .sidebar {width: 270px;}
+  #main {margin-left: 270px;}
 }
 
 
