@@ -9,29 +9,42 @@
         <div class="container-fluid mt-5 text-center" id="profil_panel">
             <h2 class="mb-5">Uaktualnij wagę</h2>
             <div class="col-sm-2 mx-auto mt-5">
+                
                 <div class="row">
+                    <script>
+                        function add(){
+                            document.getElementById('number').innerText=parseInt(document.getElementById('number').innerText)+1;
+                            document.getElementById('wagainput').value=document.getElementById('number').innerText;
+                            return
+                        }
+                        function subtract(){
+                            document.getElementById('number').innerText=parseInt(document.getElementById('number').innerText)-1;
+                            document.getElementById('wagainput').value=document.getElementById('number').innerText;
+                            return
+                        }
+                    </script>
                     <button class="btn btn-dark btn-lg" onclick="add()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                       </svg>
                     </button>
-                    <h1 id="number"><%= curWeight %></h1>
-                    <button class="btn btn-dark btn-lg">
+                    <h1 id="number" ><%= curWeight %></h1>
+                    <button class="btn btn-dark btn-lg" onclick="subtract()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z"/>
                         </svg>
                     </button>
                 </div>
+
+                <form method="post" action="/home/weight">
+                    <input type='hidden' id='wagainput' name="waga" >
                 <div class="row text-center">
-                    <button class="btn btn-warning btn-lg mt-5">Zapisz</button>
+                    <button class="btn btn-warning btn-lg mt-5" type='submit'>Zapisz</button>
                 </div>
+            </form>
             </div>
-            
         </div>
     </div>
-    <script>
-        function add(){
-        }
-    </script>
+
   <%- include('footer.ejs') %>
 
   </body>

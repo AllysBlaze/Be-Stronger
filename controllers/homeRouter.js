@@ -11,8 +11,12 @@ const training_sets = require('../models/training_set')
 
 const changeweight = async (req, res) => {
     const id = res.get('id')
-    const newWeight = req.body.weight;
-    await user.updateUserweight(newWeight, id)
+    const newWeight = req.body.waga;
+    if (newWeight!=''){
+
+        await user.updateUserweight(newWeight, id)
+    }
+    res.redirect('/home/weight')
 }
 
 const newTraining = async (req, res) => {
@@ -127,7 +131,7 @@ router.get('/start', async function (req, res) {
         set_name.push(data[i].set_name);
     }
 
-    res.render('userTraining', {
+    res.render('appTraining', {
         user_name: username,
         photo_path: res.get('photo'),
         set_name: set_name,
@@ -152,7 +156,7 @@ router.get('/weight', async function (req, res) {
         curWeight: cw
     })
 })
-//router.post('/weight', changeweight);
+router.post('/weight', changeweight);
 
 
 router.get('/newtraining', async function (req, res) {
