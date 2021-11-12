@@ -4,7 +4,7 @@
 <div id="container_header">
     <h1>BStronger</h1>
 </div>
-  <div class="container-fluid logPanel col-sm-4 mt-2 fixed-center">
+  <div class="container-fluid logPanel col-sm-4 my-5 fixed-center">
     <div class=" mx-auto">
       <h2 class="py-4 text-center">Rejestracja</h2>
       <div class="alert alert-danger" role="alert"> <%= err_msg %></div> 
@@ -62,8 +62,8 @@
         </div>
         </div>
           <div class="form-outline">
-            <label class="form-label" for="age">Wiek</label>
-            <input type="number" id="age" name="age" class="form-control" min=1 max=120/>
+            <label class="form-label" for="age">Data urodzenia</label>
+            <input type="date" id="birthdate" name="birthdate" class="form-control"/>
           </div>
 
           <div class="form-outline">
