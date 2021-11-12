@@ -1,0 +1,45 @@
+<%- include('header.ejs') %>
+
+<body>
+    <%- include('sideBarMenu.ejs') %>
+    <div id="main">
+        <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Menu</button>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <form name="" action="">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Wybierz ćwiczenie</span>
+                            <input list="exerciseList" name="exercise" class="form-control"> 
+                            <datalist id="exerciseList">
+                                <option value="Brzuszki">
+                                <option value="Pompki">
+                                <option value="Muscle-up">
+                                <option value="Podciągnięcia">
+                                <option value="Przysiady">
+                            </datalist>
+                            <input type="number" class="form-control" placeholder="Ilość powtórzeń" aria-label="Ilość powtórzeń">
+                            <button class="btn btn-warning" type="submit">Dodaj do listy</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="col-lg-4">
+                    <ul class="list-group">
+                        <li class="list-group-item">Pompki 10 powtórzeń</li>
+                        <li class="list-group-item">Brzuszki 15 powtórzeń</li>
+                        <li class="list-group-item">Przysiady 20 powtórzeń</li> 
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-warning" type="submit">Zatwierdź</button>
+ 
+            
+        
+    </div>
+  <%- include('footer.ejs') %>
+
+  </body>
+</html>
