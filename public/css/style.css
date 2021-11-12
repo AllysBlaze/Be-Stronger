@@ -3,11 +3,19 @@ body{
     min-height: 600px;
   }
 
-h1{
+#header{
     margin-bottom: 0;
     padding:35px;
     color: rgb(187, 187, 187);
-    letter-spacing: 7px;
+    letter-spacing: 9px;
+    font-family: sans-serif;
+}
+
+h1{
+    margin-bottom: 30px;
+    padding:35px;
+    color: rgb(22, 22, 22);
+    letter-spacing: 5px;
     font-family: sans-serif;
 }
 
