@@ -1,8 +1,5 @@
 const express = require('express');
-
-const {
-    parseJwt
-} = require('../middleware/authToken');
+const excercise=require('../models/excercise')
 const user = require('../models/user');
 const training = require('../models/training');
 const progress = require('../models/progress')
@@ -173,6 +170,20 @@ router.get('/newtraining', async function (req, res) {
     })
 })
 router.post('/newtraining', newTraining)
+
+router.get('/newset', async function (req, res) {
+    const username = res.get('username');
+    const excercise_names= await excercise.getAllExcercises();
+    var en=[]
+    for (var i=0;i<excercise_names.length;i++){
+        en.push(excercise_names[i].excercise_name)
+    }
+    res.render('userTraining2', {
+        user_name: username,
+        photo_path: res.get('photo'),
+        excercise_names:en
+    })
+})
 
 router.get('/cos', async function (req, res) {
     const username = res.get('username');

@@ -7,7 +7,7 @@ const createNewSet = (values) => { //[user_id, set_name,]
             if (error) {
                 return reject(error);
             }
-            return resolve(elements.insertId);
+            return resolve(elements);
         })
     })
 }
