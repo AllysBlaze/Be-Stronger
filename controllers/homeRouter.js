@@ -24,7 +24,9 @@ const newTraining = async (req, res) => {
     const tDate = req.body.date;
     const tCategory = req.body.activity;
     const hours = req.body.hours;
-    const minutes = req.body.minutes;
+    var minutes = req.body.minutes;
+    if(minutes=='')
+    minutes='00'
     const tDuration = hours.toString() + ':' + minutes.toString() + ':00'
     await training.addTraining([id, tDate, tCategory, tDuration])
     res.redirect('/home/newtraining')

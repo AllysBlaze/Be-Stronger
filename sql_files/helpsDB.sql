@@ -72,4 +72,12 @@ VALUES
 
 
 
-Select set_id, set_name FROM training_sets WHERE set_name LIKE "trening #%"
+Select set_id, set_name FROM training_sets WHERE set_name LIKE "trening #%";
+
+
+
+SELECT trainings.training_id, trainings.training_category, training_sets.set_name, trainings.training_date,trainings.training_duration
+            FROM trainings 
+            LEFT JOIN training_sets ON trainings.training_custom_id=training_sets.set_id
+         WHERE trainings.user_id= 5 
+             ORDER BY trainings.training_date, training_id;

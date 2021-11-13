@@ -53,7 +53,7 @@ CREATE TABLE trainings(
     training_category ENUM('custom', 'jazda na rowerze', 'jazda na rolkach', 'trekking', 'joga', 'skakanie na skakance', 'pływanie','bieganie') DEFAULT 'custom',
     training_custom_id INT UNSIGNED,
     training_duration TIME NOT NULL DEFAULT '00:00:00',
-    training_date DATETIME NOT NULL,
+    training_date DATE NOT NULL,
     PRIMARY KEY (training_id),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
