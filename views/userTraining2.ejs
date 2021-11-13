@@ -18,14 +18,17 @@
             }
         </script>
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6 m-4 mt-5 mb-0">
+            <div class="text-center">
+                <h1>Ułóż własny trening</h1>
+            </div>
+            <div class="row bg-light">
+                <div class="col-lg-6 m-5 mb-0 pl-5 bg-light">
                     <label for="setName" class="form-label">Wpisz nazwę swojego setu treningowego</label>
                     <input type="text" id="setName" class="form-control">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-6 m-4">
+            <div class="row bg-light pb-5">
+                <div class="col-lg-6 ml-5 pl-5">
 
                     <div class="input-group mb-3">
                         <span class="input-group-text">Wybierz ćwiczenie</span>
@@ -36,15 +39,15 @@
                             <% } %>
                         </datalist>
                         <input id='repetition' type="number" class="form-control" placeholder="Ilość powtórzeń"
-                            aria-label="Ilość powtórzeń">
+                            aria-label="Ilość powtórzeń" min="1" max="200">
                         <button class="btn btn-warning" onclick="addEx()">Dodaj do listy</button>
                     </div>
                 </div>
 
-                <div class="col-lg-4 m-4">
+                <div class="col-lg-4 pl-5">
                     <ul class="list-group" id='list'>
                     </ul>
-                    <button class="btn btn-warning" type="submit">Zatwierdź</button>
+                    <button class="btn btn-warning" type="submit" id="btnList">Zatwierdź</button>
                 </div>
             </div>
         </div>
