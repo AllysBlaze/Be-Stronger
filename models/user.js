@@ -68,8 +68,8 @@ getUserWeight = (values) => {
 }
 
 
-updateUser = (weight, height, birth, gender, id) => {
-    const values = [weight, height, birth, gender, id];
+updateUser = (weight, height, birth, gender, user_name) => {
+    const values = [weight, height, birth, gender, user_name];
     return new Promise((resolve, reject) => {
         pool.query('UPDATE users SET user_weight= ? ,user_height= ? ,user_birth= ? , user_gender = ? ' +
             'WHERE user_name= ? ', values, (error, elements) => {

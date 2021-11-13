@@ -52,7 +52,7 @@ const signup = async (req, res) => {
     const pass = req.body.user_password;
     const email = req.body.email;
     const conf = req.body.confirm_password;
-    const user_name=req.body.user_name
+    const user_name = req.body.user_name
     const doPasswordsMatch = await (passwordMatch(pass, conf));
     if (doPasswordsMatch) {
         const hashedPass = await hashPassword(pass);
@@ -70,12 +70,30 @@ const signup = async (req, res) => {
             })
             return;
         })
-        const weight=req.body.weight;
-        const height=req.body.height;
-        const birth='1999-12-21';
-        const gender='K';
-        user.updateUser(weight, height, birth, gender, user_name)
+        var weight = req.body.weight;
+        var height = req.body.height;
+        var gender = req.body.gender;
+        var birthdate = req.body.birthdate;
+
+        if (weight == '')
+            weight = null
+        if (height == '')
+            height = null
+        if (gender = '')
+            gender = null
+        if (birthdate == '')
+            birthdate = null
+        try{
+        await user.updateUser(weight, height, birthdate, gender, user_name)
         res.redirect('/login')
+        }
+        catch(error){
+            res.render('login',{
+                err_msg:'Konto zostało utworzone bez dodatkowych danych'
+            })
+        }
+
+        
         return
     }
     res.render('register', {

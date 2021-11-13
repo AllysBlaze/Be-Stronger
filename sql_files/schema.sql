@@ -19,7 +19,7 @@ CREATE TABLE users (
     user_weight FLOAT,
     user_height FLOAT,
     user_birth DATE,
-    user_gender CHAR(1),
+    user_gender VARCHAR(1),
     user_photo VARCHAR(200) DEFAULT '/images/jobs.png',
     training_weekly_time_goal TIME DEFAULT ('02:00:00')
 );
