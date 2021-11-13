@@ -19,7 +19,14 @@
         </script>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6 m-4 mt-5 mb-0">
+                    <label for="setName" class="form-label">Wpisz nazwę swojego setu treningowego</label>
+                    <input type="text" id="setName" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 m-4">
+
                     <div class="input-group mb-3">
                         <span class="input-group-text">Wybierz ćwiczenie</span>
                         <input list="exerciseList" name="exercise" class="form-control" id='excercise_name'>
@@ -34,13 +41,13 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-lg-4 m-4">
                     <ul class="list-group" id='list'>
                     </ul>
+                    <button class="btn btn-warning" type="submit">Zatwierdź</button>
                 </div>
             </div>
         </div>
-        <button class="btn btn-warning" type="submit">Zatwierdź</button>
 
 
 
