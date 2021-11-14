@@ -3,7 +3,7 @@ const pool = require('../utils/connection');
 
 const getAllExcercises=()=>{
     return new Promise((resolve, reject) => {
-        pool.query('SELECT excercise_name FROM single_excercises ORDER BY excercise_name', (error, elements) => {
+        pool.query('SELECT excercise_name, excercise_id FROM single_excercises ORDER BY excercise_name', (error, elements) => {
             if (error) {
                 return reject(error);
             }

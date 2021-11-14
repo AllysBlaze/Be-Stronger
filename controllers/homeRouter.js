@@ -1,5 +1,5 @@
 const express = require('express');
-const excercise=require('../models/excercise')
+const excercise = require('../models/excercise')
 const user = require('../models/user');
 const training = require('../models/training');
 const progress = require('../models/progress')
@@ -9,7 +9,7 @@ const training_sets = require('../models/training_set')
 const changeweight = async (req, res) => {
     const id = res.get('id')
     const newWeight = req.body.waga;
-    if (newWeight!=''){
+    if (newWeight != '') {
 
         await user.updateUserweight(newWeight, id)
     }
@@ -22,8 +22,8 @@ const newTraining = async (req, res) => {
     const tCategory = req.body.activity;
     const hours = req.body.hours;
     var minutes = req.body.minutes;
-    if(minutes=='')
-    minutes='00'
+    if (minutes == '')
+        minutes = '00'
     const tDuration = hours.toString() + ':' + minutes.toString() + ':00'
     await training.addTraining([id, tDate, tCategory, tDuration])
     res.redirect('/home/newtraining')
@@ -173,15 +173,18 @@ router.post('/newtraining', newTraining)
 
 router.get('/newset', async function (req, res) {
     const username = res.get('username');
-    const excercise_names= await excercise.getAllExcercises();
-    var en=[]
-    for (var i=0;i<excercise_names.length;i++){
+    const excercise_names = await excercise.getAllExcercises();
+    var en = []
+    var eid = []
+    for (var i = 0; i < excercise_names.length; i++) {
         en.push(excercise_names[i].excercise_name)
+        eid.push(excercise_names[i].excercise_id)
     }
     res.render('userTraining2', {
         user_name: username,
         photo_path: res.get('photo'),
-        excercise_names:en
+        excercise_names: en,
+        excercise_ids: eid
     })
 })
 

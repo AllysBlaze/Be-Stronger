@@ -8,12 +8,23 @@
             function addEx() {
                 var ul = document.getElementById("list");
                 var li = document.createElement("li");
+                var input1=document.createElement("input");
+                var input2=document.createElement("input");
                 li.setAttribute("class", "list-group-item")
                 const tresc = document.getElementById('excercise_name').value + ' ' + document.getElementById(
                     'repetition').value + ' powtórzeń';
+                    
+                input1.setAttribute('value', document.getElementById('excercise_name').value)
+                input1.setAttribute('type','hidden');
+                input1.setAttribute('name','nazwa');
+                input2.setAttribute('value', document.getElementById('repetition').value)
+                input2.setAttribute('type','hidden');
+                input2.setAttribute('name','powt');
                 document.getElementById('excercise_name').value = '';
                 document.getElementById('repetition').value = '';
                 li.appendChild(document.createTextNode(tresc));
+                li.appendChild(input1);
+                li.appendChild(input2)
                 ul.appendChild(li);
             }
         </script>
@@ -34,6 +45,7 @@
                     </div>
                 </div>
 
+                <form method="post" action="/home/newset">
                 <div class="col-lg-4">
                     <ul class="list-group" id='list'>
                     </ul>
@@ -41,6 +53,7 @@
             </div>
         </div>
         <button class="btn btn-warning" type="submit">Zatwierdź</button>
+    </form>
 
 
 
