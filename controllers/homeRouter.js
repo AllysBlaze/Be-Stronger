@@ -117,7 +117,7 @@ router.get('/progress', async function (req, res) {
 });
 
 
-router.get('/start', async function (req, res) {
+router.get('/userssets', async function (req, res) {
     const username = res.get('username');
 
     var id = await user.getUserID(username)
@@ -125,16 +125,19 @@ router.get('/start', async function (req, res) {
     const data = await training_sets.getSets(id)
     var set_id = [];
     var set_name = [];
+    var set_dur=[];
     for (var i = 0; i < data.length; i++) {
         set_id.push(data[i].set_id);
         set_name.push(data[i].set_name);
+        set_dur.push(data[i].set_duration)
     }
 
-    res.render('appTraining', {
+    res.render('userTraining', {
         user_name: username,
         photo_path: res.get('photo'),
         set_name: set_name,
-        set_id: set_id
+        set_id: set_id,
+        set_dur:set_dur
     })
 });
 
@@ -185,6 +188,14 @@ router.get('/newset', async function (req, res) {
         photo_path: res.get('photo'),
         excercise_names: en,
         excercise_ids: eid
+    })
+})
+
+router.get('/sets', async function (req, res) {
+    const username = res.get('username');
+    res.render('appTraining', {
+        user_name: username,
+        photo_path: res.get('photo')
     })
 })
 
