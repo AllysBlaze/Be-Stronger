@@ -19,7 +19,7 @@ CREATE TABLE users (
     user_weight FLOAT,
     user_height FLOAT,
     user_birth DATE,
-    user_gender VARCHAR(1),
+    user_gender CHAR(1),
     user_photo VARCHAR(200) DEFAULT '/images/jobs.png',
     training_weekly_time_goal TIME DEFAULT ('02:00:00')
 );
@@ -34,7 +34,7 @@ CREATE TABLE training_sets(
 
 CREATE TABLE single_excercises(
     excercise_id  INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    excercise_name VARCHAR(100) NOT NULL,
+    excercise_name VARCHAR(100) NOT NULL UNIQUE,
     excercise_duration TIME DEFAULT '00:00:15'
 );
 

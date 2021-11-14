@@ -12,7 +12,19 @@ const getAllExcercises=()=>{
     })
 }
 
+const getExcerciseId=(values)=>{
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT excercise_id FROM single_excercises WHERE excercise_name LIKE ? ', [values], (error, elements) => {
+            if (error) {
+                return reject(error);
+            }
+            return resolve(elements);
+        })
+    })
+}
+
 const excercise={
-    getAllExcercises
+    getAllExcercises,
+    getExcerciseId
 }
 module.exports=excercise;

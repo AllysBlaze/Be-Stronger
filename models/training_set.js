@@ -7,14 +7,14 @@ const createNewSet = (values) => { //[user_id, set_name,]
             if (error) {
                 return reject(error);
             }
-            return resolve(elements);
+            return resolve(elements.insertId);
         })
     })
 }
 
 const addExcerisesToSet = (values) => { //[[excercise,repetition,order,set_id],[excercise,repetition,order,set_id],...]
     return new Promise((resolve, reject) => {
-        pool.query('INSERT INTO set_excercise (excercise_id,excercise_repetiton,excercise_order) VALUES ?', values, (error, elements) => {
+        pool.query('INSERT INTO set_excercise (excercise_id,excercise_repetiton,excercise_order,set_id) VALUES ?', [values], (error, elements) => {
             if (error) {
                 return reject(error);
             }
@@ -71,9 +71,7 @@ async function addNewSet(values) { //[[user_id, set_name],[[excercise,repetition
         const nameExists = await doesNameExists(set_name)
         if (nameExists.length != 0) {
             var number = await getLastNameNumber(set_name)
-            console.log(number)
             if (number.length != 0) {
-                console.log('here')
                 number = number[0].set_name.split('#');
                 number = parseInt(number[1]) + 1
                 set_name = set_name + " #" + number.toString()
@@ -86,7 +84,8 @@ async function addNewSet(values) { //[[user_id, set_name],[[excercise,repetition
         for (var i = 0; i < excData.length; i++) {
             excData[i].push(id)
         }
-        await addExcerisesToSet(excData);
+        console.log(excData)
+        await addExcerisesToSet(excData); //[[excercise,repetition,order,set_id],[excercise,repetition,order,set_id]
         await updateSetDuration(id);
 
     } catch (error) {

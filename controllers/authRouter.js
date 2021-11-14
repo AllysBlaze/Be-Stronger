@@ -74,7 +74,7 @@ const signup = async (req, res) => {
         var height = req.body.height;
         var gender = req.body.gender;
         var birthdate = req.body.birthdate;
-
+        gender=gender.charAt(0)
         if (weight == '')
             weight = null
         if (height == '')

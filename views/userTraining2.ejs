@@ -32,15 +32,9 @@
             <div class="text-center">
                 <h1>Ułóż własny trening</h1>
             </div>
-            <div class="row bg-light">
-                <div class="col-lg-6 m-5 mb-0 pl-5 bg-light">
-                    <label for="setName" class="form-label">Wpisz nazwę swojego setu treningowego</label>
-                    <input type="text" id="setName" class="form-control">
-                </div>
-            </div>
+
             <div class="row bg-light pb-5">
                 <div class="col-lg-6 ml-5 pl-5">
-
                     <div class="input-group mb-3">
                         <span class="input-group-text">Wybierz ćwiczenie</span>
                         <input list="exerciseList" name="exercise" class="form-control" id='excercise_name'>
@@ -56,6 +50,13 @@
                 </div>
 
                 <form method="post" action="/home/newset">
+                    <!-- to musi być w form, ale datalist nie może  -->
+                    <div class="row bg-light">
+                        <div class="col-lg-6 m-5 mb-0 pl-5 bg-light">
+                            <label for="setName" class="form-label">Wpisz nazwę swojego setu treningowego</label>
+                            <input name='set_name' type="text" id="setName" class="form-control">
+                        </div>
+                    </div> 
                 <div class="col-lg-4">
                 <div class="col-lg-4 pl-5">
                     <ul class="list-group" id='list'>

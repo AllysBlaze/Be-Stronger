@@ -28,6 +28,26 @@ const newTraining = async (req, res) => {
     await training.addTraining([id, tDate, tCategory, tDuration])
     res.redirect('/home/newtraining')
 }
+
+const addSet = async (req, res) => {
+    const id = parseInt(res.get('id'))
+    const set_name = req.body.set_name
+    var ex_name = req.body.nazwa
+    const rep = req.body.powt
+    var values = [
+        [id, set_name],
+        []
+    ];
+    var temp
+    if (!Array.isArray(ex_name))
+        ex_name = [ex_name]
+    for (var i = 0; i < ex_name.length; i++) {
+        temp = await excercise.getExcerciseId(ex_name[i])
+        values[1].push([temp[0].excercise_id, parseInt(rep[i]), i + 1])
+    }
+    await training_sets.addNewSet(values)
+    res.redirect('/home/newset')
+}
 // #endregion
 
 // #region Router
@@ -125,7 +145,7 @@ router.get('/userssets', async function (req, res) {
     const data = await training_sets.getSets(id)
     var set_id = [];
     var set_name = [];
-    var set_dur=[];
+    var set_dur = [];
     for (var i = 0; i < data.length; i++) {
         set_id.push(data[i].set_id);
         set_name.push(data[i].set_name);
@@ -137,7 +157,7 @@ router.get('/userssets', async function (req, res) {
         photo_path: res.get('photo'),
         set_name: set_name,
         set_id: set_id,
-        set_dur:set_dur
+        set_dur: set_dur
     })
 });
 
@@ -190,6 +210,8 @@ router.get('/newset', async function (req, res) {
         excercise_ids: eid
     })
 })
+
+router.post('/newset', addSet)
 
 router.get('/sets', async function (req, res) {
     const username = res.get('username');
