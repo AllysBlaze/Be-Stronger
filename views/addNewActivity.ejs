@@ -15,7 +15,7 @@
           <form method="post" action="/home/newtraining">
             <div class="form-group">
               <span>Wybierz rodzaj aktywności: </span>
-              <input list="activityList" name="activity" class="form-control"> 
+              <input list="activityList" name="activity" class="form-control" required> 
               <datalist id="activityList">
                 <% for (var i=0;i<categories.length;i++) {%>
                   <% if(categories[i]!='custom'){ %>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group">
                   <label for="birthday">Wybierz datę aktywności: </label>
-                  <input type="date" id="date" name="date" class="form-control">
+                  <input type="date" id="date" name="date" class="form-control" required>
                 </div>
                 <button class="btn btn-warning" type="submit">Dodaj aktywność</button>
           </form>

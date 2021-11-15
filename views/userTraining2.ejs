@@ -37,14 +37,14 @@
                 <div class="col-lg-6 ml-5 pl-5">
                     <div class="input-group mb-3">
                         <span class="input-group-text">Wybierz ćwiczenie</span>
-                        <input list="exerciseList" name="exercise" class="form-control" id='excercise_name'>
+                        <input list="exerciseList" name="exercise" class="form-control" id='excercise_name' required>
                         <datalist id="exerciseList">
                             <% for(var i=0;i<excercise_names.length;i++){ %>
                             <option value="<%= excercise_names[i] %>"></option>
                             <% } %>
                         </datalist>
                         <input id='repetition' type="number" class="form-control" placeholder="Ilość powtórzeń"
-                            aria-label="Ilość powtórzeń" min="1" max="200">
+                            aria-label="Ilość powtórzeń" min="1" max="200" required>
                         <button class="btn btn-warning" onclick="addEx()">Dodaj do listy</button>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                     <div class="row bg-light">
                         <div class="col-lg-6 m-5 mb-0 pl-5 bg-light">
                             <label for="setName" class="form-label">Wpisz nazwę swojego setu treningowego</label>
-                            <input name='set_name' type="text" id="setName" class="form-control">
+                            <input name='set_name' type="text" id="setName" class="form-control" required>
                         </div>
                     </div> 
                 <div class="col-lg-4">
