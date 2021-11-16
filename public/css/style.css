@@ -138,6 +138,8 @@ h1{
 @media (max-width: 500px) {
   .sidebar {padding-top: 15px;}
   .sidebar a {font-size: 18px;}
+  #pie {height: 300px; width: 400px;}
+  #bar {height: 300px; width: 400px;}
 }
 
 @media (min-width: 700px){

@@ -3,10 +3,23 @@
 <body>
     <%- include('sideBarMenu.ejs') %>
     <div id="main">
-        <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Otwórz menu</button>
+        <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Menu</button>
         <script src="https://cdn.plot.ly/plotly-2.4.2.min.js"></script>
-        <div id="pie"></div>
-        <div id="bar"></div>
+        <div class="container-fluid">
+            <div class="col-lg-9 mx-auto">
+                <div class="row text-center">
+                    <h1>Podsumowanie twoich aktywności z poprzedniego tygodnia</h1>
+                </div>
+                <div class="row text-center">
+                    <div class="col mx-0">
+                        <div id="pie" class="m-2"></div>
+                    </div>
+                    <div class="col mx-0">
+                        <div id="bar" class="m-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 
