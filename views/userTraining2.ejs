@@ -6,7 +6,17 @@
         <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Menu</button>
         <script>
             function addEx() {
+
+                var header = document.getElementById("headerList")
+                var btn = document.getElementById("btnList")
                 var ul = document.getElementById("list");
+                
+                if(ul.hasChildNodes()){
+                    header.style.display = "block"
+                    btn.style.display = "block"
+                }
+                
+
                 var li = document.createElement("li");
                 var input1=document.createElement("input");
                 var input2=document.createElement("input");
@@ -26,20 +36,11 @@
                 li.appendChild(input1);
                 li.appendChild(input2)
                 ul.appendChild(li);
-            }
-            var ul = document.getElementById("list");
-            var header = document.getElementById("headerList")
-            var btn = document.getElementById("btnList")
 
-            if(ul.hasChildNodes()){
-                header.style.display = "block"
-                btn.style.display = "block"
+
             }
-            else{
-                header.style.display = "none"
-                btn.style.display = "none"
-                alert("nie ma nic w liście")
-            }
+
+            
             
         </script>
         <div class="container-fluid">
@@ -73,11 +74,11 @@
                         </div>
                     </div> 
                     
-                    <div class="col-lg-4 mx-auto">
-                        <h4 id=headerList>Twoja lista ćwiczeń</h4>
+                    <div class="col-lg-6 mx-auto">
+                        <h4 id="headerList" >Twoja lista ćwiczeń</h4>
                         <ul class="list-group" id='list'>
                         </ul>
-                        <button class="btn btn-warning" type="submit" id="btnList">Zatwierdź</button>
+                        <button class="btn btn-warning mx-auto my-3" type="submit" id="btnList">Zatwierdź</button>
                     </div>
                 </form>
 
