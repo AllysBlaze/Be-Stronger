@@ -221,20 +221,41 @@ router.get('/sets', async function (req, res) {
     })
 })
 
-router.get('/usersets/list', async function(req,res){
-    const ex= await training_sets.getSetDetails(req.query.id)
+router.get('/usersets/list', async function (req, res) {
+    const ex = await training_sets.getSetDetails(req.query.id)
     console.log(ex)
     res.send(ex)
 })
 
+router.get('/usersets/start', async function (req, res) {
+    const username = res.get('username');
+    const set = await training_sets.getSetDetails(req.query.id)
+    var exName = [];
+    var exRep = [];
+    var exDur = [];
+    for (var i = 0; i < set.length; i++) {
+        exName.push(set[i].excercise_name)
+        exRep.push(set[i].excercise_repetiton)
+        exDur.push(set[i].time)
+    }
+    res.render('startTraining', {
+        user_name: username,
+        photo_path: res.get('photo'),
+        exName:exName,
+        exDur:exDur,
+        exRep:exRep
+    })
+})
+
+
 router.get('/cos', async function (req, res) {
     const username = res.get('username');
-    const set= await training_sets.getSetDetails(4)
+    const set = await training_sets.getSetDetails(4)
     console.log(set)
     res.render('startTraining', {
         user_name: username,
         photo_path: res.get('photo'),
-        set:set
+        set: set
     })
 })
 
