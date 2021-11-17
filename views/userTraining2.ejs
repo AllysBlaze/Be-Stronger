@@ -6,69 +6,68 @@
         <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Menu</button>
         <script>
             function addEx() {
+                if (document.getElementById('excercise_name').value != '' && document.getElementById('repetition')
+                    .value != '') {
+                    var header = document.getElementById("headerList")
+                    var btn = document.getElementById("btnList")
+                    var ul = document.getElementById("list");
 
-                var header = document.getElementById("headerList")
-                var btn = document.getElementById("btnList")
-                var ul = document.getElementById("list");
-                
-                if(ul.hasChildNodes()){
-                    header.style.display = "block"
-                    btn.style.display = "block"
+                    if (ul.hasChildNodes()) {
+                        header.style.display = "block"
+                        btn.style.display = "block"
+                    }
+
+
+                    var li = document.createElement("li");
+                    var input1 = document.createElement("input");
+                    var input2 = document.createElement("input");
+                    li.setAttribute("class", "list-group-item")
+                    const tresc = document.getElementById('excercise_name').value + ' ' + document.getElementById(
+                        'repetition').value + ' powtórzeń';
+
+                    input1.setAttribute('value', document.getElementById('excercise_name').value)
+                    input1.setAttribute('type', 'hidden');
+                    input1.setAttribute('name', 'nazwa');
+                    input2.setAttribute('value', document.getElementById('repetition').value)
+                    input2.setAttribute('type', 'hidden');
+                    input2.setAttribute('name', 'powt');
+                    document.getElementById('excercise_name').value = '';
+                    document.getElementById('repetition').value = '';
+                    li.appendChild(document.createTextNode(tresc));
+                    li.appendChild(input1);
+                    li.appendChild(input2)
+                    ul.appendChild(li);
                 }
-                
-
-                var li = document.createElement("li");
-                var input1=document.createElement("input");
-                var input2=document.createElement("input");
-                li.setAttribute("class", "list-group-item")
-                const tresc = document.getElementById('excercise_name').value + ' ' + document.getElementById(
-                    'repetition').value + ' powtórzeń';
-                    
-                input1.setAttribute('value', document.getElementById('excercise_name').value)
-                input1.setAttribute('type','hidden');
-                input1.setAttribute('name','nazwa');
-                input2.setAttribute('value', document.getElementById('repetition').value)
-                input2.setAttribute('type','hidden');
-                input2.setAttribute('name','powt');
-                document.getElementById('excercise_name').value = '';
-                document.getElementById('repetition').value = '';
-                li.appendChild(document.createTextNode(tresc));
-                li.appendChild(input1);
-                li.appendChild(input2)
-                ul.appendChild(li);
-
 
             }
-
-            
-            
         </script>
         <div class="container-fluid">
             <div class="col-lg-9 bg-light mx-auto text-center" style="min-height: 800px;">
 
                 <h1>Ułóż własny trening</h1>
-            
+
                 <div class="row pb-3">
                     <div class="col-sm-12 mx-auto">
                         <form>
                             <!--Ten form jest tutaj żeby required działało, może tak być?-->
                             <div class="input-group mt-5">
                                 <span class="input-group-text">Wybierz ćwiczenie</span>
-                                <input list="exerciseList" name="exercise" class="form-control" id='excercise_name' required>
+                                <input list="exerciseList" name="exercise" class="form-control" id='excercise_name'
+                                    required>
                                 <datalist id="exerciseList">
                                     <% for(var i=0;i<excercise_names.length;i++){ %>
-                                        <option value="<%= excercise_names[i] %>"></option>
-                                        <% } %>
-                                 </datalist>
-                                 <input id='repetition' type="number" class="form-control" placeholder="Ilość powtórzeń"
+                                    <option value="<%= excercise_names[i] %>"></option>
+                                    <% } %>
+                                </datalist>
+                                <input id='repetition' type="number" class="form-control" placeholder="Ilość powtórzeń"
                                     aria-label="Ilość powtórzeń" min="1" max="200" required>
                                 <button class="btn btn-warning" onclick="addEx()">Dodaj do listy</button>
-                                    
+
                             </div>
                         </form>
                     </div>
                 </div>
-                
+
                 <form method="post" action="/home/newset">
                     <!-- to musi być w form, ale datalist nie może  -->
                     <div class="row bg-light mb-5">
@@ -76,10 +75,10 @@
                             <label for="setName" class="form-label">Wpisz nazwę swojego setu treningowego</label>
                             <input name='set_name' type="text" id="setName" class="form-control" required>
                         </div>
-                    </div> 
-                    
+                    </div>
+
                     <div class="col-lg-6 mx-auto">
-                        <h4 id="headerList" >Twoja lista ćwiczeń</h4>
+                        <h4 id="headerList">Twoja lista ćwiczeń</h4>
                         <ul class="list-group" id='list'>
                         </ul>
                         <button class="btn btn-warning mx-auto my-3" type="submit" id="btnList">Zatwierdź</button>
@@ -88,8 +87,8 @@
 
             </div>
 
-    </div>
-    <%- include('footer.ejs') %>
+        </div>
+        <%- include('footer.ejs') %>
 
 </body>
 
