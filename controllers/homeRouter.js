@@ -223,9 +223,16 @@ router.get('/sets', async function (req, res) {
 
 router.get('/cos', async function (req, res) {
     const username = res.get('username');
+<<<<<<< Updated upstream
     res.render('userTraining2', {
+=======
+    const set= await training_sets.getSetDetails(4)
+    console.log(set)
+    res.render('startTraining', {
+>>>>>>> Stashed changes
         user_name: username,
-        photo_path: res.get('photo')
+        photo_path: res.get('photo'),
+        set:set
     })
 })
 
