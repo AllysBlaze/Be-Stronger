@@ -20,9 +20,9 @@
                 function start(value) {
                     document.getElementById("startTren").style.display="none"
                     if (value >= count.length) {
-                        document.getElementById("excName").style.display=""
+                        document.getElementById("excName").style.display="none"
                         document.getElementById("endTren").style.display=""
-                        document.getElementById("countdown").style.display=""
+                        document.getElementById("countdown").style.display="none"
                     }
                     document.getElementById("excName").innerHTML = exRep[value] + 'x ' + exName[value]
                     var countDownDate = addSeconds(10).getTime()
@@ -50,7 +50,8 @@
             <h3 id='excName'></h3>
             <h3 id='countdown'></h3>
             <button id='startTren' class="btn btn-outline-dark openbtn" onclick="start(0)">Start</button>
-            <form>
+            <form method="post" action='/home/sets/start'>
+                <input type="hidden" name='set_id' value="<%= set_id %>">
                 <button id='endTren' style="display: none;"> Zakończ Trening</button>
             </form>
         </div>

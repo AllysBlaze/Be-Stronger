@@ -48,6 +48,14 @@ const addSet = async (req, res) => {
     await training_sets.addNewSet(values)
     res.redirect('/home/newset')
 }
+
+
+const endSet = async(req,res)=>{
+    const set_id=req.body.set_id;
+    const user_id = parseInt(res.get('id'))
+    await training.addCustomTraining([user_id,parseInt(set_id)])
+    res.redirect('/home/userssets')
+}
 // #endregion
 
 // #region Router
@@ -213,6 +221,9 @@ router.get('/newset', async function (req, res) {
 
 router.post('/newset', addSet)
 
+
+router.post('/sets/start', endSet)
+
 router.get('/sets', async function (req, res) {
     const username = res.get('username');
     res.render('appTraining', {
@@ -243,7 +254,8 @@ router.get('/usersets/start', async function (req, res) {
         photo_path: res.get('photo'),
         exName:exName,
         exDur:exDur,
-        exRep:exRep
+        exRep:exRep,
+        set_id:req.query.id
     })
 })
 
