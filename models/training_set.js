@@ -113,7 +113,7 @@ const getSets = (values) => { //user_id
 
 const getSetDetails = (values) => { //set_id
     return new Promise((resolve, reject) => {
-        pool.query('SELECT excercise_name, excercise_repetition ' +
+        pool.query('SELECT excercise_name, excercise_repetiton, TIME_TO_SEC(excercise_duration) AS time' +
             ' FROM set_excercise' +
             ' JOIN single_excercises USING (excercise_id)' +
             ' WHERE set_id= ? ', values, (error, elements) => {
