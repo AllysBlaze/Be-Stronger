@@ -142,7 +142,7 @@ h1{
   #bar {height: 300px; width: 400px;}
 }
 
-@media (min-width: 700px){
+@media (min-width: 900px){
   .sidebar {width: 270px;}
   #main {margin-left: 270px;}
 }
