@@ -264,7 +264,7 @@ router.get('/cos', async function (req, res) {
     const username = res.get('username');
     const set = await training_sets.getSetDetails(4)
     console.log(set)
-    res.render('startTraining', {
+    res.render('exerciseList', {
         user_name: username,
         photo_path: res.get('photo'),
         set: set
