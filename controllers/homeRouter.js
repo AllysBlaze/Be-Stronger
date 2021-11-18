@@ -232,13 +232,25 @@ router.get('/sets', async function (req, res) {
     })
 })
 
-router.get('/usersets/list', async function (req, res) {
+router.get('/sets/list', async function (req, res) {
     const ex = await training_sets.getSetDetails(req.query.id)
-    console.log(ex)
-    res.send(ex)
+    const username = res.get('username');
+    var names=[];
+    var rep=[];
+    for (var i=0;i<ex.length;i++){
+        names.push(ex[i].excercise_name)
+        rep.push(ex[i].excercise_repetiton)
+    }
+    res.render('exerciseList', {
+        user_name: username,
+        photo_path: res.get('photo'),
+        names: names,
+        rep: rep,
+        set_id:req.query.id
+    })
 })
 
-router.get('/usersets/start', async function (req, res) {
+router.get('/sets/start', async function (req, res) {
     const username = res.get('username');
     const set = await training_sets.getSetDetails(req.query.id)
     var exName = [];
