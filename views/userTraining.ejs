@@ -17,8 +17,8 @@
                             </div>
                             <ul class="list-group list-group-flush" >
                                 <li class="list-group-item" style="background-color: rgb(43, 43, 43);">Czas trwania treningu: <%= set_dur[i] %></li>
-                                <li class="list-group-item" style="background-color: rgb(43, 43, 43);">Autor: SilnaGrażyna</li>
-                                <li class="list-group-item" style="background-color: rgb(43, 43, 43);"><span>Opis tego właśnie zestawu ćwiczeń</span></li>
+                                <li class="list-group-item" style="background-color: rgb(43, 43, 43);">Autor: <%= set_author[i] %></li>
+                                <li class="list-group-item" style="background-color: rgb(43, 43, 43);"><span><%= set_desc[i] %></span></li>
                               </ul>
                             <div class="card-body">
                                 <a href="/home/sets/list?id=<%= set_id[i] %>" class="btn btn-warning" value="<%= set_id[i] %>">Zobacz ćwiczenia</a>

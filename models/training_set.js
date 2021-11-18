@@ -94,12 +94,24 @@ async function addNewSet(values) { //[[user_id, set_name],[[excercise,repetition
 
 }
 
-//PRZEKOMPLIKOWANE, DO POPRAWY
-const getSets = (values) => { //user_id
+
+const getUserSets = (values) => { //user_id
     return new Promise((resolve, reject) => {
-        pool.query('SELECT set_id, set_name, user_name, set_duration FROM training_sets' +
+        pool.query('SELECT set_id, set_name, user_name, set_duration, set_description FROM training_sets' +
             ' JOIN users ON set_author_id=user_id' +
-            ' WHERE set_author_id= ?' , values, (error, elements) => {
+            ' WHERE set_author_id= ?', values, (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            })
+    })
+}
+
+const getSets = () => { //user_id
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT set_id, set_name, user_name, set_duration, set_description FROM training_sets' +
+            ' JOIN users ON set_author_id=user_id' ,  (error, elements) => {
                 if (error) {
                     return reject(error);
                 }
@@ -110,7 +122,8 @@ const getSets = (values) => { //user_id
 
 const getSetDetails = (values) => { //set_id
     return new Promise((resolve, reject) => {
-        pool.query('SELECT excercise_id, excercise_name, excercise_repetiton, TIME_TO_SEC(excercise_duration) AS time' +
+        pool.query('SELECT excercise_id, excercise_name, excercise_repetiton,' +
+            ' TIME_TO_SEC(excercise_duration) AS time' +
             ' FROM set_excercise' +
             ' JOIN single_excercises USING (excercise_id)' +
             ' WHERE set_id= ? ', values, (error, elements) => {

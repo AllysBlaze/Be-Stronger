@@ -50,10 +50,10 @@ const addSet = async (req, res) => {
 }
 
 
-const endSet = async(req,res)=>{
-    const set_id=req.body.set_id;
+const endSet = async (req, res) => {
+    const set_id = req.body.set_id;
     const user_id = parseInt(res.get('id'))
-    await training.addCustomTraining([user_id,parseInt(set_id)])
+    await training.addCustomTraining([user_id, parseInt(set_id)])
     res.redirect('/home/userssets')
 }
 // #endregion
@@ -150,14 +150,18 @@ router.get('/userssets', async function (req, res) {
 
     var id = await user.getUserID(username)
     id = id[0].user_id;
-    const data = await training_sets.getSets(id)
+    const data = await training_sets.getSets()
     var set_id = [];
     var set_name = [];
     var set_dur = [];
+    var set_desc=[];
+    var set_author=[];
     for (var i = 0; i < data.length; i++) {
         set_id.push(data[i].set_id);
         set_name.push(data[i].set_name);
-        set_dur.push(data[i].set_duration)
+        set_dur.push(data[i].set_duration);
+        set_desc.push(data[i].set_description)
+        set_author.push(data[i].user_name)
     }
 
     res.render('userTraining', {
@@ -165,7 +169,9 @@ router.get('/userssets', async function (req, res) {
         photo_path: res.get('photo'),
         set_name: set_name,
         set_id: set_id,
-        set_dur: set_dur
+        set_dur: set_dur,
+        set_desc:set_desc,
+        set_author:set_author
     })
 });
 
@@ -235,10 +241,10 @@ router.get('/sets', async function (req, res) {
 router.get('/sets/list', async function (req, res) {
     const ex = await training_sets.getSetDetails(req.query.id)
     const username = res.get('username');
-    var names=[];
-    var rep=[];
-    var ex_id=[];
-    for (var i=0;i<ex.length;i++){
+    var names = [];
+    var rep = [];
+    var ex_id = [];
+    for (var i = 0; i < ex.length; i++) {
         names.push(ex[i].excercise_name);
         rep.push(ex[i].excercise_repetiton);
         ex_id.push(ex[i].excercise_id)
@@ -248,9 +254,9 @@ router.get('/sets/list', async function (req, res) {
         photo_path: res.get('photo'),
         names: names,
         rep: rep,
-        ex_id:ex_id,
-        set_id:req.query.id,
-    button:true
+        ex_id: ex_id,
+        set_id: req.query.id,
+        button: true
     })
 })
 
@@ -268,10 +274,10 @@ router.get('/sets/start', async function (req, res) {
     res.render('startTraining', {
         user_name: username,
         photo_path: res.get('photo'),
-        exName:exName,
-        exDur:exDur,
-        exRep:exRep,
-        set_id:req.query.id
+        exName: exName,
+        exDur: exDur,
+        exRep: exRep,
+        set_id: req.query.id
     })
 })
 
