@@ -48,31 +48,28 @@
 
                 <div class="row pb-3">
                     <div class="col-sm-12 mx-auto">
-                        <form>
-                            <!--Ten form jest tutaj żeby required działało, może tak być?-->
-                            <div class="input-group mt-5">
-                                <span class="input-group-text">Wybierz ćwiczenie</span>
-                                <input list="exerciseList" name="exercise" class="form-control" id='excercise_name'
-                                    required>
-                                <datalist id="exerciseList">
-                                    <% for(var i=0;i<excercise_names.length;i++){ %>
-                                    <option value="<%= excercise_names[i] %>"></option>
-                                    <% } %>
-                                </datalist>
-                                <input id='repetition' type="number" class="form-control" placeholder="Ilość powtórzeń"
-                                    aria-label="Ilość powtórzeń" min="1" max="200" required>
-                                <button class="btn btn-warning" onclick="addEx()">Dodaj do listy</button>
+                        <div class="input-group mt-5">
+                            <span class="input-group-text">Wybierz ćwiczenie</span>
 
-                            </div>
-                        </form>
+                            <input list="exerciseList" name="exercise" class="form-control" id='excercise_name' required>
+
+                            <datalist id="exerciseList">
+                                <% for(var i=0;i<excercise_names.length;i++){ %>
+                                <option value="<%= excercise_names[i] %>"></option>
+                                <% } %>
+                            </datalist>
+
+                            <input id='repetition' type="number" class="form-control" placeholder="Ilość powtórzeń" aria-label="Ilość powtórzeń" min="1" max="200" required>
+
+                             <button class="btn btn-warning" onclick="addEx()">Dodaj do listy</button>
+                        </div>
                     </div>
                 </div>
 
                 <form method="post" action="/home/newset">
-                    <!-- to musi być w form, ale datalist nie może  -->
                     <div class="row bg-light mb-5">
                         <div class="col-lg-8 mx-auto bg-light">
-                            <label for="setName" class="form-label">Wpisz nazwę swojego setu treningowego</label>
+                            <label for="setName" class="form-label">Wpisz nazwę swojego zestawu treningowego</label>
                             <input name='set_name' type="text" id="setName" class="form-control" required>
                         </div>
                     </div>

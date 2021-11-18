@@ -29,6 +29,17 @@
                     <% } %>
                 </tbody>
             </table>
+
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <td>
+                      <button type="button" class="btn" data-toggle="collapse" data-target="#collapseme">
+                        Click to expand
+                      </button>
+                    </td>
+                </tr>
+                <tr><td><div class="collapse out" id="collapseme">Should be collapsed</div></td></tr>
+            </table>
         </div>
 
         <a id='buttonStart' href="/home/sets/start?id=<%= set_id %>" class="btn btn-warning" value="<%= set_id[i] %>">Rozpocznij</a>
