@@ -9,22 +9,22 @@ VALUES
 ('test4','test4','test4@admin.com',60,'M',170,'2000-01-01');
 
 INSERT INTO single_excercises
-    (excercise_name, excercise_duration)
+    (excercise_name, excercise_duration,excercise_description)
     VALUES
-    ('przysiady','00:00:20'),
-    ('pompki','00:00:15'),
-    ('deska: 1min','00:01:00'),
-    ('brzuszki','00:00:01'),
-    ('wykrok','00:00:01'),
-    ('nożyce pionowe','00:00:20'),
-    ('ukłon japoński','00:00:10'),
-    ('deska: 2min','00:02:00'),
-    ('skłony','00:00:01');
+    ('przysiady','00:00:20','opis'),
+    ('pompki','00:00:15','opis'),
+    ('deska: 1min','00:01:00','opis'),
+    ('brzuszki','00:00:01','opis'),
+    ('wykrok','00:00:01','opis'),
+    ('nożyce pionowe','00:00:20','opis'),
+    ('ukłon japoński','00:00:10','opis'),
+    ('deska: 2min','00:02:00','opis'),
+    ('skłony','00:00:01','opis');
 
 INSERT INTO training_sets
-(set_author_id)
+(set_author_id,set_description)
 VALUES
-(1),(3),(1),(2),(5),(5),(2),(5),(4);
+(1,'opis'),(3,'opis'),(1,'opis'),(2,'opis'),(5,'opis'),(5,'opis'),(2,'opis'),(5,'opis'),(4,'opis');
 
 INSERT INTO set_excercise
 (set_id, excercise_id,excercise_repetiton,excercise_order)

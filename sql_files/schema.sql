@@ -29,6 +29,7 @@ CREATE TABLE training_sets(
     set_duration TIME DEFAULT ('00:00:00'),
     set_author_id INT UNSIGNED,
     set_name VARCHAR(50) DEFAULT 'trening',
+    set_description VARCHAR(400),
     FOREIGN KEY(set_author_id) REFERENCES users(user_id)
 );
 
