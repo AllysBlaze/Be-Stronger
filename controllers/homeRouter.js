@@ -244,10 +244,12 @@ router.get('/sets/list', async function (req, res) {
     var names = [];
     var rep = [];
     var ex_id = [];
+    var ex_desc=[];
     for (var i = 0; i < ex.length; i++) {
         names.push(ex[i].excercise_name);
         rep.push(ex[i].excercise_repetiton);
-        ex_id.push(ex[i].excercise_id)
+        ex_id.push(ex[i].excercise_id);
+        ex_desc.push(ex[i].excercise_description)
     }
     res.render('exerciseList', {
         user_name: username,
@@ -256,7 +258,8 @@ router.get('/sets/list', async function (req, res) {
         rep: rep,
         ex_id: ex_id,
         set_id: req.query.id,
-        button: true
+        button: true,
+        ex_desc:ex_desc
     })
 })
 
