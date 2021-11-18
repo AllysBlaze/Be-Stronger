@@ -237,16 +237,20 @@ router.get('/sets/list', async function (req, res) {
     const username = res.get('username');
     var names=[];
     var rep=[];
+    var ex_id=[];
     for (var i=0;i<ex.length;i++){
-        names.push(ex[i].excercise_name)
-        rep.push(ex[i].excercise_repetiton)
+        names.push(ex[i].excercise_name);
+        rep.push(ex[i].excercise_repetiton);
+        ex_id.push(ex[i].excercise_id)
     }
     res.render('exerciseList', {
         user_name: username,
         photo_path: res.get('photo'),
         names: names,
         rep: rep,
-        set_id:req.query.id
+        ex_id:ex_id,
+        set_id:req.query.id,
+    button:true
     })
 })
 

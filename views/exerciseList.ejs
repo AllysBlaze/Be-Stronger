@@ -12,6 +12,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Ćwiczenie</th>
                         <th scope="col">Ilość powtórzeń</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,12 +21,23 @@
                         <th scope="row"><%= i+1 %></th>
                         <td><%= names[i] %></td>
                         <td><%= rep[i] %></td>
+                        <td> <a href="/home/excercises/ex?id=<%= ex_id[i] %>" class="btn btn-warning" value="<%= ex_id[i] %>">Zobacz Ćwiczenie</a></td>
                     </tr>
                     <% } %>
                 </tbody>
             </table>
         </div>
-        <a href="/home/sets/start?id=<%= set_id %>" class="btn btn-warning" value="<%= set_id[i] %>">Rozpocznij</a>
+
+        <a id='buttonStart' href="/home/sets/start?id=<%= set_id %>" class="btn btn-warning" value="<%= set_id[i] %>">Rozpocznij</a>
+        <script>
+            var btn="<%= button %>"
+            if (btn){
+                document.getElementById('buttonStart').style.display=''
+            }
+            else{
+                document.getElementById('buttonStart').style.display='none'
+            }
+        </script>
     </div>
     <%- include('footer.ejs') %>
 

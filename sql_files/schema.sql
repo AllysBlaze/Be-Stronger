@@ -35,7 +35,8 @@ CREATE TABLE training_sets(
 CREATE TABLE single_excercises(
     excercise_id  INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
     excercise_name VARCHAR(100) NOT NULL UNIQUE,
-    excercise_duration TIME DEFAULT '00:00:15'
+    excercise_duration TIME DEFAULT '00:00:15',
+    excercise_description VARCHAR(400)
 );
 
 CREATE TABLE set_excercise(
