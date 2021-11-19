@@ -15,14 +15,17 @@
                 <% for(var i=0;i<names.length;i++){ %>
                     <li class="list-group-item bg-dark">
                         <div class="row">
-                            <span class=" m-3 mr-5 "><%= rep[i]+" x "+names[i] %></span>
-                            
-                            <p>
-                                <button class="btn btn-primary ml-5 mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= i %>" aria-expanded="false" aria-controls="collapseExample">
-                                    Opis ćwiczenia
-                                </button>
-                            </p>
-                            <div class="collapse" id="collapse<%= i %>">
+                            <div class="col-lg-9 m-2 ml-4 mt-3" style="font-size: larger;">
+                                <p><%= rep[i]+" x "+names[i] %></p>
+                            </div>
+                            <div class="col-lg-2">
+                                <p class="text-end">
+                                    <button class="btn btn-primary mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= i %>" aria-expanded="false" aria-controls="collapseExample">
+                                        Opis ćwiczenia
+                                    </button>
+                                </p>
+                            </div>
+                                <div class="collapse" id="collapse<%= i %>">
                                 <div class="card card-body bg-dark ml-5">
                                     <%= ex_desc[i] %>
                                 </div>
