@@ -21,6 +21,7 @@ const newTraining = async (req, res) => {
     const tDate = req.body.date;
     const tCategory = req.body.activity;
     const hours = req.body.hours;
+
     var minutes = req.body.minutes;
     if (minutes == '')
         minutes = '00'
@@ -39,11 +40,22 @@ const addSet = async (req, res) => {
         []
     ];
     var temp
+    const series = req.body.set_series
     if (!Array.isArray(ex_name))
         ex_name = [ex_name]
+
     for (var i = 0; i < ex_name.length; i++) {
         temp = await excercise.getExcerciseId(ex_name[i])
-        values[1].push([temp[0].excercise_id, parseInt(rep[i]), i + 1])
+        values[1].push([temp[0].excercise_id, parseInt(rep[i]),i+1])
+
+    }
+    const len = values[1].length
+    var licznik=len+1
+    for (var i = 1; i < series; i++) {
+        for (var j = 0; j < len; j++) {
+            values[1].push([values[1][j][0],values[1][j][1],licznik]);
+            licznik+=1;
+        }
     }
     await training_sets.addNewSet(values)
     res.redirect('/home/newset')
@@ -154,8 +166,8 @@ router.get('/userssets', async function (req, res) {
     var set_id = [];
     var set_name = [];
     var set_dur = [];
-    var set_desc=[];
-    var set_author=[];
+    var set_desc = [];
+    var set_author = [];
     for (var i = 0; i < data.length; i++) {
         set_id.push(data[i].set_id);
         set_name.push(data[i].set_name);
@@ -170,8 +182,8 @@ router.get('/userssets', async function (req, res) {
         set_name: set_name,
         set_id: set_id,
         set_dur: set_dur,
-        set_desc:set_desc,
-        set_author:set_author
+        set_desc: set_desc,
+        set_author: set_author
     })
 });
 
@@ -244,7 +256,7 @@ router.get('/sets/list', async function (req, res) {
     var names = [];
     var rep = [];
     var ex_id = [];
-    var ex_desc=[];
+    var ex_desc = [];
     for (var i = 0; i < ex.length; i++) {
         names.push(ex[i].excercise_name);
         rep.push(ex[i].excercise_repetiton);
@@ -259,7 +271,7 @@ router.get('/sets/list', async function (req, res) {
         ex_id: ex_id,
         set_id: req.query.id,
         button: true,
-        ex_desc:ex_desc
+        ex_desc: ex_desc
     })
 })
 

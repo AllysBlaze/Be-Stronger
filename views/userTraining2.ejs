@@ -5,35 +5,60 @@
     <div id="main">
         <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Menu</button>
         <script>
+            function deleteEx(id){
+                var ul = document.getElementById("list");
+                ul.removeChild(id)
+                return
+            }
+
             function addEx() {
                 if (document.getElementById('excercise_name').value != '' && document.getElementById('repetition')
                     .value != '') {
                     var header = document.getElementById("headerList")
                     var btn = document.getElementById("btnList")
                     var ul = document.getElementById("list");
-
+                    var lis = ul.getElementsByTagName("li");
+                    var last = lis[lis.length - 1]
                     if (ul.hasChildNodes()) {
                         header.style.display = "block"
                         btn.style.display = "block"
                     }
 
-
+                    var nowe = "li0"
                     var li = document.createElement("li");
+                    li.setAttribute("class", "list-group-item")
+                    if (last) {
+                        nowe = parseInt(last.id.substring(2)) + 1;
+                        nowe = "li" + nowe.toString();
+
+                    }
+                    li.setAttribute("id", nowe)
+
+                    var button = document.createElement("button");
+                    button.setAttribute("class", "btn btn-danger btn-sm float-right");
+                    button.setAttribute("type", "button");
+                    button.setAttribute("onclick", "deleteEx(" + nowe + ")");
+                    button.innerHTML = "X";
+
+
                     var input1 = document.createElement("input");
                     var input2 = document.createElement("input");
-                    li.setAttribute("class", "list-group-item")
-                    const tresc = document.getElementById('excercise_name').value + ' ' + document.getElementById(
-                        'repetition').value + ' powtórzeń';
-
                     input1.setAttribute('value', document.getElementById('excercise_name').value)
                     input1.setAttribute('type', 'hidden');
                     input1.setAttribute('name', 'nazwa');
                     input2.setAttribute('value', document.getElementById('repetition').value)
                     input2.setAttribute('type', 'hidden');
                     input2.setAttribute('name', 'powt');
+
+
+
+                    const tresc = document.getElementById('excercise_name').value + '; powtórzeń: ' + document.getElementById(
+                        'repetition').value ;
+
                     document.getElementById('excercise_name').value = '';
                     document.getElementById('repetition').value = '';
                     li.appendChild(document.createTextNode(tresc));
+                    li.appendChild(button)
                     li.appendChild(input1);
                     li.appendChild(input2)
                     ul.appendChild(li);
@@ -51,7 +76,8 @@
                         <div class="input-group mt-5">
                             <span class="input-group-text">Wybierz ćwiczenie</span>
 
-                            <input list="exerciseList" name="exercise" class="form-control" id='excercise_name' required>
+                            <input list="exerciseList" name="exercise" class="form-control" id='excercise_name'
+                                required>
 
                             <datalist id="exerciseList">
                                 <% for(var i=0;i<excercise_names.length;i++){ %>
@@ -59,9 +85,10 @@
                                 <% } %>
                             </datalist>
 
-                            <input id='repetition' type="number" class="form-control" placeholder="Ilość powtórzeń" aria-label="Ilość powtórzeń" min="1" max="200" required>
+                            <input id='repetition' type="number" class="form-control" placeholder="Ilość powtórzeń"
+                                aria-label="Ilość powtórzeń" min="1" max="200" required>
 
-                             <button class="btn btn-warning" onclick="addEx()">Dodaj do listy</button>
+                            <button class="btn btn-warning" onclick="addEx()">Dodaj do listy</button>
                         </div>
                     </div>
                 </div>
@@ -71,6 +98,11 @@
                         <div class="col-lg-8 mx-auto bg-light">
                             <label for="setName" class="form-label">Wpisz nazwę swojego zestawu treningowego</label>
                             <input name='set_name' type="text" id="setName" class="form-control" required>
+                        </div>
+                        <div class="col-lg-2 mx-auto bg-light">
+                            <label for="setName" class="form-label">Liczba serii:</label>
+                            <input name='set_series' type="number" id="setName" class="form-control" 
+                            placeholder="1" min="1" max="200"required>
                         </div>
                     </div>
 

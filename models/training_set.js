@@ -63,8 +63,9 @@ const getLastNameNumber = (values) => { //set_name
     })
 }
 
-async function addNewSet(values) { //[[user_id, set_name],[[excercise,repetition,order],[excercise,repetition,order],...]]
-
+async function addNewSet(value) { //[[user_id, set_name],[[excercise,repetition,order],[excercise,repetition,order],...]]
+    var values=value
+    console.log(values)
     try {
         var set_name = values[0][1];
         var user_id = values[0][0]
