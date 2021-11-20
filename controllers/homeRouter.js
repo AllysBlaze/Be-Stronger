@@ -34,9 +34,10 @@ const addSet = async (req, res) => {
     const id = parseInt(res.get('id'))
     const set_name = req.body.set_name
     var ex_name = req.body.nazwa
+    const set_desc=req.body.set_desc;
     const rep = req.body.powt
     var values = [
-        [id, set_name],
+        [id, set_name,set_desc],
         []
     ];
     var temp
