@@ -71,11 +71,10 @@
 
                 <h1>Ułóż własny trening</h1>
 
-                <div class="row pb-3">
-                    <div class="col-sm-12 mx-auto">
+                <div class="row pb-3 text-center">
+                    <div class="col-lg-11 mx-auto">
                         <div class="input-group mt-5">
-                            <span class="input-group-text">Wybierz ćwiczenie</span>
-
+                            <span class="input-group-text">Ćwiczenie</span>
                             <input list="exerciseList" name="exercise" class="form-control" id='excercise_name'
                                 required>
 
@@ -84,27 +83,27 @@
                                 <option value="<%= excercise_names[i] %>"></option>
                                 <% } %>
                             </datalist>
-
-                            <input id='repetition' type="number" class="form-control" placeholder="Ilość powtórzeń"
+                            <span class="input-group-text">Powtórzenia</span>
+                            <input id='repetition' type="number" class="form-control"
                                 aria-label="Ilość powtórzeń" min="1" max="200" required>
 
-                            <button class="btn btn-warning" onclick="addEx()">Dodaj do listy</button>
+                            <button class="btn btn-warning mx-auto" onclick="addEx()">Dodaj do listy</button>
                         </div>
                     </div>
                 </div>
 
                 <form method="post" action="/home/newset">
                     <div class="row bg-light mb-5">
-                        <div class="col-lg-8 mx-auto bg-light">
+                        <div class="col-lg-8 mx-auto mt-3">
                             <label for="setName" class="form-label">Wpisz nazwę swojego zestawu treningowego</label>
                             <input name='set_name' type="text" id="setName" class="form-control" required>
                         </div>
-                        <div class="col-lg-2 mx-auto bg-light">
+                        <div class="col-lg-2 mx-auto mt-3">
                             <label for="setSeries" class="form-label">Liczba serii:</label>
                             <input name='set_series' type="number" id="setSeries" class="form-control" 
                             placeholder="1" min="1" max="200"required>
                         </div>
-                        <div class="col-lg-8 mx-auto bg-light">
+                        <div class="col-lg-8 mx-auto mt-3">
                             <label for="setDesc" class="form-label">Krótki opis treningu</label>
                             <textarea name='set_desc' id="setDesc" class="form-control" rows="3" maxlength="200"></textarea>
                         </div>
