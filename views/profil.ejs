@@ -25,6 +25,13 @@
                 </div>
                 <script>
                     function addPhoto(id){
+                        var input = document.getElementById('photoavatar').value
+                        if(input){
+                            var past = document.getElementsByName("p"+input)
+                            past[0].style.border='none'
+                        }
+                        var cur=document.getElementsByName("p"+id)
+                        cur[0].style.border='solid'
                         document.getElementById('photoavatar').value=id
                         return
                     }
@@ -32,7 +39,7 @@
                 <div class="row text-center px-5">
                     <div class="col-lg-9 mx-auto">
                         <% for (var i=0;i<10;i++){ %>
-                            <img style="cursor: pointer" class="p-4 mx-auto " src="/images/profil_icons/<%=i+1%>.png" alt="userPhoto" class="img-fluid mx-auto" id="profile_photo" onclick='addPhoto("<%=i+1%>")'>
+                            <img style="cursor: pointer" class="p-4 mx-auto " src="/images/profil_icons/<%=i+1%>.png" alt="userPhoto" class="img-fluid mx-auto" id="profile_photo" name='p<%=i+1%>' onclick='addPhoto("<%=i+1%>")'>
                         <%}%>
                     </div>
                 </div>
