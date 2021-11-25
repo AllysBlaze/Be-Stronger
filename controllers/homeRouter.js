@@ -6,6 +6,14 @@ const progress = require('../models/progress')
 const training_sets = require('../models/training_set')
 // #region FUNKCJE
 
+const updatePhoto=async (req,res)=>{
+    const photo='/images/profil_icons/'+req.body.avatar.toString()+'.png'
+    console.log(photo)
+    const id = res.get('id')
+    await user.updatePhoto([photo,id])
+    res.redirect('/home/profile')
+}
+
 const changeweight = async (req, res) => {
     const id = res.get('id')
     const newWeight = req.body.waga;
@@ -124,6 +132,8 @@ router.get('/profile', async function (req, res) {
         age: age
     });
 });
+
+router.post('/profile',updatePhoto)
 
 router.get('/progress', async function (req, res) {
     const username = res.get('username');

@@ -82,6 +82,17 @@ updateUser = (weight, height, birth, gender, user_name) => {
 
 }
 
+updatePhoto = (values)=>{ //[photo, user_id]
+    return new Promise((resolve,reject)=>{
+        pool.query('UPDATE users SET user_photo = ? WHERE user_id= ? ',values,(error, elements) => {
+            if (error) {
+                return reject(error)
+            }
+            return resolve(elements);
+        });
+    })
+}
+
 updateUserweight = (weight, id) => {
     return new Promise((resolve, reject) => {
         pool.query('UPDATE users SET user_weight= ? ' +
@@ -114,7 +125,8 @@ const user = {
     getUserID,
     getUserPhoto,
     getUserGoal,
-    getUserWeight
+    getUserWeight,
+    updatePhoto
 }
 
 module.exports = user;
