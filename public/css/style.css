@@ -12,6 +12,11 @@ body{
     font-family: sans-serif;
 }
 
+h3{
+  letter-spacing: 5px;
+  font-family: sans-serif;
+}
+
 h1{
     margin-bottom: 30px;
     padding:35px;
