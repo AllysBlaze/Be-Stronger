@@ -9,17 +9,17 @@
             <div class="col-lg-9 bg-light mx-auto" style="min-height: 800px;">
                 <h1>Informacje o użytkowniku</h1>
                 <div class="row">
-                        <div class="col">
-                            <img src=<%=photo_path %> alt="userPhoto" class="img-fluid mx-auto" id="profile_photo">
-                        </div>
-                        <div class="col">
-                            <ul class="list-group">
-                                <li class="list-group-item">Aktualna waga: <%= weight %></li>
-                                <li class="list-group-item">Wiek: <%= age %></li>
-                                <li class="list-group-item">Wzrost: <%= height %></li>
-                            </ul>
-                        </div>
-                </div>
+                    <div class="col">
+                        <img src=<%=photo_path %> alt="userPhoto" class="img-fluid mx-auto" id="profile_photo">
+                    </div>
+                    <div class="col">
+                        <ul class="list-group">
+                            <li class="list-group-item">Aktualna waga: <%= weight %></li>
+                            <li class="list-group-item">Wiek: <%= age %></li>
+                            <li class="list-group-item">Wzrost: <%= height %></li>
+                        </ul>
+                    </div>
+                </div>  
                 <div class="row mt-5">
                     <h3 class="mx-auto mt-5">Wybierz swój awatar</h3>
                 </div>
@@ -44,8 +44,8 @@
                     </div>
                 </div>
                 <form method="post" action="/home/profile">
-                    <input id='photoavatar' type='hidden' name='avatar'>
-                    <button class="btn btn-warning mx-auto" > Zatwierdź </button>
+                    <input id='photoavatar' type='hidden' name='avatar' required>
+                    <button class="btn btn-warning mx-auto mb-3" > Zatwierdź </button>
                 </form>
             </div>
             
