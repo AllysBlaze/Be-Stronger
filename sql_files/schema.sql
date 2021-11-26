@@ -30,6 +30,7 @@ CREATE TABLE training_sets(
     set_author_id INT UNSIGNED,
     set_name VARCHAR(50) DEFAULT 'trening',
     set_description VARCHAR(400),
+    set_photo  VARCHAR(200),
     FOREIGN KEY(set_author_id) REFERENCES users(user_id)
 );
 
