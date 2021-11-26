@@ -1,7 +1,7 @@
 const pool = require('../utils/connection');
 
 
-const getAllExcercises=()=>{
+const getAllExcercises = () => {
     return new Promise((resolve, reject) => {
         pool.query('SELECT excercise_name, excercise_id FROM single_excercises ORDER BY excercise_name', (error, elements) => {
             if (error) {
@@ -12,7 +12,7 @@ const getAllExcercises=()=>{
     })
 }
 
-const getExcerciseId=(values)=>{
+const getExcerciseId = (values) => {
     return new Promise((resolve, reject) => {
         pool.query('SELECT excercise_id FROM single_excercises WHERE excercise_name LIKE ? ', [values], (error, elements) => {
             if (error) {
@@ -23,8 +23,8 @@ const getExcerciseId=(values)=>{
     })
 }
 
-const excercise={
+const excercise = {
     getAllExcercises,
     getExcerciseId
 }
-module.exports=excercise;
+module.exports = excercise;

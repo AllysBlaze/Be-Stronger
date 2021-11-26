@@ -1,5 +1,9 @@
 const pool = require('../utils/connection');
-const {category,table,db_name}=require('../config')
+const {
+    category,
+    table,
+    db_name
+} = require('../config')
 
 getUserTrainingHistory = (values) => { //user_id
     return new Promise((resolve, reject) => {
@@ -19,14 +23,14 @@ getUserTrainingHistory = (values) => { //user_id
 
 addTraining = (values) => { //[user_id, training_date,training_category,training_duration]
     return new Promise((resolve, reject) => {
-        pool.query('INSERT INTO trainings'
-        +' (user_id, training_date, training_category, training_duration)'
-        + 'VALUES (?)', [values], (error, elements) => {
-            if (error) {
-                return reject(error);
-            }
-            return resolve(elements);
-        })
+        pool.query('INSERT INTO trainings' +
+            ' (user_id, training_date, training_category, training_duration)' +
+            'VALUES (?)', [values], (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            })
     });
 };
 
@@ -57,7 +61,7 @@ updateCustomTrainingTime = (values) => { //training_id
 
 async function addCustomTraining(values) { //[user_id, training_custom_id]
     try {
-       const id= await insertCustomTraining(values);
+        const id = await insertCustomTraining(values);
         await updateCustomTrainingTime(id);
     } catch (error) {
         console.log(error)
@@ -76,13 +80,13 @@ deleteTraining = (values) => { //training_id
 }
 
 
-getCategories=()=>{
-    return new Promise((resolve,reject)=>{
-        pool.query('SELECT SUBSTRING(COLUMN_TYPE,5) AS cat'
-        +' FROM information_schema.COLUMNS'
-        +' WHERE TABLE_SCHEMA= "'+ db_name.toString()
-            +'" AND TABLE_NAME= "'+table.toString()
-            +'" AND COLUMN_NAME= "'+category.toString()+'"',(error,elements)=>{
+getCategories = () => {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT SUBSTRING(COLUMN_TYPE,5) AS cat' +
+            ' FROM information_schema.COLUMNS' +
+            ' WHERE TABLE_SCHEMA= "' + db_name.toString() +
+            '" AND TABLE_NAME= "' + table.toString() +
+            '" AND COLUMN_NAME= "' + category.toString() + '"', (error, elements) => {
                 if (error) {
                     return reject(error);
                 }

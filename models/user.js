@@ -62,7 +62,7 @@ getUserWeight = (values) => {
             if (error) {
                 return reject(error)
             }
-            return resolve(elements); 
+            return resolve(elements);
         });
     })
 }
@@ -82,9 +82,9 @@ updateUser = (weight, height, birth, gender, user_name) => {
 
 }
 
-updatePhoto = (values)=>{ //[photo, user_id]
-    return new Promise((resolve,reject)=>{
-        pool.query('UPDATE users SET user_photo = ? WHERE user_id= ? ',values,(error, elements) => {
+updatePhoto = (values) => { //[photo, user_i d]
+    return new Promise((resolve, reject) => {
+        pool.query('UPDATE users SET user_photo = ? WHERE user_id= ? ', values, (error, elements) => {
             if (error) {
                 return reject(error)
             }
@@ -105,7 +105,7 @@ updateUserweight = (weight, id) => {
     })
 }
 
-getUserGoal=(values)=>{
+getUserGoal = (values) => {
     return new Promise((resolve, reject) => {
         pool.query('SELECT training_weekly_time_goal AS goal FROM users WHERE user_id= ?', values, (error, elements) => {
             if (error) {

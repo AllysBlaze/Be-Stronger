@@ -65,11 +65,10 @@ const getLastNameNumber = (values) => { //set_name
 
 async function addNewSet(values) { //[[user_id, set_name,set_desc],[[excercise,repetition,order],[excercise,repetition,order],...]]
 
-    console.log(values)
     try {
         var set_name = values[0][1];
         var user_id = values[0][0];
-        var set_desc=values[0][2];
+        var set_desc = values[0][2];
         const nameExists = await doesNameExists(set_name)
         if (nameExists.length != 0) {
             var number = await getLastNameNumber(set_name)
@@ -81,7 +80,7 @@ async function addNewSet(values) { //[[user_id, set_name,set_desc],[[excercise,r
                 set_name = set_name + " #2"
             }
         }
-        const id = await createNewSet([user_id, set_name,set_desc])
+        const id = await createNewSet([user_id, set_name, set_desc])
         var excData = values[1]
         for (var i = 0; i < excData.length; i++) {
             excData[i].push(id)
@@ -113,7 +112,7 @@ const getUserSets = (values) => { //user_id
 const getSets = () => { //user_id
     return new Promise((resolve, reject) => {
         pool.query('SELECT set_id, set_name, user_name, set_duration, set_description FROM training_sets' +
-            ' JOIN users ON set_author_id=user_id ORDER BY set_id' ,  (error, elements) => {
+            ' JOIN users ON set_author_id=user_id ORDER BY set_id', (error, elements) => {
                 if (error) {
                     return reject(error);
                 }
