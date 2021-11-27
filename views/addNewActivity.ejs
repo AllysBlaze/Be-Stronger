@@ -27,10 +27,16 @@
                     <input type="number" class="form-control"  name='hours' placeholder="Godziny" aria-label="Godziny">
                     <input type="number" class="form-control" name='minutes' placeholder="Minuty" aria-label="Minuty">
                   </div>
+
                   <div class="form-group">
-                    <label for="birthday">Wybierz datę aktywności: </label>
+                    <label for="date">Wybierz datę aktywności: </label>
                     <input type="date" id="date" name="date" class="form-control" required>
                   </div>
+                  <script>
+                    var temp=new Date()
+                    var today=temp.getFullYear().toString()+'-'+(temp.getMonth()+1).toString()+'-'+temp.getDate().toString()
+                    document.getElementById('date').setAttribute('max',today)
+                  </script>
                   <button class="btn btn-warning" type="submit">Dodaj aktywność</button>
             </form>
           </div>

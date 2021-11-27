@@ -13,10 +13,15 @@
                 <div>
                     <h3><%= month %></h3>
                     <form action="/home/progress" method="post">
-                        <input type="month" name='month' required>
+                        <input id='date' type="month" name='month' required>
                         <button type="submit"> Wybierz </button>
                     </form>
                 </div>
+                <script>
+                    var temp=new Date()
+                    var today=temp.getFullYear().toString()+'-'+(temp.getMonth()+1).toString();
+                    document.getElementById('date').setAttribute('max',today)
+                  </script>
                 <div class="row text-center">
                     <div class="col mx-0">
                         <div id="pie" class="m-2"></div>
