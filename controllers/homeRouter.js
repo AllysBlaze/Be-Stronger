@@ -149,8 +149,9 @@ router.get('/profile', async function (req, res) {
     const username = res.get('username');
     const id = res.get('id');
     var age = '';
+    var us;
     try {
-        const us = await user.getUserExtended(id)
+        us = await user.getUserExtended(id)
         if (us[0].user_birth)
             age = new Date().getFullYear() - us[0].user_birth.getFullYear()
     } catch (error) {
@@ -175,10 +176,11 @@ router.get('/progress', async function (req, res) {
     var x2 = [];
     var y2 = [];
     var labels = [];
+    var goal;
     try {
         const data1 = await progress.getTrainingCategories(id);
         const data2 = await progress.getTrainingWeeklyProgress(id);
-        const goal = await user.getUserGoal(id);
+        goal = await user.getUserGoal(id);
 
         for (var i = 0; i < data1.length; i++) {
             x1.push(data1[i].training_category);
