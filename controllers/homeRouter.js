@@ -183,7 +183,11 @@ router.get('/progress', async function (req, res) {
         goal = await user.getUserGoal(id);
 
         for (var i = 0; i < data1.length; i++) {
-            x1.push(data1[i].training_category);
+            if (data1[i].training_category == 'custom')
+                x1.push("zestaw treningowy");
+
+            else
+                x1.push(data1[i].training_category);
             y1.push(data1[i].training_count);
         }
 
