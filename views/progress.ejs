@@ -10,6 +10,13 @@
                 <div class="row text-center">
                     <h1>Miesięczne podsumowanie aktywności</h1>
                 </div>
+                <div>
+                    <h3><%= month %></h3>
+                    <form action="/home/progress" method="post">
+                        <input type="month" name='month' required>
+                        <button type="submit"> Wybierz </button>
+                    </form>
+                </div>
                 <div class="row text-center">
                     <div class="col mx-0">
                         <div id="pie" class="m-2"></div>
@@ -39,8 +46,6 @@
 
         Plotly.newPlot(pieChart, d, layoutPie);
 
-
-
         barChart = document.getElementById('bar');
         const x2 = "<%= x2 %>".split(',').map(function (item) {
             return parseInt(item, 10);
@@ -60,12 +65,16 @@
             width: 500,
             yaxis: {
                 tickformat: '%H:%M:%S',
+                title: 'Czas'
             },
             xaxis: {
-                dtick: 1
+                dtick: 1,
+                title: 'Numer tygodnia'
             },
             legend: {
-                "orientation": "h"
+                "orientation": "h",
+                x: 0.5,
+                y: 1.2
             }
         };
         Plotly.newPlot(barChart, [{

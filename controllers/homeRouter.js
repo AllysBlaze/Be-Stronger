@@ -100,6 +100,64 @@ const endSet = async (req, res) => {
     }
     res.redirect('/home/userssets')
 }
+
+
+const getMonth = async (req, res) => {
+    const data=new Date(req.body.month)
+    const month = data.getMonth() + 1;
+    const year = data.getFullYear();
+    
+    var dane;
+    try {
+        dane = await getProgressData(res.get('id'), month, year)
+    } catch (error) {
+        console.log(error)
+    }
+    res.render('progress', {
+        x1: dane[0],
+        y1: dane[1],
+        x2: dane[2],
+        y2: dane[3],
+        labels: dane[4],
+        user_name: res.get('username'),
+        goal: dane[5],
+        photo_path: res.get('photo'),
+        month:data.toLocaleString('default', { month: 'long' }) 
+    })
+}
+
+const getProgressData = async (id, month, year) => {
+    var x1 = [];
+    var y1 = [];
+    var x2 = [];
+    var y2 = [];
+    var labels = [];
+    var goal;
+    try {
+        const data1 = await progress.getTrainingCategories([id, year, month]);
+        const data2 = await progress.getTrainingWeeklyProgress([id, year, month]);
+        goal = await user.getUserGoal(id);
+
+        for (var i = 0; i < data1.length; i++) {
+            if (data1[i].training_category == 'custom')
+                x1.push("zestaw treningowy");
+
+            else
+                x1.push(data1[i].training_category);
+            y1.push(data1[i].training_count);
+        }
+
+        for (var i = 0; i < data2.length; i++) {
+            x2.push(data2[i].week);
+            y2.push(data2[i].time);
+            labels.push(data2[i].time_label);
+        }
+    } catch (error) {
+        console.log(error)
+    }
+    return [x1, y1, x2, y2, labels, goal[0].goal]
+
+}
 // #endregion
 
 // #region Router
@@ -171,46 +229,29 @@ router.post('/profile', updatePhoto)
 router.get('/progress', async function (req, res) {
     const username = res.get('username');
     const id = res.get('id');
-    var x1 = [];
-    var y1 = [];
-    var x2 = [];
-    var y2 = [];
-    var labels = [];
-    var goal;
+    const data = new Date();
+    const month = data.getMonth() + 1;
+    const year = data.getFullYear();
+    var dane;
     try {
-        const data1 = await progress.getTrainingCategories(id);
-        const data2 = await progress.getTrainingWeeklyProgress(id);
-        goal = await user.getUserGoal(id);
-
-        for (var i = 0; i < data1.length; i++) {
-            if (data1[i].training_category == 'custom')
-                x1.push("zestaw treningowy");
-
-            else
-                x1.push(data1[i].training_category);
-            y1.push(data1[i].training_count);
-        }
-
-        for (var i = 0; i < data2.length; i++) {
-            x2.push(data2[i].week);
-            y2.push(data2[i].time);
-            labels.push(data2[i].time_label);
-        }
+        dane = await getProgressData(id, month, year)
     } catch (error) {
         console.log(error)
     }
     res.render('progress', {
-        x1: x1,
-        y1: y1,
-        x2: x2,
-        y2: y2,
-        labels: labels,
+        x1: dane[0],
+        y1: dane[1],
+        x2: dane[2],
+        y2: dane[3],
+        labels: dane[4],
         user_name: username,
-        goal: goal[0].goal,
-        photo_path: res.get('photo')
+        goal: dane[5],
+        photo_path: res.get('photo'),
+        month:data.toLocaleString('default', { month: 'long' }) 
     })
 });
 
+router.post('/progress', getMonth)
 
 router.get('/userssets', async function (req, res) {
     const username = res.get('username');
