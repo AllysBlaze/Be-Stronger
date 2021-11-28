@@ -85,7 +85,6 @@ async function addNewSet(values) { //[[user_id, set_name,set_desc],[[excercise,r
         for (var i = 0; i < excData.length; i++) {
             excData[i].push(id)
         }
-        console.log(excData)
         await addExcerisesToSet(excData); //[[excercise,repetition,order,set_id],[excercise,repetition,order,set_id]
         await updateSetDuration(id);
 

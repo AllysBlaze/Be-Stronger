@@ -54,7 +54,7 @@ const addSet = async (req, res) => {
     const set_name = req.body.set_name
     var ex_name = req.body.nazwa
     const set_desc = req.body.set_desc;
-    const rep = req.body.powt
+    var rep = req.body.powt
     var values = [
         [id, set_name, set_desc],
         []
@@ -64,6 +64,8 @@ const addSet = async (req, res) => {
     if (!Array.isArray(ex_name))
         ex_name = [ex_name]
 
+    if (!Array.isArray(rep))
+        rep = [rep]
     for (var i = 0; i < ex_name.length; i++) {
         try {
             temp = await excercise.getExcerciseId(ex_name[i])
@@ -103,10 +105,10 @@ const endSet = async (req, res) => {
 
 
 const getMonth = async (req, res) => {
-    const data=new Date(req.body.month)
+    const data = new Date(req.body.month)
     const month = data.getMonth() + 1;
     const year = data.getFullYear();
-    
+
     var dane;
     try {
         dane = await getProgressData(res.get('id'), month, year)
@@ -122,7 +124,9 @@ const getMonth = async (req, res) => {
         user_name: res.get('username'),
         goal: dane[5],
         photo_path: res.get('photo'),
-        month:data.toLocaleString('default', { month: 'long' }) 
+        month: data.toLocaleString('default', {
+            month: 'long'
+        })
     })
 }
 
@@ -247,7 +251,9 @@ router.get('/progress', async function (req, res) {
         user_name: username,
         goal: dane[5],
         photo_path: res.get('photo'),
-        month:data.toLocaleString('default', { month: 'long' }) 
+        month: data.toLocaleString('default', {
+            month: 'long'
+        })
     })
 });
 
