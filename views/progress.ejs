@@ -6,15 +6,14 @@
         <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Menu</button>
         <script src="https://cdn.plot.ly/plotly-2.4.2.min.js"></script>
         <div class="container-fluid">
-            <div class="col-lg-9 mx-auto">
-                <div class="row text-center">
-                    <h1>Miesięczne podsumowanie aktywności</h1>
-                </div>
+            <div class="col-lg-9 bg-light mx-auto text-center" style="min-height: 800px;">
+                    <h1 class="mx-auto">Miesięczne podsumowanie aktywności</h1>
+                
                 <div>
-                    <h3><%= month %></h3>
+                    <h3 class="text-uppercase"><%= month %></h3>
                     <form action="/home/progress" method="post">
-                        <input id='date' type="month" name='month' required>
-                        <button type="submit"> Wybierz </button>
+                        <input id='date' type="month" name='month' class="my-3" required>
+                        <button type="submit" class=" btn btn-dark my-3"> Wybierz </button>
                     </form>
                 </div>
                 <script>
