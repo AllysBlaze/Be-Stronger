@@ -14,13 +14,31 @@
                     </div>
                     <div class="col">
                         <ul class="list-group">
-                            <li class="list-group-item">Aktualna waga: <%= weight %></li>
+                            <li class="list-group-item">Aktualna waga (kg): <%= weight %></li>
                             <li class="list-group-item">Wiek: <%= age %></li>
-                            <li class="list-group-item">Wzrost: <%= height %></li>
+                            <li class="list-group-item">Wzrost(cm): <%= height %></li>
                         </ul>
                     </div>
                 </div>  
-                <div class="row mt-5">
+
+
+                <div class="row text-center mt-5 border-top">
+                    <h3 class="mx-auto mt-5">Wybierz swój tygodniowy cel</h3>
+                </div>
+                <div class="col-lg-6 mx-auto">
+                    <form >
+                        <span>Wybierz ile chcesz poświęcić czasu w tygodniu na trening</span>
+                        <div class="input-group mb-3">
+                            <input type="number" class="form-control"  name='hours' placeholder="Godziny" aria-label="Godziny">
+                            <input type="number" class="form-control" name='minutes' placeholder="Minuty" aria-label="Minuty">
+                        </div>
+                    </form>
+                </div>
+                
+
+
+
+                <div class="row mt-5 border-top">
                     <h3 class="mx-auto mt-5">Wybierz swój awatar</h3>
                 </div>
                 <script>
@@ -36,6 +54,7 @@
                         return
                     }
                 </script>
+
                 <div class="row text-center px-5">
                     <div class="col-lg-9 mx-auto">
                         <% for (var i=0;i<10;i++){ %>
