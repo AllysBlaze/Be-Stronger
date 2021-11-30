@@ -177,6 +177,7 @@ router.get('/history', async function (req, res) {
     var act = [];
     var duration = [];
     var date = []
+    var img = [];
     try {
         const history = await training.getUserTrainingHistory(id);
 
@@ -197,12 +198,43 @@ router.get('/history', async function (req, res) {
     } catch (error) {
         console.log(error)
     }
+
+    for (var i = 0; i < act.length; i++) {
+        switch (act[i]) {
+            case 'jazda na rowerze':
+                img.push('bike');
+                break;
+            case 'jazda na rolkach':
+                img.push('rollerblade');
+                break;
+            case 'trekking':
+                img.push('hiking');
+                break;
+            case 'skakanie na skakance':
+                img.push('skipping-rope');
+                break;
+            case 'pływanie':
+                img.push('swimming');
+                break;
+            case 'trekking':
+                img.push('running');
+                break;
+            case 'jazda na nartach':
+                img.push('alpine');
+                break;
+            default:
+                img.push('trening');
+                break;
+        }
+    }
+
     res.render('history', {
         user_name: username,
         photo_path: res.get('photo'),
         act: act,
         date: date,
-        duration: duration
+        duration: duration,
+        img:img
     })
 });
 
