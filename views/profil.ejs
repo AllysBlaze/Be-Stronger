@@ -12,31 +12,124 @@
                     <div class="col">
                         <img src=<%=photo_path %> alt="userPhoto" class="img-fluid mx-auto" id="profile_photo">
                     </div>
+
+                    <script>
+                        function editMode() {
+                            var span;
+
+
+                            var weight = document.getElementById('inputWeight');
+                            span = weight.getElementsByTagName('span')
+                            weight.removeChild(span[0])
+                            var inputWeight = document.createElement('input');
+                            inputWeight.setAttribute('name', 'weight');
+                            inputWeight.setAttribute('value', '<%= weight %>')
+                            inputWeight.setAttribute('type', 'number');
+                            inputWeight.setAttribute('class', "form-control");
+                            weight.appendChild(inputWeight)
+
+
+
+                            var temp = new Date()
+                            var month = (temp.getMonth() + 1).toString()
+                            var year = temp.getFullYear()
+                            var day = temp.getDate().toString();
+                            if (day.length == 1)
+                                day = '0' + day
+                            if (month.length == 1)
+                                month = '0' + month;
+                            var today = year + '-' + month + '-' + day
+
+                            var age = document.getElementById('inputAge');
+                            span = age.getElementsByTagName('span')
+                            age.removeChild(span[0])
+                            var inputAge = document.createElement('input');
+                            inputAge.setAttribute('name', 'age');
+                            inputAge.setAttribute('max', today);
+                            inputAge.setAttribute('value', '<%= birth %>')
+                            inputAge.setAttribute('type', 'date');
+                            inputAge.setAttribute('class', "form-control");
+                            age.appendChild(inputAge)
+
+                            var height = document.getElementById('inputHeight');
+                            span = height.getElementsByTagName('span')
+                            height.removeChild(span[0])
+                            var inputHeight = document.createElement('input');
+                            inputHeight.setAttribute('name', 'height');
+                            inputHeight.setAttribute('value', '<%= height %>')
+                            inputHeight.setAttribute('type', 'number');
+                            inputHeight.setAttribute('class', "form-control");
+                            height.appendChild(inputHeight)
+
+
+
+                            var div = document.createElement(div);
+                            div.setAttribute('class', "input-group mb-3")
+                            var goal = document.getElementById('inputGoal');
+                            span = goal.getElementsByTagName('span')
+                            goal.removeChild(span[0])
+                            var inputGoal = document.createElement('input');
+                            inputGoal.setAttribute('name', 'hours');
+                            inputGoal.setAttribute('placeholder', 'godziny');
+                            inputGoal.setAttribute('value', '<%=goal%>'.split(':')[0])
+                            inputGoal.setAttribute('type', 'number');
+                            inputGoal.setAttribute('class', "form-control");
+                            var inputGoalMin = document.createElement('input');
+                            inputGoalMin.setAttribute('name', 'minutes');
+                            inputGoalMin.setAttribute('placeholder', 'minuty');
+                            inputGoalMin.setAttribute('value', '<%=goal%>'.split(':')[1])
+                            inputGoalMin.setAttribute('type', 'number');
+                            inputGoalMin.setAttribute('class', "form-control");
+                            div.appendChild(inputGoal)
+                            div.appendChild(inputGoalMin)
+
+                            goal.appendChild(div)
+
+                            var button = document.createElement('input')
+                            button.setAttribute('type', 'submit')
+                            button.setAttribute('class', "btn btn-warning mx-auto px-5")
+                            button.innerHTML = 'Zatwierdź'
+                            document.getElementById('buttonPlace').removeChild(document.getElementById('editButton'))
+                            document.getElementById('buttonPlace').appendChild(button)
+
+                            return
+                        }
+                    </script>
+
+
                     <div class="col">
-                        <ul class="list-group">
-                            <li class="list-group-item">Aktualna waga (kg): <%= weight %></li>
-                            <li class="list-group-item">Wiek: <%= age %></li>
-                            <li class="list-group-item">Wzrost(cm): <%= height %></li>
-                            <li class="list-group-item">Aktualny cel: </li>
-                        </ul>
-                    </div>
-                </div>  
-
-
-                <div class="row text-center mt-5 border-top">
-                    <h3 class="mx-auto my-5">Wybierz swój tygodniowy cel</h3>
-                </div>
-                <div class="col-lg-6 mx-auto">
-                    <form >
-                        <span>Wybierz ile chcesz poświęcić czasu w tygodniu na trening</span>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control"  name='hours' placeholder="Godziny" aria-label="Godziny">
-                            <input type="number" class="form-control" name='minutes' placeholder="Minuty" aria-label="Minuty">
-                        </div>
-                        <button class="btn btn-warning mx-auto px-5" type="submit">Dodaj cel</button>
+                        
+                        <form id='formularz' method="post" action="/home/profile/info">
+                        <table class="table">
+                                <tr>
+                                    <td> Waga (kg):</td>
+                                    <td id='inputWeight'><span><%= weight %></span></td>
+                                </tr>
+                                <tr>
+                                    <td> Wiek:</td>
+                                    <td id='inputAge'> <span><%= age %></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Wzrost (cm):</td>
+                                    <td id='inputHeight'><span><%= height %></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Tygodniowy cel: </td>
+                                    <td id='inputGoal'><span><%= goal %></span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" id='buttonPlace'><button class="btn btn-warning mx-auto px-5"
+                                            type='button' id='editButton' onclick="editMode()">Edytuj</button>
+                                    </td>
+                                </tr>
+                            
+                        </table>
                     </form>
+                    </div>
                 </div>
-                
+
+  
+
 
 
 
@@ -44,15 +137,15 @@
                     <h3 class="mx-auto mt-5">Wybierz swój awatar</h3>
                 </div>
                 <script>
-                    function addPhoto(id){
+                    function addPhoto(id) {
                         var input = document.getElementById('photoavatar').value
-                        if(input){
-                            var past = document.getElementsByName("p"+input)
-                            past[0].style.border='none'
+                        if (input) {
+                            var past = document.getElementsByName("p" + input)
+                            past[0].style.border = 'none'
                         }
-                        var cur=document.getElementsByName("p"+id)
-                        cur[0].style.border='solid'
-                        document.getElementById('photoavatar').value=id
+                        var cur = document.getElementsByName("p" + id)
+                        cur[0].style.border = 'solid'
+                        document.getElementById('photoavatar').value = id
                         return
                     }
                 </script>
@@ -60,7 +153,9 @@
                 <div class="row text-center px-5">
                     <div class="col-lg-9 mx-auto">
                         <% for (var i=0;i<10;i++){ %>
-                            <img style="cursor: pointer" class="p-4 mx-auto " src="/images/profil_icons/<%=i+1%>.png" alt="userPhoto" class="img-fluid mx-auto" id="profile_photo" name='p<%=i+1%>' onclick='addPhoto("<%=i+1%>")'>
+                        <img style="cursor: pointer" class="p-4 mx-auto " src="/images/profil_icons/<%=i+1%>.png"
+                            alt="userPhoto" class="img-fluid mx-auto" id="profile_photo" name='p<%=i+1%>'
+                            onclick='addPhoto("<%=i+1%>")'>
                         <%}%>
                     </div>
                 </div>
@@ -74,5 +169,6 @@
     </div>
   <%- include('footer.ejs') %>
 
-  </body>
+</body>
+
 </html>

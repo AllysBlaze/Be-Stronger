@@ -162,6 +162,25 @@ const getProgressData = async (id, month, year) => {
     return [x1, y1, x2, y2, labels, goal[0].goal]
 
 }
+
+const updateUser=async (req,res)=>{
+    const user_name = res.get('username');
+    var weight = req.body.weight;
+    var height = req.body.height;
+    var birthdate = req.body.age;
+    var minutes = req.body.minutes;
+    var hours=req.body.hours
+    if (minutes == '')
+        minutes = '00'
+    const goal = hours.toString() + ':' + minutes.toString() + ':00'
+
+    try {
+        await user.updateUser(weight, height, birthdate,  goal,user_name)}
+        catch(error){
+            console.log(error)
+        }
+        res.redirect('/home/profile')
+}
 // #endregion
 
 // #region Router
@@ -180,7 +199,7 @@ router.get('/history', async function (req, res) {
     var img = [];
     try {
         const history = await training.getUserTrainingHistory(id);
-
+        console.log(history[0].training_date)
         for (var i = 0; i < history.length; i++) {
             if (history[i].training_category == 'custom') {
                 act.push(history[i].set_name)
@@ -198,7 +217,7 @@ router.get('/history', async function (req, res) {
     } catch (error) {
         console.log(error)
     }
-
+    console.log(date[0])
     for (var i = 0; i < act.length; i++) {
         switch (act[i]) {
             case 'jazda na rowerze':
@@ -234,7 +253,7 @@ router.get('/history', async function (req, res) {
         act: act,
         date: date,
         duration: duration,
-        img:img
+        img: img
     })
 });
 
@@ -244,10 +263,22 @@ router.get('/profile', async function (req, res) {
     const id = res.get('id');
     var age = '';
     var us;
+    var birth;
     try {
         us = await user.getUserExtended(id)
         if (us[0].user_birth)
             age = new Date().getFullYear() - us[0].user_birth.getFullYear()
+        var d = us[0].user_birth;
+        var month = (d.getMonth() + 1).toString()
+        var year = d.getFullYear()
+        var day = d.getDate().toString();
+        if (day.length == 1)
+            day = '0' + day
+        if (month.length == 1)
+            month = '0' + month;
+        birth = year + '-' + month+ '-' + day
+
+
     } catch (error) {
         console.log(error)
     }
@@ -256,11 +287,14 @@ router.get('/profile', async function (req, res) {
         photo_path: res.get('photo'),
         weight: us[0].user_weight,
         height: us[0].user_height,
-        age: age
+        age: age,
+        goal: us[0].training_weekly_time_goal,
+        birth: birth
     });
 });
 
 router.post('/profile', updatePhoto)
+router.post('/profile/info', updateUser)
 
 router.get('/progress', async function (req, res) {
     const username = res.get('username');
