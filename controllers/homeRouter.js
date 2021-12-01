@@ -163,23 +163,23 @@ const getProgressData = async (id, month, year) => {
 
 }
 
-const updateUser=async (req,res)=>{
+const updateUser = async (req, res) => {
     const user_name = res.get('username');
     var weight = req.body.weight;
     var height = req.body.height;
     var birthdate = req.body.age;
     var minutes = req.body.minutes;
-    var hours=req.body.hours
+    var hours = req.body.hours
     if (minutes == '')
         minutes = '00'
     const goal = hours.toString() + ':' + minutes.toString() + ':00'
 
     try {
-        await user.updateUser(weight, height, birthdate,  goal,user_name)}
-        catch(error){
-            console.log(error)
-        }
-        res.redirect('/home/profile')
+        await user.updateUser(weight, height, birthdate, goal, user_name)
+    } catch (error) {
+        console.log(error)
+    }
+    res.redirect('/home/profile')
 }
 // #endregion
 
@@ -241,6 +241,9 @@ router.get('/history', async function (req, res) {
             case 'jazda na nartach':
                 img.push('alpine');
                 break;
+            case 'joga':
+                img.push('yoga');
+                break;
             default:
                 img.push('trening');
                 break;
@@ -276,7 +279,7 @@ router.get('/profile', async function (req, res) {
             day = '0' + day
         if (month.length == 1)
             month = '0' + month;
-        birth = year + '-' + month+ '-' + day
+        birth = year + '-' + month + '-' + day
 
 
     } catch (error) {
@@ -346,6 +349,7 @@ router.get('/userssets', async function (req, res) {
     } catch (error) {
         console.log(error)
     }
+    const txt = 'Skorzystaj z treningów przygotowanych przez innych użytkowników'
     res.render('userTraining', {
         user_name: username,
         photo_path: res.get('photo'),
@@ -353,7 +357,42 @@ router.get('/userssets', async function (req, res) {
         set_id: set_id,
         set_dur: set_dur,
         set_desc: set_desc,
-        set_author: set_author
+        set_author: set_author,
+        texth1: txt
+    })
+});
+
+router.get('/minesets', async function (req, res) {
+    const username = res.get('username');
+    var set_id = [];
+    var set_name = [];
+    var set_dur = [];
+    var set_desc = [];
+    var set_author = [];
+    const id = res.get('id');
+    try {
+        const data = await training_sets.getUserSets(id)
+
+        for (var i = 0; i < data.length; i++) {
+            set_id.push(data[i].set_id);
+            set_name.push(data[i].set_name);
+            set_dur.push(data[i].set_duration);
+            set_desc.push(data[i].set_description)
+            set_author.push(data[i].user_name)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+    const txt = 'Twoje zestawy treningowe'
+    res.render('userTraining', {
+        user_name: username,
+        photo_path: res.get('photo'),
+        set_name: set_name,
+        set_id: set_id,
+        set_dur: set_dur,
+        set_desc: set_desc,
+        set_author: set_author,
+        texth1: txt
     })
 });
 

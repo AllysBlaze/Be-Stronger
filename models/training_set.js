@@ -108,7 +108,7 @@ const getUserSets = (values) => { //user_id
     })
 }
 
-const getSets = () => { //user_id
+const getSets = () => { 
     return new Promise((resolve, reject) => {
         pool.query('SELECT set_id, set_name, user_name, set_duration, set_description FROM training_sets' +
             ' JOIN users ON set_author_id=user_id ORDER BY set_id', (error, elements) => {
@@ -139,7 +139,8 @@ const getSetDetails = (values) => { //set_id
 trainingSet = {
     addNewSet,
     getSetDetails,
-    getSets
+    getSets,
+    getUserSets
 };
 
 module.exports = trainingSet;
