@@ -30,14 +30,16 @@ CREATE TABLE training_sets(
     set_name VARCHAR(50) DEFAULT 'trening',
     set_description VARCHAR(400),
     set_photo  VARCHAR(200),
+    kcal INT,
     FOREIGN KEY(set_author_id) REFERENCES users(user_id)
 );
 
 CREATE TABLE single_excercises(
     excercise_id  INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
     excercise_name VARCHAR(100) NOT NULL UNIQUE,
-    excercise_duration TIME DEFAULT '00:00:15',
-    excercise_description VARCHAR(400)
+    excercise_duration TIME DEFAULT '00:00:01',
+    excercise_description VARCHAR(400),
+    kcal_per_100 INT
 );
 
 CREATE TABLE set_excercise(
@@ -49,15 +51,24 @@ CREATE TABLE set_excercise(
     FOREIGN KEY(excercise_id) REFERENCES single_excercises(excercise_id)
 );
 
+
+CREATE TABLE training_categories(
+    category VARCHAR(100) PRIMARY KEY,
+    kcal_per_hour INT
+);
+
+
 CREATE TABLE trainings(
     training_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     user_id INT UNSIGNED NOT NULL,
-    training_category ENUM('custom', 'jazda na rowerze', 'jazda na rolkach', 'trekking', 'joga', 'skakanie na skakance', 'pływanie','bieganie','jazda na nartach') DEFAULT 'custom',
+    training_category VARCHAR(100) DEFAULT 'custom',
     training_custom_id INT UNSIGNED,
     training_duration TIME NOT NULL DEFAULT '00:00:00',
     training_date DATE NOT NULL,
+    kcal INT,
     PRIMARY KEY (training_id),
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (training_category) REFERENCES training_categories(category)
 );
 
 

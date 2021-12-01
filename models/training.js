@@ -1,13 +1,9 @@
 const pool = require('../utils/connection');
-const {
-    category,
-    table,
-    db_name
-} = require('../config')
 
 getUserTrainingHistory = (values) => { //user_id
     return new Promise((resolve, reject) => {
-        pool.query("SELECT trainings.training_id, trainings.training_category, training_sets.set_name, trainings.training_date,trainings.training_duration" +
+        pool.query("SELECT trainings.training_id, trainings.training_category, training_sets.set_name, " +
+            "  trainings.training_date,trainings.training_duration, trainings.kcal" +
             " FROM trainings " +
             " LEFT JOIN training_sets ON trainings.training_custom_id=training_sets.set_id " +
             " WHERE trainings.user_id= ? " +
@@ -21,7 +17,9 @@ getUserTrainingHistory = (values) => { //user_id
 };
 
 
-addTraining = (values) => { //[user_id, training_date,training_category,training_duration]
+
+
+addNewTraining = (values) => { //[user_id, training_date,training_category,training_duration]
     return new Promise((resolve, reject) => {
         pool.query('INSERT INTO trainings' +
             ' (user_id, training_date, training_category, training_duration)' +
@@ -29,7 +27,7 @@ addTraining = (values) => { //[user_id, training_date,training_category,training
                 if (error) {
                     return reject(error);
                 }
-                return resolve(elements);
+                return resolve(elements.insertId);
             })
     });
 };
@@ -59,10 +57,39 @@ updateCustomTrainingTime = (values) => { //training_id
     })
 }
 
+updateCustomTrainingKcal = (values) => { //training_id
+    return new Promise((resolve, reject) => {
+        pool.query("UPDATE trainings" +
+            " JOIN training_sets ON training_custom_id=set_id" +
+            " SET trainings.kcal=training_sets.kcal" +
+            " WHERE training_id= ? ", values, (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            })
+    })
+}
+
+updateTrainingKcal = (values) => { //training_id
+    return new Promise((resolve, reject) => {
+        pool.query("UPDATE trainings" +
+            " JOIN training_categories ON training_category=category" +
+            " SET trainings.kcal=(TIME_TO_SEC(trainings.training_duration))/3600*training_categories.kcal_per_hour " +
+            " WHERE training_id= ? ", values, (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            })
+    })
+}
+
 async function addCustomTraining(values) { //[user_id, training_custom_id]
     try {
         const id = await insertCustomTraining(values);
         await updateCustomTrainingTime(id);
+        await updateCustomTrainingKcal(id);
     } catch (error) {
         console.log(error)
     }
@@ -79,19 +106,23 @@ deleteTraining = (values) => { //training_id
     })
 }
 
+async function addTraining(values) {
+    try {
+        const id = await addNewTraining(values);
+        await updateTrainingKcal(id);
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 getCategories = () => {
     return new Promise((resolve, reject) => {
-        pool.query('SELECT SUBSTRING(COLUMN_TYPE,5) AS cat' +
-            ' FROM information_schema.COLUMNS' +
-            ' WHERE TABLE_SCHEMA= "' + db_name.toString() +
-            '" AND TABLE_NAME= "' + table.toString() +
-            '" AND COLUMN_NAME= "' + category.toString() + '"', (error, elements) => {
-                if (error) {
-                    return reject(error);
-                }
-                return resolve(elements);
-            })
+        pool.query('SELECT category FROM training_categories ORDER BY category', (error, elements) => {
+            if (error) {
+                return reject(error);
+            }
+            return resolve(elements);
+        })
     })
 }
 

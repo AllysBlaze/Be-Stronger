@@ -8,20 +8,40 @@ VALUES
 ('a','$2b$10$gZALjUWLchNRGi1ZQmV6MeLtYIsbt5oZjpa2lbB8j9fQBmE.nA5Om','test5@admin.com',60,170,'2000-01-01'),
 ('test4','test4','test4@admin.com',60,170,'2000-01-01');
 
+
+INSERT INTO training_categories
+(category,kcal_per_hour)
+VALUES
+('jazda na rowerze',500),
+('jazda na rolkach',700),
+('joga',175),
+('jazda na nartach',500),
+('skakanie na skakance',350),
+('trekking',440),
+('pływanie',750),
+('bieganie',620)
+;
+
+INSERT INTO training_categories (category)
+VALUES ('custom');
+
 INSERT INTO single_excercises
     (excercise_name, excercise_duration,excercise_description)
     VALUES
-    ('przysiady','00:00:20','opis'),
-    ('pompki','00:00:15','opis'),
+    ('przysiady','00:00:02','opis'),
+    ('pompki','00:00:02','opis'),
     ('deska: 1min','00:01:00','opis'),
-    ('brzuszki','00:00:01','opis'),
-    ('wykrok','00:00:01','opis'),
-    ('nożyce pionowe','00:00:20','opis'),
-    ('nożyce poziome','00:00:20','opis'),
+    ('wykrok','00:00:05','opis'),
+    ('nożyce pionowe','00:00:02','opis'),
+    ('nożyce poziome','00:00:02','opis'),
     ('ukłon japoński','00:00:10','opis'),
     ('deska: 2min','00:02:00','opis'),
     ('skłony','00:00:01','opis');
     
+INSERT INTO single_excercises
+(excercise_name, excercise_duration,excercise_description,kcal_per_100)
+VALUES
+('brzuszki','00:00:01','opis',25);
 
 INSERT INTO training_sets
 (set_author_id,set_description)
@@ -47,6 +67,15 @@ FROM set_excercise
 INNER JOIN single_excercises ON single_excercises.excercise_id = set_excercise.excercise_id
 GROUP BY set_id) AS tr2
 SET tr.set_duration=tr2.duration
+WHERE tr.set_id=tr2.set_id;
+
+
+UPDATE training_sets AS tr,
+(SELECT set_excercise.set_id,SUM((single_excercises.kcal_per_100) /100 * set_excercise.excercise_repetiton ) AS kcal
+FROM set_excercise
+INNER JOIN single_excercises ON single_excercises.excercise_id = set_excercise.excercise_id
+GROUP BY set_id) AS tr2
+SET tr.kcal=tr2.kcal
 WHERE tr.set_id=tr2.set_id;
 
 INSERT INTO trainings
@@ -97,4 +126,13 @@ VALUES
 UPDATE trainings
 JOIN training_sets ON training_custom_id=set_id
 SET trainings.training_duration=training_sets.set_duration
+WHERE training_category='custom';
+
+UPDATE trainings
+JOIN training_categories ON trainings.training_category=training_categories.category
+SET trainings.kcal=(TIME_TO_SEC(trainings.training_duration))/3600*training_categories.kcal_per_hour;
+
+UPDATE trainings
+JOIN training_sets ON training_custom_id=set_id
+SET trainings.kcal=training_sets.kcal
 WHERE training_category='custom';

@@ -40,6 +40,24 @@ const updateSetDuration = (values) => { //set_id
     })
 }
 
+
+const updateSetKcal= (values) => { //set_id
+    return new Promise((resolve, reject) => {
+        pool.query('UPDATE training_sets AS tr, ' +
+            ' (SELECT set_excercise.set_id,SUM((single_excercises.kcal_per_100) /100 * set_excercise.excercise_repetiton ) AS kcal ' +
+            ' FROM set_excercise' +
+            ' INNER JOIN single_excercises ON single_excercises.excercise_id = set_excercise.excercise_id' +
+            ' WHERE set_id= ? ) AS tr2' +
+            ' SET tr.kcal=tr2.kcal' +
+            ' WHERE tr.set_id=tr2.set_id', values, (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            })
+    })
+}
+
 const doesNameExists = (values) => { //set_name
     return new Promise((resolve, reject) => {
         pool.query('Select set_id,set_name FROM training_sets WHERE set_name LIKE ? ', values, (error, elements) => {
@@ -87,6 +105,7 @@ async function addNewSet(values) { //[[user_id, set_name,set_desc],[[excercise,r
         }
         await addExcerisesToSet(excData); //[[excercise,repetition,order,set_id],[excercise,repetition,order,set_id]
         await updateSetDuration(id);
+        await updateSetKcal(id)
 
     } catch (error) {
         console.log(error)
@@ -97,7 +116,7 @@ async function addNewSet(values) { //[[user_id, set_name,set_desc],[[excercise,r
 
 const getUserSets = (values) => { //user_id
     return new Promise((resolve, reject) => {
-        pool.query('SELECT set_id, set_name, user_name, set_duration, set_description FROM training_sets' +
+        pool.query('SELECT set_id, set_name, user_name, set_duration, set_description,kcal FROM training_sets' +
             ' JOIN users ON set_author_id=user_id' +
             ' WHERE set_author_id= ?', values, (error, elements) => {
                 if (error) {
@@ -110,7 +129,7 @@ const getUserSets = (values) => { //user_id
 
 const getSets = () => { 
     return new Promise((resolve, reject) => {
-        pool.query('SELECT set_id, set_name, user_name, set_duration, set_description FROM training_sets' +
+        pool.query('SELECT set_id, set_name, user_name, set_duration, set_description, kcal FROM training_sets' +
             ' JOIN users ON set_author_id=user_id ORDER BY set_id', (error, elements) => {
                 if (error) {
                     return reject(error);

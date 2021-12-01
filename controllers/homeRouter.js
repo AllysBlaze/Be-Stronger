@@ -197,9 +197,11 @@ router.get('/history', async function (req, res) {
     var duration = [];
     var date = []
     var img = [];
+    var kcal=[];
     try {
         const history = await training.getUserTrainingHistory(id);
         for (var i = 0; i < history.length; i++) {
+            kcal.push(history[i].kcal)
             if (history[i].training_category == 'custom') {
                 act.push(history[i].set_name)
             } else {
@@ -210,7 +212,7 @@ router.get('/history', async function (req, res) {
             var month = d.getMonth() + 1
             var year = d.getFullYear()
             var day = d.getDate()
-
+            
             date.push(day.toString() + '.' + month.toString() + '.' + year.toString())
         }
     } catch (error) {
@@ -223,9 +225,6 @@ router.get('/history', async function (req, res) {
                 break;
             case 'jazda na rolkach':
                 img.push('rollerblade');
-                break;
-            case 'trekking':
-                img.push('hiking');
                 break;
             case 'skakanie na skakance':
                 img.push('skipping-rope');
@@ -254,7 +253,8 @@ router.get('/history', async function (req, res) {
         act: act,
         date: date,
         duration: duration,
-        img: img
+        img: img,
+        kcal
     })
 });
 
@@ -333,6 +333,7 @@ router.get('/userssets', async function (req, res) {
     var set_dur = [];
     var set_desc = [];
     var set_author = [];
+    var kcal=[];
     const id = res.get('id');
     try {
         const data = await training_sets.getSets()
@@ -342,7 +343,8 @@ router.get('/userssets', async function (req, res) {
             set_name.push(data[i].set_name);
             set_dur.push(data[i].set_duration);
             set_desc.push(data[i].set_description)
-            set_author.push(data[i].user_name)
+            set_author.push(data[i].user_name);
+            kcal.push(data[i].kcal)
         }
     } catch (error) {
         console.log(error)
@@ -356,7 +358,8 @@ router.get('/userssets', async function (req, res) {
         set_dur: set_dur,
         set_desc: set_desc,
         set_author: set_author,
-        texth1: txt
+        texth1: txt,
+        kcal:kcal
     })
 });
 
@@ -368,6 +371,7 @@ router.get('/minesets', async function (req, res) {
     var set_desc = [];
     var set_author = [];
     const id = res.get('id');
+    var kcal=[]
     try {
         const data = await training_sets.getUserSets(id)
 
@@ -376,7 +380,8 @@ router.get('/minesets', async function (req, res) {
             set_name.push(data[i].set_name);
             set_dur.push(data[i].set_duration);
             set_desc.push(data[i].set_description)
-            set_author.push(data[i].user_name)
+            set_author.push(data[i].user_name);
+            kcal.push(data[i].kcal)
         }
     } catch (error) {
         console.log(error)
@@ -390,7 +395,8 @@ router.get('/minesets', async function (req, res) {
         set_dur: set_dur,
         set_desc: set_desc,
         set_author: set_author,
-        texth1: txt
+        texth1: txt,
+        kcal:kcal
     })
 });
 
@@ -420,17 +426,21 @@ router.post('/weight', changeweight);
 
 router.get('/newtraining', async function (req, res) {
     const username = res.get('username');
+    var categories
+    var cat = []
     try {
-        var categories = await training.getCategories();
-        categories = categories[0].cat.replace('(', '').replace(')', '').split(',')
-        categories = categories.map(x => x.replace(/'/g, ''))
+        categories = await training.getCategories();
     } catch (error) {
         console.log(error)
+    }
+    for (var i = 0; i < categories.length; i++) {
+        if (categories[i].category != 'custom')
+            cat.push(categories[i].category)
     }
     res.render('addNewActivity', {
         user_name: username,
         photo_path: res.get('photo'),
-        categories: categories
+        categories: cat
     })
 })
 router.post('/newtraining', newTraining)
@@ -513,7 +523,7 @@ router.get('/sets/start', async function (req, res) {
         for (var i = 0; i < set.length; i++) {
             exName.push(set[i].excercise_name)
             exRep.push(set[i].excercise_repetiton)
-            exDur.push(set[i].time*set[i].excercise_repetiton)
+            exDur.push(set[i].time * set[i].excercise_repetiton)
         }
     } catch (error) {
         console.log(error)
