@@ -50,6 +50,11 @@ h1{
 #container_header{
     background-color: rgb(15, 14, 14);
     height: 120px;
+    position: sticky;
+    top:0;
+    width: 100%;
+    overflow: hidden;
+    z-index: 2;
   }
 
 #log_btn{
@@ -118,6 +123,9 @@ h1{
 .listItem a:hover{
   color: rgb(236, 221, 10);
 }
+
+
+
 .userName{
   color: aliceblue;
 }
@@ -143,6 +151,7 @@ h1{
 @media (max-width: 500px) {
   .sidebar {padding-top: 15px;}
   .sidebar a {font-size: 18px;}
+  .dropMenu li a {font-size: 14px;}
 
 }
 
@@ -169,6 +178,4 @@ h1{
 }
 
 .openbtn{
-  position: fixed;
-  top:20px;
 }
