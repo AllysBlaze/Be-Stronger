@@ -1,92 +1,80 @@
 <%- include('header.ejs') %>
 
 <body style="background-image: url(/images/cb2.png);">
-<div id="container_header">
+  <div id="container_header">
     <h1 id="header">BStronger</h1>
-</div>
+  </div>
   <div class="container-fluid logPanel col-sm-4 my-5 fixed-center">
     <div class=" mx-auto">
       <h2 class="py-4 text-center">Rejestracja</h2>
-      <div class="alert alert-danger" role="alert"> <%= err_msg %></div> 
+      <div class="alert alert-danger" role="alert"> <%= err_msg %></div>
       <script type="text/javascript">
         $(document).ready(function () {
-          const msg="<%= err_msg %>"
-            if (msg != "") {
-                $(".alert").text(msg);
-                $(".alert").show();
-            }
-            else {
-                $(".alert").hide();
-            }
+          const msg = "<%= err_msg %>"
+          if (msg != "") {
+            $(".alert").text(msg);
+            $(".alert").show();
+          } else {
+            $(".alert").hide();
+          }
         });
-        </script>
+      </script>
       <form method="post" action="/sign-up">
         <div class="form-group">
           <label for="InputNick2">Wybierz nick</label>
-          <input name='user_name' type="text" class="form-control" id="InputNick2" aria-describedby="emailHelp" placeholder="MocnyJanusz76" required>
+          <input name='user_name' type="text" class="form-control" id="InputNick2" aria-describedby="emailHelp"
+            placeholder="MocnyJanusz76" required>
         </div>
         <div class="form-group">
           <label for="InputEmail2">Adres mailowy</label>
-          <input name='email' type="email" class="form-control" id="InputEmail2" aria-describedby="emailHelp" placeholder="MocnyJanusz76@polsl.pl" required>
+          <input name='email' type="email" class="form-control" id="InputEmail2" aria-describedby="emailHelp"
+            placeholder="MocnyJanusz76@polsl.pl" required>
         </div>
         <div class="form-group">
           <label for="InputPassword2">Hasło</label>
-          <input name='user_password' type="password" class="form-control" id="InputPassword2" placeholder="Hasło" required>
+          <input name='user_password' type="password" class="form-control" id="InputPassword2" placeholder="Hasło"
+            required>
         </div>
         <div class="form-group">
           <label for="InputPassword3">Powtórz hasło</label>
-          <input name='confirm_password' type="password" class="form-control" id="InputPassword3" placeholder="Hasło" required>
+          <input name='confirm_password' type="password" class="form-control" id="InputPassword3" placeholder="Hasło"
+            required>
         </div>
-        <div class="row">
-          <span class="ml-3">Wybierz płeć</span>
-        </div>
-        <div class="row">
-          <div class="form-check m-3">
-            <input class="form-check-input" type="radio" name="gender" id="exampleRadios1" value="K">
-            <label class="form-check-label" for="exampleRadios1">
-              Kobieta
-            </label>
-          </div>
-          <div class="form-check m-3">
-            <input class="form-check-input" type="radio" name="gender" id="exampleRadios2" value="M">
-            <label class="form-check-label" for="exampleRadios2">
-              Mężczyzna
-            </label>
-          </div>
-          <div class="form-check m-3"> 
-            <input class="form-check-input" type="radio" name="gender" id="exampleRadios3" value="I">
-            <label class="form-check-label" for="exampleRadios3">
-              Inne
-            </label>
-          </div>
-        </div>
-        </div>
-          <div class="form-outline">
-            <label class="form-label" for="age">Data urodzenia</label>
-            <input type="date" id="birthdate" name="birthdate" class="form-control"/>
-          </div>
-          <script>
-            var temp=new Date()
-            var today=temp.getFullYear().toString()+'-'+(temp.getMonth()+1).toString()+'-'+temp.getDate().toString()
-            document.getElementById('birthdate').setAttribute('max',today)
-          </script>
-          <div class="form-outline">
-            <label class="form-label" for="weight">Waga:</label>
-            <input type="number" id="weight" name="weight" class="form-control" min="1" max="300">
-          </div>
-   
-          <div class="form-outline">
-            <label class="form-label" for="height">Wzrost(cm):</label>
-            <input type="number" id="height" name="height" class="form-control" min="1" max="230">
-          </div>
-        
-        <div class="text-center">
-          <a href="#"><button type="submit" class="btn btn-warning btn-lg mt-2">Zarejestruj</button></a>
+    </div>
+    <div class="form-outline">
+      <label class="form-label" for="age">Data urodzenia</label>
+      <input type="date" id="birthdate" name="birthdate" class="form-control" />
+    </div>
+    <script>
+      var temp = new Date()
+      var month = (temp.getMonth() + 1).toString()
+      var year = temp.getFullYear()
+      var day = temp.getDate().toString();
+      if (day.length == 1)
+        day = '0' + day
+      if (month.length == 1)
+        month = '0' + month;
+      var today = year + '-' + month + '-' + day
+
+      document.getElementById('birthdate').setAttribute('max', today)
+    </script>
+    <div class="form-outline">
+      <label class="form-label" for="weight">Waga:</label>
+      <input type="number" id="weight" name="weight" class="form-control" min="1" max="300">
+    </div>
+
+    <div class="form-outline">
+      <label class="form-label" for="height">Wzrost(cm):</label>
+      <input type="number" id="height" name="height" class="form-control" min="1" max="230">
+    </div>
+
+    <div class="text-center">
+      <a href="#"><button type="submit" class="btn btn-warning btn-lg mt-2">Zarejestruj</button></a>
       </form>
     </div>
   </div>
 
   <%- include('footer.ejs') %>
-  </body>
+</body>
 
 </html>

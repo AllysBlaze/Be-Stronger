@@ -1,12 +1,12 @@
 INSERT INTO users 
-(user_name,user_password,email,user_weight,user_gender,user_height,user_birth)
+(user_name,user_password,email,user_weight,user_height,user_birth)
 VALUES
-('test','test','test@admin.com',60,'M',170,'2000-01-01'),
-('admin','admin','admin@admin.com',50,'K',160,'2000-01-01'),
-('test2','test2','test2@admin.com',60,'M',170,'2000-01-01'),
-('test3','test3','test3@admin.com',60,'M',170,'2000-01-01'),
-('a','$2b$10$gZALjUWLchNRGi1ZQmV6MeLtYIsbt5oZjpa2lbB8j9fQBmE.nA5Om','test5@admin.com',60,'M',170,'2000-01-01'),
-('test4','test4','test4@admin.com',60,'M',170,'2000-01-01');
+('test','test','test@admin.com',60,170,'2000-01-01'),
+('admin','admin','admin@admin.com',50,160,'2000-01-01'),
+('test2','test2','test2@admin.com',60,170,'2000-01-01'),
+('test3','test3','test3@admin.com',60,170,'2000-01-01'),
+('a','$2b$10$gZALjUWLchNRGi1ZQmV6MeLtYIsbt5oZjpa2lbB8j9fQBmE.nA5Om','test5@admin.com',60,170,'2000-01-01'),
+('test4','test4','test4@admin.com',60,170,'2000-01-01');
 
 INSERT INTO single_excercises
     (excercise_name, excercise_duration,excercise_description)

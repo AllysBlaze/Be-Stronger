@@ -78,18 +78,16 @@ const signup = async (req, res) => {
             })
             var weight = req.body.weight;
             var height = req.body.height;
-            var gender = req.body.gender;
             var birthdate = req.body.birthdate;
+            const goal='02:00:00'
             if (weight == '')
                 weight = null
             if (height == '')
                 height = null
-            if (gender = '')
-                gender = null
             if (birthdate == '')
                 birthdate = null
             try {
-                await user.updateUser(weight, height, birthdate, gender, user_name)
+                await user.updateUser(weight, height, birthdate, goal, user_name)
                 res.redirect('/login')
             } catch (error) {
                 res.render('login', {
