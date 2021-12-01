@@ -29,14 +29,29 @@ INSERT INTO single_excercises
     (excercise_name, excercise_duration,excercise_description)
     VALUES
     ('przysiady','00:00:02','opis'),
+    ('przysiady z wyskokiem','00:00:02','opis')
     ('pompki','00:00:02','opis'),
-    ('deska: 1min','00:01:00','opis'),
+    ('deska wysoka','00:01:00','opis'),
+    ('deska na przedramionach','00:01:00','opis'),
+    ('skręty tłowia','00:00:01','opis');
     ('wykrok','00:00:05','opis'),
     ('nożyce pionowe','00:00:02','opis'),
     ('nożyce poziome','00:00:02','opis'),
     ('ukłon japoński','00:00:10','opis'),
     ('deska: 2min','00:02:00','opis'),
     ('skłony','00:00:01','opis');
+    ('skrętoskłony','00:00:01','opis');
+    ('motyl','00:00:01','opis');
+    ('pajacyki','00:00:01','opis');
+    ('burpeesy','00:00:01','opis');
+    ('wymachy ramionami','00:00:01','opis');
+
+
+
+
+
+
+    
     
 INSERT INTO single_excercises
 (excercise_name, excercise_duration,excercise_description,kcal_per_100)
