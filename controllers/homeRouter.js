@@ -199,7 +199,6 @@ router.get('/history', async function (req, res) {
     var img = [];
     try {
         const history = await training.getUserTrainingHistory(id);
-        console.log(history[0].training_date)
         for (var i = 0; i < history.length; i++) {
             if (history[i].training_category == 'custom') {
                 act.push(history[i].set_name)
@@ -217,7 +216,6 @@ router.get('/history', async function (req, res) {
     } catch (error) {
         console.log(error)
     }
-    console.log(date[0])
     for (var i = 0; i < act.length; i++) {
         switch (act[i]) {
             case 'jazda na rowerze':
@@ -515,7 +513,7 @@ router.get('/sets/start', async function (req, res) {
         for (var i = 0; i < set.length; i++) {
             exName.push(set[i].excercise_name)
             exRep.push(set[i].excercise_repetiton)
-            exDur.push(set[i].time)
+            exDur.push(set[i].time*set[i].excercise_repetiton)
         }
     } catch (error) {
         console.log(error)
