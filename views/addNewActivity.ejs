@@ -14,30 +14,38 @@
             <form method="post" action="/home/newtraining">
               <div class="form-group">
                 <span>Wybierz rodzaj aktywności: </span>
-                <input list="activityList" name="activity" class="form-control" required> 
+                <input list="activityList" name="activity" class="form-control" required>
                 <datalist id="activityList">
                   <% for (var i=0;i<categories.length;i++) {%>
-                    <% if(categories[i]!='custom'){ %>
-                      <option value="<%= categories[i] %>"> </option>
-                      <%}}%>
+                  <% if(categories[i]!='custom'){ %>
+                  <option value="<%= categories[i] %>"> </option>
+                  <%}}%>
                 </datalist>
-              </div >
-                  <span>Wybierz czas trwania aktywności</span>
-                  <div class="input-group mb-3">
-                    <input type="number" class="form-control"  name='hours' placeholder="Godziny" aria-label="Godziny">
-                    <input type="number" class="form-control" name='minutes' placeholder="Minuty" aria-label="Minuty">
-                  </div>
+              </div>
+              <span>Wybierz czas trwania aktywności</span>
+              <div class="input-group mb-3">
+                <input type="number" class="form-control" name='hours' placeholder="Godziny" aria-label="Godziny">
+                <input type="number" class="form-control" name='minutes' placeholder="Minuty" aria-label="Minuty">
+              </div>
 
-                  <div class="form-group">
-                    <label for="date">Wybierz datę aktywności: </label>
-                    <input type="date" id="date" name="date" class="form-control" required>
-                  </div>
-                  <script>
-                    var temp=new Date()
-                    var today=temp.getFullYear().toString()+'-'+(temp.getMonth()+1).toString()+'-'+temp.getDate().toString()
-                    document.getElementById('date').setAttribute('max',today)
-                  </script>
-                  <button class="btn btn-warning" type="submit">Dodaj aktywność</button>
+              <div class="form-group">
+                <label for="date">Wybierz datę aktywności: </label>
+                <input type="date" id="date" name="date" class="form-control" required>
+              </div>
+              <script>
+                var temp = new Date()
+                var month = (temp.getMonth() + 1).toString()
+                var year = temp.getFullYear()
+                var day = temp.getDate().toString();
+                if (day.length == 1)
+                  day = '0' + day
+                if (month.length == 1)
+                  month = '0' + month;
+                var today = year + '-' + month + '-' + day
+
+                document.getElementById('date').setAttribute('max', today)
+              </script>
+              <button class="btn btn-warning" type="submit">Dodaj aktywność</button>
             </form>
           </div>
         </div>
