@@ -17,9 +17,11 @@ INSERT INTO single_excercises
     ('brzuszki','00:00:01','opis'),
     ('wykrok','00:00:01','opis'),
     ('nożyce pionowe','00:00:20','opis'),
+    ('nożyce poziome','00:00:20','opis'),
     ('ukłon japoński','00:00:10','opis'),
     ('deska: 2min','00:02:00','opis'),
     ('skłony','00:00:01','opis');
+    
 
 INSERT INTO training_sets
 (set_author_id,set_description)
