@@ -17,7 +17,11 @@
                             </div>
                             <ul class="list-group list-group-flush" >
                                 <li class="list-group-item" style="background-color: rgb(43, 43, 43);">Czas trwania treningu: <%= set_dur[i] %></li>
-                                <li class="list-group-item" style="background-color: rgb(43, 43, 43);">Autor: <%= set_author[i] %></li>
+                                <li class="list-group-item" style="background-color: rgb(43, 43, 43);">
+                                    Autor: 
+                                    <img src="#" style="width: 30px;" class="mx-2">
+                                    <%= set_author[i] %>
+                                </li>
                                 <li class="list-group-item" style="background-color: rgb(43, 43, 43);"><%= kcal[i] %> kcal</li>
                                 <li class="list-group-item" style="background-color: rgb(43, 43, 43);"><span><%= set_desc[i] %></span></li>
                               </ul>

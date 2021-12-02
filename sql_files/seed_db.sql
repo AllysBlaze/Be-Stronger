@@ -30,20 +30,30 @@ INSERT INTO single_excercises
     VALUES
     ('przysiady','00:00:02','opis'),
     ('przysiady z wyskokiem','00:00:02','opis')
+    ('przysiady ze wspięciem na palce','00:00:02','opis')
+    ('krzesełko','00:00:30','Opieramy plecy o ścianę, stopy rozstawione na szerokość bioder, kolana zgięte do 90 stopni, ręce wyciągnięte przed siebie. Utrzymujemy pozycję napinając mięśnie pośladkowe i brzucha')
+    ('wykrok','00:00:05','opis'),
     ('pompki','00:00:02','opis'),
+    ('pompki na pięściach','00:00:02','opis'),
     ('deska wysoka','00:01:00','opis'),
     ('deska na przedramionach','00:01:00','opis'),
-    ('skręty tłowia','00:00:01','opis');
-    ('wykrok','00:00:05','opis'),
+    ('skręty tłowia','00:00:01','opis'),
     ('nożyce pionowe','00:00:02','opis'),
     ('nożyce poziome','00:00:02','opis'),
+    ('brzuszki','00:00:01','opis'),
+    ('brzuszki ze skrętem','00:00:01','opis'),
+    ('brzuszki z unoszeniem nóg','00:00:01','opis'),
+    ('skłony skośne w siadzie rozkrocznym','00:00:05','Pozycja wyjściowa: Siad rozkroczny , ręce w górze. Skłon do prawej nogi, do środka, do lewej nogi, powrót do pozycji wyjściowej')
+    ('skłony w przód','00:00:05','Pozycja wyjściowa: Siad z nogami równolegle do siebie, złączonymi w stopach; stopy pionowo do góry. Pochylamy tułów w przód, ramiona wyprostowujemy w kierunku stóp (wytrzymujemy 5-10 sekund) , powrót do pozycji wyjściowej')
     ('ukłon japoński','00:00:10','opis'),
-    ('deska: 2min','00:02:00','opis'),
-    ('skłony','00:00:01','opis');
-    ('skrętoskłony','00:00:01','opis');
-    ('motyl','00:00:01','opis');
-    ('pajacyki','00:00:01','opis');
-    ('burpeesy','00:00:01','opis');
+    ('przyciąganie nogi do pośladka','00:00:10','Pozycja wyjściowa: Stanie na jednej nodze (najlepiej z podparciem), druga noga ugięta w kolanie. Chwytamy ręką za stopę w kostce i przyciągamy ugiętą nogę maksymalnie do góry
+zmieniamy nogę (lewa noga - lewa ręka, prawa noga - prawa ręka)'),
+    ('skłony','00:00:01','opis'),
+    ('skrętoskłony','00:00:01','opis'),
+    ('motyl','00:00:01','opis'),
+    ('pajacyki','00:00:01','opis'),
+    ('krokodylki','00:00:03','Wyskakujemy z uniesieniem rąk do góry, a następnie kucamy i wyrzucamy ')
+    ('burpeesy','00:00:03','Wyskakujemy z uniesieniem rąk do góry, a następnie kucamy i wyrzucamy oby dwie nogi w tył do pozycji wysokiej deski, wracamy nogami i ponowny wyskok w górę. Aby utrudnić ćwiczenie, robimy pompkę gdy znajdziemy się w pozycji deski.'),
     ('wymachy ramionami','00:00:01','opis');
 
 
