@@ -10,29 +10,40 @@
                 <h1 class="mt-3"><%= texth1 %></h1>
                 <div class="row text-center">
                     <%for (var i=0;i<set_id.length ; i++) { %>
-                        <div class="card m-2 mx-auto bg-dark" style="width: 23rem; color: aliceblue;">
-                           
-                            <div class="card-body">
-                                <h5 class="card-title"><%= set_name[i] %></h5>
-                            </div>
-                            <ul class="list-group list-group-flush" >
-                                <li class="list-group-item" style="background-color: rgb(43, 43, 43);">Czas trwania treningu: <%= set_dur[i] %></li>
-                                <li class="list-group-item" style="background-color: rgb(43, 43, 43);">
-                                    Autor: 
-                                    <img src="<%= img[i] %>" style="width: 30px;" class="mx-2">
-                                    <%= set_author[i] %>
-                                </li>
-                                <li class="list-group-item" style="background-color: rgb(43, 43, 43);"><%= kcal[i] %> kcal</li>
-                                <li class="list-group-item" style="background-color: rgb(43, 43, 43);"><span><%= set_desc[i] %></span></li>
-                              </ul>
-                            <div class="card-body">
-                                <a href="/home/sets/list?id=<%= set_id[i] %>" class="btn btn-warning" value="<%= set_id[i] %>">Zobacz ćwiczenia</a>
-                            </div>
+                        <div class="card m-2 mx-auto" style="width: 23rem;">
+                            
+                                <div class="card-body text-left">
+                                    <h5 class="card-title text-center"><%= set_name[i] %></h5>
+                                    <table class="table">
+                                        <tr>
+                                            <td> Autor:</td>
+                                            <td id='inputWeight'><span> <img src="<%= img[i] %>" style="width: 30px;" class="mx-2"> <%= set_author[i] %></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td> Czas trwania treningu:</td>
+                                            <td id='inputWeight'><span><%= set_dur[i] %> </span></td>
+                                        </tr>
+                                        <tr>
+                                            <td> Spalone kalorie</td>
+                                            <td id='inputAge'> <span><%= kcal[i] %> kcal</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Opis</td>
+                                            <td id='inputHeight'><span><%= set_desc[i] %></span></td>
+                                        </tr>
+                                    </table>
+                                    <div class="row text-center">
+
+                                        <a href="/home/sets/list?id=<%= set_id[i] %>" class="btn btn-warning mx-auto" value="<%= set_id[i] %>">Zobacz ćwiczenia</a>
+                                    </div>
+                                </div>
                         </div>
+                        
                         <%}%>
                 </div>
             </div>
         </div>
+    </div>
 
   <%- include('footer.ejs') %>
   </body>
