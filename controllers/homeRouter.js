@@ -401,7 +401,8 @@ router.get('/minesets', async function (req, res) {
         set_desc: set_desc,
         set_author: set_author,
         texth1: txt,
-        kcal:kcal
+        kcal:kcal,
+        img:img
     })
 });
 
