@@ -12,14 +12,14 @@ VALUES
 INSERT INTO training_categories
 (category,kcal_per_hour)
 VALUES
-('jazda na rowerze',500),
-('jazda na rolkach',700),
-('joga',175),
-('jazda na nartach',500),
-('skakanie na skakance',350),
-('trekking',440),
-('pływanie',750),
-('bieganie',620)
+('jazda na rowerze',562),
+('jazda na rolkach',722),
+('joga',288),
+('jazda na nartach',462),
+('skakanie na skakance',562),
+('trekking',432),
+('pływanie',432),
+('bieganie',576)
 ;
 
 INSERT INTO training_categories (category)
