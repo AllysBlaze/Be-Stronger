@@ -334,6 +334,7 @@ router.get('/userssets', async function (req, res) {
     var set_desc = [];
     var set_author = [];
     var kcal=[];
+    var img=[];
     const id = res.get('id');
     try {
         const data = await training_sets.getSets()
@@ -345,6 +346,7 @@ router.get('/userssets', async function (req, res) {
             set_desc.push(data[i].set_description)
             set_author.push(data[i].user_name);
             kcal.push(data[i].kcal)
+            img.push(data[i].user_photo)
         }
     } catch (error) {
         console.log(error)
@@ -359,7 +361,8 @@ router.get('/userssets', async function (req, res) {
         set_desc: set_desc,
         set_author: set_author,
         texth1: txt,
-        kcal:kcal
+        kcal:kcal,
+        img:img
     })
 });
 
@@ -372,6 +375,7 @@ router.get('/minesets', async function (req, res) {
     var set_author = [];
     const id = res.get('id');
     var kcal=[]
+    var img=[];
     try {
         const data = await training_sets.getUserSets(id)
 
@@ -381,7 +385,8 @@ router.get('/minesets', async function (req, res) {
             set_dur.push(data[i].set_duration);
             set_desc.push(data[i].set_description)
             set_author.push(data[i].user_name);
-            kcal.push(data[i].kcal)
+            kcal.push(data[i].kcal);
+            img.push(res.get('photo'))
         }
     } catch (error) {
         console.log(error)

@@ -129,7 +129,7 @@ const getUserSets = (values) => { //user_id
 
 const getSets = () => { 
     return new Promise((resolve, reject) => {
-        pool.query('SELECT set_id, set_name, user_name, set_duration, set_description, kcal FROM training_sets' +
+        pool.query('SELECT set_id, set_name, user_name, set_duration, set_description, kcal, user_photo FROM training_sets' +
             ' JOIN users ON set_author_id=user_id ORDER BY set_id', (error, elements) => {
                 if (error) {
                     return reject(error);
