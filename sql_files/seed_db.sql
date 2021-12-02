@@ -28,13 +28,13 @@ VALUES ('custom');
 INSERT INTO single_excercises
     (excercise_name, excercise_duration,excercise_description)
     VALUES
-    ('przysiady','00:00:02','opis'),
-    ('przysiady z wyskokiem','00:00:02','opis')
-    ('przysiady ze wspięciem na palce','00:00:02','opis')
+    ('przysiady','00:00:02','Stajemy w rozkroku i robimy przysiad, plecy utrzymamy w pozycji prostej i uważamy, żeby kolana nuie wyprzedzały linii stóp, napinamy mięsnie pośladków i brzucha'),
+    ('przysiady z wyskokiem','00:00:02','Stajemy w rozkroku i robimy przysiad, plecy utrzymamy w pozycji prostej i uważamy, żeby kolana nuie wyprzedzały linii stóp, napinamy mięsnie pośladków i brzucha. Przy wyjściu do góry dodatkowo robimy wspięcie na palce')
+    ('przysiady ze wspięciem na palce','00:00:02','Stajemy w rozkroku i robimy przysiad, plecy utrzymamy w pozycji prostej i uważamy, żeby kolana nuie wyprzedzały linii stóp, napinamy mięsnie pośladków i brzucha. Przy wyjściu do góry robimy wyskok i lądujemy w przysiadzie')
     ('krzesełko','00:00:30','Opieramy plecy o ścianę, stopy rozstawione na szerokość bioder, kolana zgięte do 90 stopni, ręce wyciągnięte przed siebie. Utrzymujemy pozycję napinając mięśnie pośladkowe i brzucha')
     ('wykrok','00:00:05','opis'),
-    ('pompki','00:00:02','opis'),
-    ('pompki na pięściach','00:00:02','opis'),
+    ('pompki','00:00:02','Ustawiamy się w pozycji deski wysokiej, czyli w podporze przodem, ręce są rozstawione na szerokość barków a dłonie znajdują się dokładnie pod nimi. Uginamy ręce w łokciach utrzymując napięte całe ciało,a następnie prostujemy ręce. Przy tym ćwiczeniu ważne jest aby dłonie trzymać ułożone w kierunku głowy a nie na skos'),
+    ('pompki na pięściach','00:00:02','Ustawiamy się w pozycji deski wysokiej, czyli w podporze przodem, ręce są rozstawione na szerokość barków a dłonie zaciśnięte w pięści znajdują się dokładnie pod nimi. Uginamy ręce w łokciach utrzymując napięte całe ciało, a następnie prostujemy ręce. Przy tym ćwiczeniu ważne jest aby dłonie trzymać ułożone w kierunku głowy a nie na skos'),
     ('deska wysoka','00:01:00','opis'),
     ('deska na przedramionach','00:01:00','opis'),
     ('skręty tłowia','00:00:01','opis'),
@@ -49,12 +49,12 @@ INSERT INTO single_excercises
     ('przyciąganie nogi do pośladka','00:00:10','Pozycja wyjściowa: Stanie na jednej nodze (najlepiej z podparciem), druga noga ugięta w kolanie. Chwytamy ręką za stopę w kostce i przyciągamy ugiętą nogę maksymalnie do góry
 zmieniamy nogę (lewa noga - lewa ręka, prawa noga - prawa ręka)'),
     ('skłony','00:00:01','opis'),
-    ('skrętoskłony','00:00:01','opis'),
-    ('motyl','00:00:01','opis'),
-    ('pajacyki','00:00:01','opis'),
+    ('skrętoskłony','00:00:01','Stajemy w szerokim rozkroku, pochylamy się trzymając wyprostowane plecy i ręce wyciągnięte w bok. Sięgamy naprzeminne do jedenj i drugiej stopy, patrząc za ręką idącą ku górze'),
+    ('motyl','00:00:01','Opieramy się plecami o ścianę, złączone stopy przysuwamy jak najbliżej siebie i delikatnie naciskamy kolana rozciągając pachwiny i uda'),
+    ('pajacyki','00:00:01','Podskakujemy z rostawieniem nóg w rozkrok, razem z nogami robimy wymach oburącz ku górze z klaśniecięm nad głową'),
     ('krokodylki','00:00:03','Wyskakujemy z uniesieniem rąk do góry, a następnie kucamy i wyrzucamy ')
     ('burpeesy','00:00:03','Wyskakujemy z uniesieniem rąk do góry, a następnie kucamy i wyrzucamy oby dwie nogi w tył do pozycji wysokiej deski, wracamy nogami i ponowny wyskok w górę. Aby utrudnić ćwiczenie, robimy pompkę gdy znajdziemy się w pozycji deski.'),
-    ('wymachy ramionami','00:00:01','opis');
+    ('wymachy ramionami','00:00:01','Stajemy w lekkim rozkroku i wykonujemy wymachy wyprostowanymi rękami w przód, lub w tył, oburącz lub naprzeminnie. Pllecy trzymamy prosto, brzuch napięty');
 
 
 
