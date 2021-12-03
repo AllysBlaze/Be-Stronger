@@ -57,7 +57,7 @@ const addSet = async (req, res) => {
     var rep = req.body.powt
     const series = req.body.set_series
     var values = [
-        [id, set_name, set_desc,series],
+        [id, set_name, set_desc, series],
         []
     ];
     var temp
@@ -189,7 +189,7 @@ router.get('/history', async function (req, res) {
     var duration = [];
     var date = []
     var img = [];
-    var kcal=[];
+    var kcal = [];
     try {
         const history = await training.getUserTrainingHistory(id);
         for (var i = 0; i < history.length; i++) {
@@ -204,7 +204,7 @@ router.get('/history', async function (req, res) {
             var month = d.getMonth() + 1
             var year = d.getFullYear()
             var day = d.getDate()
-            
+
             date.push(day.toString() + '.' + month.toString() + '.' + year.toString())
         }
     } catch (error) {
@@ -325,8 +325,8 @@ router.get('/userssets', async function (req, res) {
     var set_dur = [];
     var set_desc = [];
     var set_author = [];
-    var kcal=[];
-    var img=[];
+    var kcal = [];
+    var img = [];
     const id = res.get('id');
     try {
         const data = await training_sets.getSets()
@@ -353,8 +353,8 @@ router.get('/userssets', async function (req, res) {
         set_desc: set_desc,
         set_author: set_author,
         texth1: txt,
-        kcal:kcal,
-        img:img
+        kcal: kcal,
+        img: img
     })
 });
 
@@ -366,8 +366,8 @@ router.get('/minesets', async function (req, res) {
     var set_desc = [];
     var set_author = [];
     const id = res.get('id');
-    var kcal=[]
-    var img=[];
+    var kcal = []
+    var img = [];
     try {
         const data = await training_sets.getUserSets(id)
 
@@ -393,8 +393,8 @@ router.get('/minesets', async function (req, res) {
         set_desc: set_desc,
         set_author: set_author,
         texth1: txt,
-        kcal:kcal,
-        img:img
+        kcal: kcal,
+        img: img
     })
 });
 
@@ -489,8 +489,8 @@ router.get('/sets/list', async function (req, res) {
     var setName;
     try {
         const ex = await training_sets.getSetDetails(req.query.id)
-        series=ex[0].series
-        setName=ex[0].set_name
+        series = ex[0].series
+        setName = ex[0].set_name
         for (var i = 0; i < ex.length; i++) {
             names.push(ex[i].excercise_name);
             rep.push(ex[i].excercise_repetiton);
@@ -509,7 +509,7 @@ router.get('/sets/list', async function (req, res) {
         set_id: req.query.id,
         button: true,
         ex_desc: ex_desc,
-        series:series,
+        series: series,
         setName: setName
     })
 })
@@ -519,14 +519,16 @@ router.get('/sets/start', async function (req, res) {
     var exName = [];
     var exRep = [];
     var exDur = [];
-
+    var series;
     try {
         const set = await training_sets.getSetDetails(req.query.id)
-
-        for (var i = 0; i < set.length; i++) {
-            exName.push(set[i].excercise_name)
-            exRep.push(set[i].excercise_repetiton)
-            exDur.push(set[i].time * set[i].excercise_repetiton)
+        series = set[0].series
+        for (var j = 0; j < series; j++) {
+            for (var i = 0; i < set.length; i++) {
+                exName.push(set[i].excercise_name)
+                exRep.push(set[i].excercise_repetiton)
+                exDur.push(set[i].time * set[i].excercise_repetiton)
+            }
         }
     } catch (error) {
         console.log(error)
