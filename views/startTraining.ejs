@@ -17,36 +17,67 @@
                 const exName = "<%= exName%>".split(',');
                 const exRep = "<%= exRep%>".split(',');
 
-                function start(value) {
-                    document.getElementById("startTren").style.display="none"
-                    if (value >= count.length) {
-                        document.getElementById("excName").style.display="none"
-                        document.getElementById("endTren").style.display=""
-                        document.getElementById("countdown").style.display="none"
-                    }
+                function setBreak(value) {
+                    document.getElementById('next').style.display="";
                     document.getElementById("excName").innerHTML = exRep[value] + 'x ' + exName[value]
-                    var countDownDate = addSeconds(10).getTime()
-
-                    countDownDate = addSeconds(count[value]).getTime()
+                    var countDownDate = addSeconds(7).getTime()
                     x = setInterval(function () {
 
                         var now = new Date().getTime();
 
                         var distance = countDownDate - now;
+                        if (distance < 999) {
+                            clearInterval(x);
+                            start(value);
+                        }
                         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
                         document.getElementById("countdown").innerHTML = hours + "h " +
                             minutes + "m " + seconds + "s ";
-                        if (distance < 0) {
+
+
+                    }, 1000);
+                }
+                
+
+                function start(value) {
+                    document.getElementById("startTren").style.display = "none"
+                    if (value >= count.length) {
+                        document.getElementById("excName").style.display = "none"
+                        document.getElementById("endTren").style.display = ""
+                        document.getElementById("countdown").style.display = "none"
+                        document.getElementById('next').style.display="none"
+                    }
+                    document.getElementById("excName").innerHTML = exRep[value] + 'x ' + exName[value]
+                    document.getElementById('next').style.display="none"
+
+                    countDownDate = addSeconds(count[value] + 2).getTime()
+                    x = setInterval(function () {
+
+                        var now = new Date().getTime();
+
+                        var distance = countDownDate - now;
+                        if (distance < 999) {
                             clearInterval(x);
-                            start(value + 1);
+                            if (value +1 < count.length)
+                            setBreak(value + 1);
+                            else
+                            start(value+1)
                         }
+                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                        document.getElementById("countdown").innerHTML = hours + "h " +
+                            minutes + "m " + seconds + "s ";
+
+
                     }, 1000);
                 }
             </script>
-            <h3 id='next'></h3>
+            <h3 id='next' style="display: none;" > Następne ćwiczenie: </h3>
             <h3 id='excName'></h3>
             <h3 id='countdown'></h3>
             <button id='startTren' class="btn btn-outline-dark openbtn" onclick="start(0)">Start</button>
