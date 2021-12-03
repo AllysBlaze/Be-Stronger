@@ -487,18 +487,37 @@ router.get('/sets/list', async function (req, res) {
     var ex_desc = [];
     var series;
     var setName;
-    try {
-        const ex = await training_sets.getSetDetails(req.query.id)
-        series = ex[0].series
-        setName = ex[0].set_name
-        for (var i = 0; i < ex.length; i++) {
-            names.push(ex[i].excercise_name);
-            rep.push(ex[i].excercise_repetiton);
-            ex_id.push(ex[i].excercise_id);
-            ex_desc.push(ex[i].excercise_description)
+    var btn;
+    const setID = req.query.id;
+    if (setID == 'all') {
+        btn = false;
+        try {
+            const ex = await excercise.getAllExcercises();
+            setName = "Wszystkie ćwiczenia";
+            for (var i = 0; i < ex.length; i++) {
+                names.push(ex[i].excercise_name);
+                ex_id.push(ex[i].excercise_id);
+                rep.push('');
+                ex_desc.push(ex[i].excercise_description)
+            }
+        } catch (error) {
+            console.log(error)
         }
-    } catch (error) {
-        console.log(error)
+    } else {
+        try {
+            const ex = await training_sets.getSetDetails(setID)
+            series = ex[0].series
+            setName = ex[0].set_name
+            btn = true;
+            for (var i = 0; i < ex.length; i++) {
+                names.push(ex[i].excercise_name);
+                rep.push(ex[i].excercise_repetiton);
+                ex_id.push(ex[i].excercise_id+' x ');
+                ex_desc.push(ex[i].excercise_description)
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
     res.render('exerciseList', {
         user_name: username,
@@ -507,7 +526,7 @@ router.get('/sets/list', async function (req, res) {
         rep: rep,
         ex_id: ex_id,
         set_id: req.query.id,
-        button: true,
+        button: btn,
         ex_desc: ex_desc,
         series: series,
         setName: setName

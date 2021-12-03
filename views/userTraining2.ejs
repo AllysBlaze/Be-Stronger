@@ -5,7 +5,7 @@
     <div id="main">
         <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Menu</button>
         <script>
-            function deleteEx(id){
+            function deleteEx(id) {
                 var ul = document.getElementById("list");
                 ul.removeChild(id)
                 return
@@ -52,8 +52,9 @@
 
 
 
-                    const tresc = document.getElementById('excercise_name').value + '; powtórzeń: ' + document.getElementById(
-                        'repetition').value ;
+                    const tresc = document.getElementById('excercise_name').value + '; powtórzeń: ' + document
+                        .getElementById(
+                            'repetition').value;
 
                     document.getElementById('excercise_name').value = '';
                     document.getElementById('repetition').value = '';
@@ -70,7 +71,7 @@
             <div class="col-lg-9 bg-light mx-auto text-center" style="min-height: 800px;">
 
                 <h1>Ułóż własny trening</h1>
-
+                <a href="/home/sets/list?id=all" class="btn btn-warning mx-auto">Pełna lista ćwiczeń</a>
                 <div class="row pb-3 text-center">
                     <div class="col-lg-11 mx-auto">
                         <div class="input-group mt-5">
@@ -84,8 +85,8 @@
                                 <% } %>
                             </datalist>
                             <span class="input-group-text">Powtórzenia</span>
-                            <input id='repetition' type="number" class="form-control"
-                                aria-label="Ilość powtórzeń" min="1" max="200" required>
+                            <input id='repetition' type="number" class="form-control" aria-label="Ilość powtórzeń"
+                                min="1" max="200" required>
 
                             <button class="btn btn-warning mx-auto" onclick="addEx()">Dodaj do listy</button>
                         </div>
@@ -100,12 +101,13 @@
                         </div>
                         <div class="col-lg-2 mx-auto mt-3">
                             <label for="setSeries" class="form-label">Liczba serii:</label>
-                            <input name='set_series' type="number" id="setSeries" class="form-control" 
-                            placeholder="1" min="1" max="200"required>
+                            <input name='set_series' type="number" id="setSeries" class="form-control" placeholder="1"
+                                min="1" max="200" required>
                         </div>
                         <div class="col-lg-8 mx-auto mt-3">
                             <label for="setDesc" class="form-label">Krótki opis treningu</label>
-                            <textarea name='set_desc' id="setDesc" class="form-control" rows="3" maxlength="200"></textarea>
+                            <textarea name='set_desc' id="setDesc" class="form-control" rows="3"
+                                maxlength="200"></textarea>
                         </div>
                     </div>
 
