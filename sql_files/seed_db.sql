@@ -29,9 +29,9 @@ INSERT INTO single_excercises
     (excercise_name, excercise_duration,excercise_description)
     VALUES
     ('przysiady','00:00:02','Stajemy w rozkroku i robimy przysiad, plecy utrzymamy w pozycji prostej i uważamy, żeby kolana nuie wyprzedzały linii stóp, napinamy mięsnie pośladków i brzucha'),
-    ('przysiady z wyskokiem','00:00:02','Stajemy w rozkroku i robimy przysiad, plecy utrzymamy w pozycji prostej i uważamy, żeby kolana nuie wyprzedzały linii stóp, napinamy mięsnie pośladków i brzucha. Przy wyjściu do góry dodatkowo robimy wspięcie na palce')
-    ('przysiady ze wspięciem na palce','00:00:02','Stajemy w rozkroku i robimy przysiad, plecy utrzymamy w pozycji prostej i uważamy, żeby kolana nuie wyprzedzały linii stóp, napinamy mięsnie pośladków i brzucha. Przy wyjściu do góry robimy wyskok i lądujemy w przysiadzie')
-    ('krzesełko','00:00:30','Opieramy plecy o ścianę, stopy rozstawione na szerokość bioder, kolana zgięte do 90 stopni, ręce wyciągnięte przed siebie. Utrzymujemy pozycję napinając mięśnie pośladkowe i brzucha')
+    ('przysiady z wyskokiem','00:00:02','Stajemy w rozkroku i robimy przysiad, plecy utrzymamy w pozycji prostej i uważamy, żeby kolana nuie wyprzedzały linii stóp, napinamy mięsnie pośladków i brzucha. Przy wyjściu do góry dodatkowo robimy wspięcie na palce'),
+    ('przysiady ze wspięciem na palce','00:00:02','Stajemy w rozkroku i robimy przysiad, plecy utrzymamy w pozycji prostej i uważamy, żeby kolana nuie wyprzedzały linii stóp, napinamy mięsnie pośladków i brzucha. Przy wyjściu do góry robimy wyskok i lądujemy w przysiadzie'),
+    ('krzesełko','00:00:30','Opieramy plecy o ścianę, stopy rozstawione na szerokość bioder, kolana zgięte do 90 stopni, ręce wyciągnięte przed siebie. Utrzymujemy pozycję napinając mięśnie pośladkowe i brzucha'),
     ('wykrok do przodu','00:00:05','Pozycja wyjściowa: Stanie w szerokim rozkroku, jedna noga zgięta w kolanie ustawiona do przodu; tułów wyprostowany, lekko pochylony do przodu. kucamy raz na jedno kolano, raz na drugie'),
     ('pompki','00:00:02','Ustawiamy się w pozycji deski wysokiej, czyli w podporze przodem, ręce są rozstawione na szerokość barków a dłonie znajdują się dokładnie pod nimi. Uginamy ręce w łokciach utrzymując napięte całe ciało,a następnie prostujemy ręce. Przy tym ćwiczeniu ważne jest aby dłonie trzymać ułożone w kierunku głowy a nie na skos'),
     ('pompki na pięściach','00:00:02','Ustawiamy się w pozycji deski wysokiej, czyli w podporze przodem, ręce są rozstawione na szerokość barków a dłonie zaciśnięte w pięści znajdują się dokładnie pod nimi. Uginamy ręce w łokciach utrzymując napięte całe ciało, a następnie prostujemy ręce. Przy tym ćwiczeniu ważne jest aby dłonie trzymać ułożone w kierunku głowy a nie na skos'),
@@ -43,16 +43,15 @@ INSERT INTO single_excercises
     ('brzuszki','00:00:01','Pozycja wyjściowa: kładziemy się na podłodze, nogi ugięte w kolanach, ręce zakładamy za głowę, patrzymy przed siebie. Unosimy głowę i barki kilka centymetrów nad ziemię, odcinek lędźwiowy kręgosłupa "przyklejony" do podłogi, opuszczamy głowę '),
     ('brzuszki ze skrętem','00:00:01','Pozycja wyjściowa: kładziemy się na podłodze, nogi ugięte w kolanach, ręce zakładamy za głowę, patrzymy przed siebie. Unosimy głowę i barki kilka centymetrów nad ziemię, odcinek lędźwiowy kręgosłupa "przyklejony" do podłogi, podnosimy jedną nowę i ją dotykamy przeciwległym łokciem opuszczamy głowę i ręce, to samo robimy z drugą nogą i ręką '),
     ('brzuszki z unoszeniem nóg','00:00:01','Pozycja wyjściowa: kładziemy się na podłodze, nogi wyprostowane, ręce zakładamy za głowę, patrzymy przed siebie. Unosimy głowę, barki i nogi kilka centymetrów nad ziemię, odcinek lędźwiowy kręgosłupa "przyklejony" do podłogi, opuszczamy głowę, nogi utrzymujemy w powietrzu '),
-    ('skłony skośne w siadzie rozkrocznym','00:00:05','Pozycja wyjściowa: Siad rozkroczny , ręce w górze. Skłon do prawej nogi, do środka, do lewej nogi, powrót do pozycji wyjściowej')
-    ('skłony w przód','00:00:05','Pozycja wyjściowa: Siad z nogami równolegle do siebie, złączonymi w stopach; stopy pionowo do góry. Pochylamy tułów w przód, ramiona wyprostowujemy w kierunku stóp (wytrzymujemy 5-10 sekund) , powrót do pozycji wyjściowej')
+    ('skłony skośne w siadzie rozkrocznym','00:00:05','Pozycja wyjściowa: Siad rozkroczny , ręce w górze. Skłon do prawej nogi, do środka, do lewej nogi, powrót do pozycji wyjściowej'),
+    ('skłony w przód','00:00:05','Pozycja wyjściowa: Siad z nogami równolegle do siebie, złączonymi w stopach; stopy pionowo do góry. Pochylamy tułów w przód, ramiona wyprostowujemy w kierunku stóp (wytrzymujemy 5-10 sekund) , powrót do pozycji wyjściowej'),
     ('ukłon japoński','00:00:10','Usiądź na piętach. Stopy są złączone, a kolana szeroko. Przejdź dłońmi do przodu. Wyciągnij wyprostowane ramiona w górę i odłóż czoło na macie. Zatrzymaj się w tej pozycji głęboko oddychając'),
-    ('przyciąganie nogi do pośladka','00:00:10','Pozycja wyjściowa: Stanie na jednej nodze (najlepiej z podparciem), druga noga ugięta w kolanie. Chwytamy ręką za stopę w kostce i przyciągamy ugiętą nogę maksymalnie do góry
-zmieniamy nogę (lewa noga - lewa ręka, prawa noga - prawa ręka)'),
+    ('przyciąganie nogi do pośladka','00:00:10','Pozycja wyjściowa: Stanie na jednej nodze (najlepiej z podparciem), druga noga ugięta w kolanie. Chwytamy ręką za stopę w kostce i przyciągamy ugiętą nogę maksymalnie do góry zmieniamy nogę (lewa noga - lewa ręka, prawa noga - prawa ręka)'),
     ('skłony','00:00:01','opis'),
     ('skrętoskłony','00:00:01','Stajemy w szerokim rozkroku, pochylamy się trzymając wyprostowane plecy i ręce wyciągnięte w bok. Sięgamy naprzeminne do jedenj i drugiej stopy, patrząc za ręką idącą ku górze'),
     ('motyl','00:00:01','Pozycja wyjściowa: Nogi w „motylka” (stopa dotyka stopy, nogi ugięte w stawach kolanowych), dłonie na wewnętrznej stronie ud. dłońmi dociskamy kolana do podłoża i wytrzymujemy 5-10 sekund'),
     ('pajacyki','00:00:01','Podskakujemy z rostawieniem nóg w rozkrok, razem z nogami robimy wymach oburącz ku górze z klaśniecięm nad głową'),
-    ('krokodylki','00:00:03','Wyskakujemy z uniesieniem rąk do góry, a następnie kucamy i wyrzucamy ')
+    ('krokodylki','00:00:03','Wyskakujemy z uniesieniem rąk do góry, a następnie kucamy i wyrzucamy '),
     ('burpeesy','00:00:03','Wyskakujemy z uniesieniem rąk do góry, a następnie kucamy i wyrzucamy oby dwie nogi w tył do pozycji wysokiej deski, wracamy nogami i ponowny wyskok w górę. Aby utrudnić ćwiczenie, robimy pompkę gdy znajdziemy się w pozycji deski.'),
     ('wymachy ramionami','00:00:01','Stajemy w lekkim rozkroku i wykonujemy wymachy wyprostowanymi rękami w przód, lub w tył, oburącz lub naprzeminnie. Plecy trzymamy prosto, brzuch napięty');
 
