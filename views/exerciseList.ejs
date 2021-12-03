@@ -2,7 +2,7 @@
 
 <body>
     <%- include('sideBarMenu.ejs') %>
-    
+
     <div id="main">
         <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Menu</button>
         <div class="col-lg-9 mx-auto text-center">
@@ -37,7 +37,7 @@
         </div>
 
         <script>
-        if ("<%button%>" == false) {
+        if ("<%=button%>" == false) {
             document.getElementById('series').style.display = "none"
             document.getElementById('buttonStart').style.display = "none"
         }

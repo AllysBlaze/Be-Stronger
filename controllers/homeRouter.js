@@ -511,8 +511,8 @@ router.get('/sets/list', async function (req, res) {
             btn = true;
             for (var i = 0; i < ex.length; i++) {
                 names.push(ex[i].excercise_name);
-                rep.push(ex[i].excercise_repetiton);
-                ex_id.push(ex[i].excercise_id+' x ');
+                rep.push((ex[i].excercise_repetiton +' x '));
+                ex_id.push(ex[i].excercise_id);
                 ex_desc.push(ex[i].excercise_description)
             }
         } catch (error) {
