@@ -1,9 +1,9 @@
 const pool = require('../utils/connection');
 
 
-const createNewSet = (values) => { //[user_id, set_name,set_desc]
+const createNewSet = (values) => { //[user_id, set_name,set_desc,series]
     return new Promise((resolve, reject) => {
-        pool.query('INSERT INTO training_sets (set_author_id,set_name,set_description) VALUES ( ? ) ', [values], (error, elements) => {
+        pool.query('INSERT INTO training_sets (set_author_id,set_name,set_description,series) VALUES ( ? ) ', [values], (error, elements) => {
             if (error) {
                 return reject(error);
             }
@@ -26,11 +26,11 @@ const addExcerisesToSet = (values) => { //[[excercise,repetition,order,set_id],[
 const updateSetDuration = (values) => { //set_id
     return new Promise((resolve, reject) => {
         pool.query('UPDATE training_sets AS tr, ' +
-            ' (SELECT set_excercise.set_id,SEC_TO_TIME(SUM( TIME_TO_SEC(single_excercises.excercise_duration) * set_excercise.excercise_repetiton )) AS duration ' +
+            ' (SELECT set_excercise.set_id,SEC_TO_TIME(SUM( TIME_TO_SEC(single_excercises.excercise_duration) * set_excercise.excercise_repetiton ))  AS duration ' +
             ' FROM set_excercise' +
             ' INNER JOIN single_excercises ON single_excercises.excercise_id = set_excercise.excercise_id' +
             ' WHERE set_id= ? ) AS tr2' +
-            ' SET tr.set_duration=tr2.duration' +
+            ' SET tr.set_duration=tr2.duration * series' +
             ' WHERE tr.set_id=tr2.set_id', values, (error, elements) => {
                 if (error) {
                     return reject(error);
@@ -81,12 +81,13 @@ const getLastNameNumber = (values) => { //set_name
     })
 }
 
-async function addNewSet(values) { //[[user_id, set_name,set_desc],[[excercise,repetition,order],[excercise,repetition,order],...]]
+async function addNewSet(values) { //[[user_id, set_name,set_desc,series],[[excercise,repetition,order],[excercise,repetition,order],...]]
 
     try {
         var set_name = values[0][1];
         var user_id = values[0][0];
         var set_desc = values[0][2];
+        var series = values[0][3];
         const nameExists = await doesNameExists(set_name)
         if (nameExists.length != 0) {
             var number = await getLastNameNumber(set_name)
@@ -98,7 +99,7 @@ async function addNewSet(values) { //[[user_id, set_name,set_desc],[[excercise,r
                 set_name = set_name + " #2"
             }
         }
-        const id = await createNewSet([user_id, set_name, set_desc])
+        const id = await createNewSet([user_id, set_name, set_desc,series])
         var excData = values[1]
         for (var i = 0; i < excData.length; i++) {
             excData[i].push(id)

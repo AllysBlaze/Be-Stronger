@@ -31,6 +31,7 @@ CREATE TABLE training_sets(
     set_description VARCHAR(400),
     set_photo  VARCHAR(200),
     kcal INT,
+    series INT DEFAULT 1,
     FOREIGN KEY(set_author_id) REFERENCES users(user_id)
 );
 

@@ -55,12 +55,12 @@ const addSet = async (req, res) => {
     var ex_name = req.body.nazwa
     const set_desc = req.body.set_desc;
     var rep = req.body.powt
+    const series = req.body.set_series
     var values = [
-        [id, set_name, set_desc],
+        [id, set_name, set_desc,series],
         []
     ];
     var temp
-    const series = req.body.set_series
     if (!Array.isArray(ex_name))
         ex_name = [ex_name]
 
@@ -74,14 +74,6 @@ const addSet = async (req, res) => {
             console.log(error)
         }
 
-    }
-    const len = values[1].length
-    var licznik = len + 1
-    for (var i = 1; i < series; i++) {
-        for (var j = 0; j < len; j++) {
-            values[1].push([values[1][j][0], values[1][j][1], licznik]);
-            licznik += 1;
-        }
     }
     try {
         await training_sets.addNewSet(values)
