@@ -485,9 +485,12 @@ router.get('/sets/list', async function (req, res) {
     var rep = [];
     var ex_id = [];
     var ex_desc = [];
+    var series;
+    var setName;
     try {
         const ex = await training_sets.getSetDetails(req.query.id)
-
+        series=ex[0].series
+        setName=ex[0].set_name
         for (var i = 0; i < ex.length; i++) {
             names.push(ex[i].excercise_name);
             rep.push(ex[i].excercise_repetiton);
@@ -505,7 +508,9 @@ router.get('/sets/list', async function (req, res) {
         ex_id: ex_id,
         set_id: req.query.id,
         button: true,
-        ex_desc: ex_desc
+        ex_desc: ex_desc,
+        series:series,
+        setName: setName
     })
 })
 
