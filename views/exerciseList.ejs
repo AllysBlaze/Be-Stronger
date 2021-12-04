@@ -5,26 +5,29 @@
 
     <div id="main">
         <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Menu</button>
-        <div class="col-lg-9 mx-auto text-center">
+        <div class="col-lg-9 mx-auto text-center p-4 bg-light">
             <div class="row">
                 <h1 class="mx-auto"><%=setName%></h1>
             </div>
             <h5 id='series'>Liczba serii: <%=series%></h5>
             <h6>Naciśnij dane ćwiczenie, aby zobaczyć jego opis</h6>
 
-            <div class="accordion accordion-flush bg-dark" id="accordionFlushExample">
+            <div class="accordion accordion-flush bg-light" id="accordionFlushExample">
                 <% for(var i=0;i<names.length;i++){ %>
                 <div class="accordion-item">
-                    <h2 class="accordion-header p-3" id="flush-headingOne">
-                        <button class="accordion-button collapsed btn btn-secondary btn-lg " style="width: 400px;"
+                    
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed btn btn-secondary btn-lg " style="min-width: 400px;"
                             type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= i %>"
                             aria-expanded="false" aria-controls="flush-collapseOne">
+                            
                             <%= rep[i]+names[i] %>
                         </button>
                     </h2>
+            
                     <div id="collapse<%= i %>" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                         data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body m-2" style="color: aliceblue;"> <%= ex_desc[i] %></div>
+                        <div class="accordion-body m-2" style="padding-left: 100px; padding-right:100px"> <%= ex_desc[i] %></div>
                     </div>
                 </div>
                 <% } %>
