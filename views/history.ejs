@@ -10,7 +10,7 @@
             <div class="text-center">
                 <h1>Historia treningów</h1>
             </div>
-            <table class="table" style="background-color: rgba(202, 200, 200, 0.815);">
+            <table class="table" id="historyTable" style="background-color: rgba(202, 200, 200, 0.815);">
                 <thead class="thead-dark">
                     <tr>
                     <th scope="col">#</th>
@@ -22,7 +22,7 @@
                 </thead>
                 <tbody>
                     <% for (var i=0;i<act.length;i++){ %>
-                    <tr>
+                    <tr id="his">
                         <th scope="row"><%= i+1 %></th>
                         <td>
                             <img src="/images/activity_icons/<%=img[i]%>.png" style="width: 30px;" class="mr-3">
@@ -36,8 +36,22 @@
                 </tbody>
             </table>
             </div>
+
+             <!--Przygotowane info kiedy nie ma żadnych aktywności-->
+
+            <div class="col-lg-8 bg-light mx-auto" style="display: block;">
+                <div class="row text-center p-4">
+                    <h4 class="mx-auto my-2" id="historyInfo" >Wygląda na to, że twoja historia aktywności na razie jest pusta, aby ją zapełnić przejdź do zakładki "Dodaj aktywność".</h4>
+                </div>
+                <div class="row">
+                    <img src="/images/diff/lazy2.jpg" alt="userPhoto" class="img-fluid mx-auto" id="profile_photo" style="width: 400px; height: 400px;">
+                </div>
+            </div>
         </div>
     </div>
+    <script>
+        
+    </script>
 
   <%- include('footer.ejs') %>
   </body>

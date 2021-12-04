@@ -17,18 +17,18 @@
                                     <table class="table">
                                         <tr>
                                             <td> Autor:</td>
-                                            <td id='inputWeight'><span> <img src="<%= img[i] %>" style="width: 30px;" class="mx-2"> <%= set_author[i] %></span></td>
+                                            <td id='inputWeight'><span> <img src="<%= img[i] %>" style="width: 30px;"> <%= set_author[i] %></span></td>
                                         </tr>
                                         <tr>
                                             <td> Czas trwania treningu:</td>
                                             <td id='inputWeight'><span><%= set_dur[i] %> </span></td>
                                         </tr>
                                         <tr>
-                                            <td> Spalone kalorie</td>
+                                            <td> Spalone kalorie:</td>
                                             <td id='inputAge'> <span><%= kcal[i] %> kcal</span></td>
                                         </tr>
                                         <tr>
-                                            <td>Opis</td>
+                                            <td>Opis:</td>
                                             <td id='inputHeight'><span><%= set_desc[i] %></span></td>
                                         </tr>
                                     </table>
@@ -38,8 +38,15 @@
                                     </div>
                                 </div>
                         </div>
-                        
-                        <%}%>
+                    <%}%>
+                </div>
+                <div class="col-lg-8 bg-light mx-auto" style="display: block;">
+                    <div class="row text-center p-4">
+                        <h4 class="mx-auto my-2" id="historyInfo" >Wygląda na to, że nie masz utworzonych żadnych zestawów treningowych, aby zobaczyć tutaj swoje zestawy przejdź do zakładki "Ułóż własny trening" i stwórz listę ćwiczeń dostosowaną do twoich potrzeb.</h4>
+                    </div>
+                    <div class="row">
+                        <img src="/images/diff/lazy_mw.jpg" alt="userPhoto" class="img-fluid mx-auto" id="profile_photo" style="width: 400px; height: 400px;">
+                    </div>
                 </div>
             </div>
         </div>
