@@ -100,7 +100,7 @@
                     <div class="col">
                         
                         <form id='formularz' method="post" action="/home/profile/info">
-                        <table class="table">
+                            <table class="table">
                                 <tr>
                                     <td> Waga (kg):</td>
                                     <td id='inputWeight'><span><%= weight %></span></td>
@@ -123,15 +123,28 @@
                                     </td>
                                 </tr>
                             
-                        </table>
-                    </form>
+                            </table>
+                     </form>
                     </div>
                 </div>
 
-  
-
-
-
+                <div class="row text-center">
+                    <p class="mx-auto">
+                        <button class="btn btn-outline-dark mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                          <span class="mr-2"> Informacje o tygodniowym celu treningowym </span> 
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                            <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                        </button>
+                      </p>
+                      <div class="collapse" id="collapseExample">
+                        <div class="card card-body px-5">
+                          Cel treningowy to ilość godzin, która ma zostać poświęcona na trening. Możesz go zmienić w każdej chwili edytując informacje o użytkowniku. Gdy ustalisz cel
+                          będzie on również widoczny w wykresie ilustrującym twoje aktywności.
+                        </div>
+                      </div>
+                </div>
 
                 <div class="row mt-5 border-top">
                     <h3 class="mx-auto mt-5">Wybierz swój awatar</h3>
