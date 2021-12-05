@@ -12,6 +12,8 @@ const createNewSet = (values) => { //[user_id, set_name,set_desc,series]
     })
 }
 
+
+
 const addExcerisesToSet = (values) => { //[[excercise,repetition,order,set_id],[excercise,repetition,order,set_id],...]
     return new Promise((resolve, reject) => {
         pool.query('INSERT INTO set_excercise (excercise_id,excercise_repetiton,excercise_order,set_id) VALUES ?', [values], (error, elements) => {
@@ -41,7 +43,7 @@ const updateSetDuration = (values) => { //set_id
 }
 
 
-const updateSetKcal= (values) => { //set_id
+const updateSetKcal = (values) => { //set_id
     return new Promise((resolve, reject) => {
         pool.query('UPDATE training_sets AS tr, ' +
             ' (SELECT set_excercise.set_id,SUM((single_excercises.kcal_per_100) /100 * set_excercise.excercise_repetiton ) AS kcal ' +
@@ -99,7 +101,7 @@ async function addNewSet(values) { //[[user_id, set_name,set_desc,series],[[exce
                 set_name = set_name + " #2"
             }
         }
-        const id = await createNewSet([user_id, set_name, set_desc,series])
+        const id = await createNewSet([user_id, set_name, set_desc, series])
         var excData = values[1]
         for (var i = 0; i < excData.length; i++) {
             excData[i].push(id)
@@ -128,7 +130,7 @@ const getUserSets = (values) => { //user_id
     })
 }
 
-const getSets = () => { 
+const getSets = () => {
     return new Promise((resolve, reject) => {
         pool.query('SELECT set_id, set_name, user_name, set_duration, set_description, kcal, user_photo FROM training_sets' +
             ' JOIN users ON set_author_id=user_id ORDER BY set_id', (error, elements) => {
@@ -146,7 +148,7 @@ const getSetDetails = (values) => { //set_id
             ' TIME_TO_SEC(excercise_duration) AS time' +
             ' FROM set_excercise' +
             ' JOIN single_excercises USING (excercise_id)' +
-            ' JOIN training_sets USING (set_id) '+
+            ' JOIN training_sets USING (set_id) ' +
             ' WHERE set_id= ? ', values, (error, elements) => {
                 if (error) {
                     return reject(error);
@@ -156,12 +158,56 @@ const getSetDetails = (values) => { //set_id
     })
 }
 
+deleteSetExcercise=(values)=>{
+    return new Promise((resolve, reject) => {
+        pool.query('DELETE FROM set_excercise WHERE set_id = ?',values, (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            })
+    })
+}
+
+deletTrainingSet = (values) => {
+    return new Promise((resolve, reject) => {
+        pool.query('DELETE FROM training_sets WHERE set_id = ?',values, (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            })
+    })
+}
+
+async function deleteSet(values){
+    try{
+        await deleteSetExcercise(values);
+        await deletTrainingSet(values);
+    }
+    catch(error){
+        console.log(error)
+    }
+}
+
+const getSetAuthorId=(values)=>{
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT set_author_id FROM training_sets WHERE set_id = ?',values, (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            })
+    })
+}
 
 trainingSet = {
     addNewSet,
     getSetDetails,
     getSets,
-    getUserSets
+    getUserSets,
+    deleteSet,
+    getSetAuthorId
 };
 
 module.exports = trainingSet;

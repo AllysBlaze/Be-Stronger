@@ -492,6 +492,24 @@ router.get("/delete-act",async function(req,res){
     res.redirect('/home/history')
 })
 
+router.get("/delete-set",async function(req,res){
+    const userID=res.get('id');
+    const trID=req.query.id;
+    try{
+        var idFromDB=(await training_sets.getSetAuthorId(trID))[0].set_author_id
+        if(userID==idFromDB){
+            await training_sets.deleteSet(trID);
+            res.redirect('/home/minesets')
+        }
+        else
+        res.redirect('/home/userssets')
+    }
+    catch(error){
+        console.log(error)
+    }
+    res.redirect('/home/minesets')
+})
+
 router.post('/sets/start', endSet)
 
 router.get('/sets', async function (req, res) {
