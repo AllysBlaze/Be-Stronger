@@ -4,9 +4,11 @@
     <%- include('sideBarMenu.ejs') %>
     <div id=main>
         <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Menu</button>
-        <div>
-            <script>
-                function addSeconds(seconds) {
+        <div class="container">
+            <div class="col-lg-9 bg-light mx-auto mt-5 text-center" style="min-height: 500px;">
+
+                <script>
+                    function addSeconds(seconds) {
                     var dt = new Date();
                     dt.setSeconds(dt.getSeconds() + seconds);
                     return dt;
@@ -16,15 +18,15 @@
                 });
                 const exName = "<%= exName%>".split(',');
                 const exRep = "<%= exRep%>".split(',');
-
+                
                 function setBreak(value) {
                     document.getElementById('next').style.display="";
                     document.getElementById("excName").innerHTML = exRep[value] + 'x ' + exName[value]
                     var countDownDate = addSeconds(7).getTime()
                     x = setInterval(function () {
-
+                        
                         var now = new Date().getTime();
-
+                        
                         var distance = countDownDate - now;
                         if (distance < 999) {
                             clearInterval(x);
@@ -33,11 +35,11 @@
                         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
+                        
                         document.getElementById("countdown").innerHTML = hours + "h " +
-                            minutes + "m " + seconds + "s ";
-
-
+                        minutes + "m " + seconds + "s ";
+                        
+                        
                     }, 1000);
                 }
                 
@@ -52,12 +54,12 @@
                     }
                     document.getElementById("excName").innerHTML = exRep[value] + 'x ' + exName[value]
                     document.getElementById('next').style.display="none"
-
+                    
                     countDownDate = addSeconds(count[value] + 2).getTime()
                     x = setInterval(function () {
-
+                        
                         var now = new Date().getTime();
-
+                        
                         var distance = countDownDate - now;
                         if (distance < 999) {
                             clearInterval(x);
@@ -69,22 +71,24 @@
                         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
+                        
                         document.getElementById("countdown").innerHTML = hours + "h " +
-                            minutes + "m " + seconds + "s ";
-
-
+                        minutes + "m " + seconds + "s ";
+                        
+                        
                     }, 1000);
                 }
-            </script>
-            <h3 id='next' style="display: none;" > Następne ćwiczenie: </h3>
-            <h3 id='excName'></h3>
-            <h3 id='countdown'></h3>
-            <button id='startTren' class="btn btn-outline-dark openbtn" onclick="start(0)">Start</button>
-            <form method="post" action='/home/sets/start'>
-                <input type="hidden" name='set_id' value="<%= set_id %>">
-                <button id='endTren' style="display: none;"> Zakończ Trening</button>
-            </form>
+                </script>
+                <h3 class="mx-auto">Nazwa zestawu treningowego</h3>
+                <h3 class="mx-auto" id='next' style="display: none;" > Następne ćwiczenie: </h3>
+                <h3 class="mx-auto" id='excName'></h3>
+                <h3 class="mx-auto" id='countdown'></h3>
+                <button id='startTren' class="btn btn-lg btn-warning openbtn" onclick="start(0)" style="margin-top: 150px; width: 200px; height: 70px;">Start</button>
+                <form method="post" action='/home/sets/start'>
+                    <input type="hidden" name='set_id' value="<%= set_id %>">
+                    <button class="btn btn-lg btn-warning openbtn" id='endTren' style="display: none; margin-top: 150px; width: 200px; height: 70px"> Zakończ Trening</button>
+                </form>
+            </div>
         </div>
     </div>
     <%- include('footer.ejs') %>
