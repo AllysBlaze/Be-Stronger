@@ -18,6 +18,7 @@
                     <th scope="col">Czas trwania</th>
                     <th scope="col">Kalorie</th>
                     <th scope="col">Data</th>
+                    <th scope="col">Usuń</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,6 +32,14 @@
                         <td><%= duration[i] %></td>
                         <td><%= kcal[i]%> kcal</td>
                         <td><%= date[i] %></td>
+                        <td>
+                            <button class="btn btn-outline-danger">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+                                    <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+                                </svg>
+                            </button>
+                        </td>
                     </tr>
                     <%}%>
                 </tbody>
