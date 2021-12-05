@@ -86,7 +86,7 @@
                             </datalist>
                             <span class="input-group-text">Powtórzenia</span>
                             <input id='repetition' type="number" class="form-control" aria-label="Ilość powtórzeń"
-                                min="1" max="200" required>
+                                min="1" max="200" value='1' required>
 
                             <button class="btn btn-warning mx-auto" onclick="addEx()">Dodaj do listy</button>
                         </div>
@@ -101,8 +101,8 @@
                         </div>
                         <div class="col-lg-2 mx-auto mt-3">
                             <label for="setSeries" class="form-label">Liczba serii:</label>
-                            <input name='set_series' type="number" id="setSeries" class="form-control" value="1"
-                                min="1" max="200" required>
+                            <input name='set_series' type="number" id="setSeries" class="form-control" value="1" min="1"
+                                max="200" required>
                         </div>
                         <div class="col-lg-8 mx-auto mt-3">
                             <label for="setDesc" class="form-label">Krótki opis treningu</label>
@@ -120,7 +120,54 @@
                 </form>
 
             </div>
+            <script>
+                if ('<%=edit%>') {
+                    var nowe
+                    var li;
+                    var exNames = []
+                    var exId = []
+                    var rep = []
+                    var ul = document.getElementById("list");
+                    if (exNames.length == 1) {
+                        exNames.push(["<%=excercisesNames%>"])
+                        exId.push(["<%=excercisesIds%>"])
+                        rep.push(["<%=repetition%>"])
+                    } else {
+                        exNames = "<%=excercisesNames%>"
+                        exId = "<%=excercisesIds%>"
+                        rep = "<%=repetition%>"
+                    }
+                    console.log(exNames)
+                    for (var i = 0; i < exId.length; i++) {
+                        nowe = "li" + i.toString();
+                        li = document.createElement("li");
+                        li.setAttribute("class", "list-group-item");
+                        li.setAttribute("id", nowe)
+                        var button = document.createElement("button");
+                        button.setAttribute("class", "btn btn-danger btn-sm float-right");
+                        button.setAttribute("type", "button");
+                        button.setAttribute("onclick", "deleteEx(" + nowe + ")");
+                        button.innerHTML = "X";
 
+                        var input1 = document.createElement("input");
+                        var input2 = document.createElement("input");
+                        input1.setAttribute('value', exNames[i])
+                        input1.setAttribute('type', 'hidden');
+                        input1.setAttribute('name', 'nazwa');
+                        input2.setAttribute('value', rep[i])
+                        input2.setAttribute('type', 'hidden');
+                        input2.setAttribute('name', 'powt');
+
+                        const tresc = exNames[i] + '; powtórzeń: ' + rep[i];
+
+                        li.appendChild(document.createTextNode(tresc));
+                        li.appendChild(button)
+                        li.appendChild(input1);
+                        li.appendChild(input2)
+                        ul.appendChild(li);
+                    }
+                }
+            </script>
         </div>
         <%- include('footer.ejs') %>
 

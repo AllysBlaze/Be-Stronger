@@ -145,7 +145,7 @@ const getSets = () => {
 const getSetDetails = (values) => { //set_id
     return new Promise((resolve, reject) => {
         pool.query('SELECT excercise_id, excercise_name, excercise_repetiton, excercise_description, series, set_name, ' +
-            ' TIME_TO_SEC(excercise_duration) AS time' +
+            ' TIME_TO_SEC(excercise_duration) AS time, set_description' +
             ' FROM set_excercise' +
             ' JOIN single_excercises USING (excercise_id)' +
             ' JOIN training_sets USING (set_id) ' +
