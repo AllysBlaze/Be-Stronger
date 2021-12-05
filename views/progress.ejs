@@ -7,8 +7,8 @@
         <script src="https://cdn.plot.ly/plotly-2.4.2.min.js"></script>
         <div class="container-fluid">
             <div class="col-lg-9 bg-light mx-auto text-center" style="min-height: 800px;">
-                    <h1 class="mx-auto">Miesięczne podsumowanie aktywności</h1>
-                
+                <h1 class="mx-auto">Miesięczne podsumowanie aktywności</h1>
+
                 <div>
                     <h3 class="text-uppercase"><%= month %></h3>
                     <form action="/home/progress" method="post">
@@ -17,12 +17,12 @@
                     </form>
                 </div>
                 <script>
-                    var temp=new Date()
-                    var today=temp.getFullYear().toString()+'-'+(temp.getMonth()+1).toString();
-                    document.getElementById('date').setAttribute('max',today)
-                  </script>
+                    var temp = new Date()
+                    var today = temp.getFullYear().toString() + '-' + (temp.getMonth() + 1).toString();
+                    document.getElementById('date').setAttribute('max', today)
+                </script>
                 <div class="row">
-                    <h4>Aktywności w ciągu miesiąca</h4>
+                    <h4 id="nagl">Aktywności w ciągu miesiąca</h4>
                 </div>
                 <div class="row text-center">
                     <div class="col-lg-12">
@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <h4>Łączny czas aktywności z podziałem na tygodnie</h4>
+                    <h4 id="nagl1">Łączny czas aktywności z podziałem na tygodnie</h4>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
@@ -38,14 +38,18 @@
                     </div>
                 </div>
                 <!--Przygotowane info kiedy nie ma żadnych aktywności-->
-                <div class="col-lg-8 bg-light mx-auto" style="display: block;">
+                <div class="col-lg-8 bg-light mx-auto" style="display: block;" id="leniuszek">
 
                     <div class="row text-center p-4">
-                        <h4 class="mx-auto my-2" id="historyInfo" >Wygląda na to, że nie masz na koncie jeszcze żadnych aktywności, aby zobaczyć podsumowania przejdź do zakładki "Dodaj aktywności" i uzupełnij swoją historię treningową.</h4>
+                        <h4 class="mx-auto my-2" id="historyInfo">Wygląda na to, że w tym miesiącu nie masz
+                            jeszcze żadnych aktywności, aby zobaczyć podsumowania przejdź do zakładki "Dodaj aktywności"
+                            i uzupełnij swoją historię treningową, lub wybierz zestaw treningowy z "Rozpocznij trening".
+                        </h4>
                     </div>
                     <div class="row">
-                        <img src="/images/diff/lazy_man.jpg" alt="userPhoto" class="img-fluid mx-auto" id="profile_photo" style="width: 400px; height: 400px;">
-                        
+                        <img src="/images/diff/lazy_man.jpg" alt="userPhoto" class="img-fluid mx-auto"
+                            id="profile_photo" style="width: 400px; height: 400px;">
+
                     </div>
                 </div>
             </div>
@@ -54,66 +58,77 @@
 
 
     <script>
-        var layoutPie = { // zmiana rozmiaru wykresu
-           
-        };
-        pieChart = document.getElementById('pie');
-        const x1 = "<%= x1 %>".split(',')
-        const y1 = "<%= y1 %>".split(',')
-        var d = [{
-            values: y1,
-            labels: x1,
-            type: 'pie'
-        }]
+        if ("<%= x1 %>") {
+            document.getElementById("leniuszek").style.display = "none";
+            var layoutPie = { // zmiana rozmiaru wykresu
 
-        var config = {responsive: true}
+            };
+            pieChart = document.getElementById('pie');
+            const x1 = "<%= x1 %>".split(',')
+            const y1 = "<%= y1 %>".split(',')
+            var d = [{
+                values: y1,
+                labels: x1,
+                type: 'pie'
+            }]
 
-        Plotly.newPlot(pieChart, d, layoutPie, config);
+            var config = {
+                responsive: true
+            }
 
-        barChart = document.getElementById('bar');
-        const x2 = "<%= x2 %>".split(',').map(function (item) {
-            return parseInt(item, 10);
-        });
-        const y2 = "<%= y2 %>".split(',').map(function (item) {
-            return parseInt(item, 10);
-        });
-        const labels = "<%= labels %>".split(',').map(time => '2020-01-08 ' + time);
-        const goal = "2020-01-08 " + "<%= goal %>"
+            Plotly.newPlot(pieChart, d, layoutPie, config);
 
-        const goals = []
-        for (var i = 0; i < x2.length; i++) {
-            goals.push(goal)
+            barChart = document.getElementById('bar');
+            const x2 = "<%= x2 %>".split(',').map(function (item) {
+                return parseInt(item, 10);
+            });
+            const y2 = "<%= y2 %>".split(',').map(function (item) {
+                return parseInt(item, 10);
+            });
+            const labels = "<%= labels %>".split(',').map(time => '2020-01-08 ' + time);
+            const goal = "2020-01-08 " + "<%= goal %>"
+
+            const goals = []
+            for (var i = 0; i < x2.length; i++) {
+                goals.push(goal)
+            }
+            var layoutBar = {
+
+                yaxis: {
+                    tickformat: '%H:%M:%S',
+                    title: 'Czas'
+                },
+                xaxis: {
+                    dtick: 1,
+                    title: 'Numer tygodnia'
+                },
+                legend: {
+                    "orientation": "h",
+                    x: 0.5,
+                    y: 1.2
+                }
+            };
+            var config = {
+                responsive: true
+            }
+            Plotly.newPlot(barChart, [{
+                    x: x2,
+                    y: labels,
+                    name: 'zapisane aktywności',
+                    type: 'bar'
+                },
+                {
+                    x: x2,
+                    y: goals,
+                    name: 'Tygodniowy cel',
+                    type: 'scatter'
+                }
+            ], layoutBar, config)
+        } else {
+            document.getElementById("leniuszek").style.display = "block"
+            document.getElementById("nagl").style.display = "none"
+            document.getElementById("nagl1").style.display = "none"
         }
-        var layoutBar = {
-            
-            yaxis: {
-                tickformat: '%H:%M:%S',
-                title: 'Czas'
-            },
-            xaxis: {
-                dtick: 1,
-                title: 'Numer tygodnia'
-            },
-            legend: {
-                "orientation": "h",
-                x: 0.5,
-                y: 1.2
-            }
-        };
-        var config = {responsive: true}
-        Plotly.newPlot(barChart, [{
-                x: x2,
-                y: labels,
-                name: 'zapisane aktywności',
-                type: 'bar'
-            },
-            {
-                x: x2,
-                y: goals,
-                name: 'Tygodniowy cel',
-                type: 'scatter'
-            }
-        ], layoutBar, config)
     </script>
     </div>
     <%- include('footer.ejs') %>
