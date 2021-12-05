@@ -4,7 +4,10 @@ const user = require('../models/user');
 const training = require('../models/training');
 const progress = require('../models/progress')
 const training_sets = require('../models/training_set')
+
+
 // #region FUNKCJE
+
 
 const updatePhoto = async (req, res) => {
     const photo = '/images/profil_icons/' + req.body.avatar.toString() + '.png'
@@ -190,6 +193,7 @@ router.get('/history', async function (req, res) {
     var date = []
     var img = [];
     var kcal = [];
+    var ids=[];
     try {
         const history = await training.getUserTrainingHistory(id);
         for (var i = 0; i < history.length; i++) {
@@ -199,6 +203,7 @@ router.get('/history', async function (req, res) {
             } else {
                 act.push(history[i].training_category)
             }
+            ids.push(history[i].id)
             duration.push(history[i].training_duration)
             var d = history[i].training_date;
             var month = d.getMonth() + 1
@@ -246,7 +251,8 @@ router.get('/history', async function (req, res) {
         date: date,
         duration: duration,
         img: img,
-        kcal
+        kcal:kcal,
+        ids:ids
     })
 });
 
@@ -468,6 +474,41 @@ router.get('/newset', async function (req, res) {
 
 router.post('/newset', addSet)
 
+router.get("/delete-act",async function(req,res){
+    const userID=res.get('id');
+    const trID=req.query.id;
+    try{
+        var idFromDB=(await training.getTrainingById(trID))[0].user_id;
+        if(idFromDB==userID){
+            await training.deleteTrainingById(trID)
+            
+        }
+        else
+        res.redirect('/home/')
+    }
+    catch(error){
+        console.log(error)
+    }
+    res.redirect('/home/history')
+})
+
+router.get("/delete-set",async function(req,res){
+    const userID=res.get('id');
+    const trID=req.query.id;
+    try{
+        var idFromDB=(await training_sets.getSetAuthorId(trID))[0].set_author_id
+        if(userID==idFromDB){
+            await training_sets.deleteSet(trID);
+            res.redirect('/home/minesets')
+        }
+        else
+        res.redirect('/home/userssets')
+    }
+    catch(error){
+        console.log(error)
+    }
+    res.redirect('/home/minesets')
+})
 
 router.post('/sets/start', endSet)
 
