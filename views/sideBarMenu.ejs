@@ -59,15 +59,24 @@
     </div>
   </div>
 
+  <!--
+
+    <div id="bck" style="height: 100%; background-color: rgba(7, 7, 7, 0.918); position: fixed; top:0; left:0; height: 100%;width:270px; transition: 0.5s;
+    ">
+  </div>
+-->
+
   
   <script>
     function openNav() {
       if(innerWidth <= 600){
         document.getElementById("mySidebar").style.width = "270px";
+        document.getElementById("bck").style.width = "270px";
       }
       else{
         document.getElementById("mySidebar").style.width = "270px";
         document.getElementById("main").style.marginLeft = "270px";
+        document.getElementById("bck").style.width = "270px";
       }
       
     }
@@ -75,6 +84,8 @@
     function closeNav() {
       document.getElementById("mySidebar").style.width = "0";
       document.getElementById("main").style.marginLeft = "0";
+      document.getElementById("bck").style.width = "0";
+
     }
 
     window.onresize = function(event) {
