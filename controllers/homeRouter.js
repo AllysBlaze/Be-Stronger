@@ -580,11 +580,13 @@ router.get('/sets/start', async function (req, res) {
     var exRep = [];
     var exDur = [];
     var series;
+    var setName;
     try {
         const set = await training_sets.getSetDetails(req.query.id)
+        setName=set[0].set_name;
         series = set[0].series
         for (var j = 0; j < series; j++) {
-            for (var i = 0; i < set.length; i++) {
+            for (var i = 0; i < set.s; i++) {
                 exName.push(set[i].excercise_name)
                 exRep.push(set[i].excercise_repetiton)
                 exDur.push(set[i].time * set[i].excercise_repetiton)
@@ -599,7 +601,8 @@ router.get('/sets/start', async function (req, res) {
         exName: exName,
         exDur: exDur,
         exRep: exRep,
-        set_id: req.query.id
+        set_id: req.query.id,
+        setName:setName
     })
 })
 
