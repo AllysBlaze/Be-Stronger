@@ -7,11 +7,12 @@ body{
 
 #header{
     margin-bottom: 0;
-    padding:35px;
+    padding: 35px;
     color: rgb(187, 187, 187);
     letter-spacing: 9px;
     font-family: sans-serif;
 }
+
 
 h3{
   letter-spacing: 5px;
@@ -51,12 +52,18 @@ h1{
 #container_header{
     background-color: rgb(15, 14, 14);
     height: 120px;
-    position: sticky;
+    width: 100%;
+  }
+
+#sidebar_header{
+    background-color: rgba(7, 7, 7, 0.973);
+    height: 120px;
+    position: fixed;
     top:0;
     width: 100%;
     overflow: hidden;
     z-index: 2;
-  }
+}
 
 #log_btn{
     width: 240px; 
@@ -73,16 +80,17 @@ h1{
 }
 
 .sidebar {
-  height: 100%; 
+  height: 80%; 
   width: 0; 
   position: fixed; 
   z-index: 1;
-  top: 120;
+  top: 110px;
   left: 0;
   background-color: rgba(7, 7, 7, 0.877);
   overflow-x: hidden;
   padding-top: 60px;
   transition: 0.5s;
+  border-top: solid 20px rgba(240, 248, 255, 0);
 }
 
 .sidebar button a {
@@ -98,6 +106,7 @@ h1{
   margin-right: auto;
   margin-bottom: 10px;
 }
+
 
 
 .sidebar .closebtn {
@@ -147,6 +156,7 @@ h1{
 #main {
   transition: margin-left .5s; 
   padding: 20px;
+  margin-top: 110px;
 }
 
 @media (max-width: 500px) {
@@ -160,6 +170,9 @@ h1{
   .sidebar {width: 270px;}
   #main {margin-left: 270px;}
 }
+
+
+
 
 
 .sidebarLinks button{
