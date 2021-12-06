@@ -120,54 +120,7 @@
                 </form>
 
             </div>
-            <script>
-                if ('<%=edit%>') {
-                    var nowe
-                    var li;
-                    var exNames = []
-                    var exId = []
-                    var rep = []
-                    var ul = document.getElementById("list");
-                    if (exNames.length == 1) {
-                        exNames.push(["<%=excercisesNames%>"])
-                        exId.push(["<%=excercisesIds%>"])
-                        rep.push(["<%=repetition%>"])
-                    } else {
-                        exNames = "<%=excercisesNames%>"
-                        exId = "<%=excercisesIds%>"
-                        rep = "<%=repetition%>"
-                    }
-                    console.log(exNames)
-                    for (var i = 0; i < exId.length; i++) {
-                        nowe = "li" + i.toString();
-                        li = document.createElement("li");
-                        li.setAttribute("class", "list-group-item");
-                        li.setAttribute("id", nowe)
-                        var button = document.createElement("button");
-                        button.setAttribute("class", "btn btn-danger btn-sm float-right");
-                        button.setAttribute("type", "button");
-                        button.setAttribute("onclick", "deleteEx(" + nowe + ")");
-                        button.innerHTML = "X";
 
-                        var input1 = document.createElement("input");
-                        var input2 = document.createElement("input");
-                        input1.setAttribute('value', exNames[i])
-                        input1.setAttribute('type', 'hidden');
-                        input1.setAttribute('name', 'nazwa');
-                        input2.setAttribute('value', rep[i])
-                        input2.setAttribute('type', 'hidden');
-                        input2.setAttribute('name', 'powt');
-
-                        const tresc = exNames[i] + '; powtórzeń: ' + rep[i];
-
-                        li.appendChild(document.createTextNode(tresc));
-                        li.appendChild(button)
-                        li.appendChild(input1);
-                        li.appendChild(input2)
-                        ul.appendChild(li);
-                    }
-                }
-            </script>
         </div>
         <%- include('footer.ejs') %>
 

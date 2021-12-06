@@ -453,13 +453,6 @@ router.get('/newset', async function (req, res) {
     const username = res.get('username');
     var en = []
     var eid = []
-    var excercisesNames=[];
-    var excercisesIds=[];
-    var repetition;
-    var description;
-    var setName;
-    var trID;
-    var series;
     try {
         const excercise_names = await excercise.getAllExcercises();
 
@@ -474,15 +467,7 @@ router.get('/newset', async function (req, res) {
         user_name: username,
         photo_path: res.get('photo'),
         excercise_names: en,
-        excercise_ids: eid,
-        edit:false,
-        excercisesIds:excercisesIds,
-        excercisesNames:excercisesNames,
-        description:description,
-        repetition:repetition,
-        setName:setName,
-        setId:trID,
-        series:series
+        excercise_ids: eid
     })
 })
 
@@ -524,70 +509,6 @@ router.get("/delete-set",async function(req,res){
     res.redirect('/home/minesets')
 })
 
-router.get("/edit",async function(req,res){
-    const userID=res.get('id');
-    const trID=req.query.id;
-    var ex;
-    var en = []
-    var eid = []
-    var excercisesNames=[];
-    var excercisesIds=[];
-    var repetition=[];
-    var description;
-    var setName;
-    var series;
-
-    try {
-        const excercise_names = await excercise.getAllExcercises();
-
-        for (var i = 0; i < excercise_names.length; i++) {
-            en.push(excercise_names[i].excercise_name)
-            eid.push(excercise_names[i].excercise_id)
-        }
-    } catch (error) {
-        console.log(error)
-    }
-    try{
-        var idFromDB=(await training_sets.getSetAuthorId(trID))[0].set_author_id
-        if(userID==idFromDB){
-            ex=await training_sets.getSetDetails(trID)
-            series=ex[0].series;
-            description=ex[0].set_description
-            setName=ex[0].set_name
-            for(var i=0;i<ex.length;i++){
-                excercisesIds.push(ex[i].excercise_id)
-                excercisesNames.push( ex[i].excercise_name)
-                repetition.push(ex[i].excercise_repetiton)
-            }
-            if(excercisesIds.length==1){
-                excercisesNames=[excercisesNames];
-                repetition=[repetition];
-                excercisesIds=[excercisesIds]
-            }
-            res.render('userTraining2', {
-                user_name: res.get('username'),
-                photo_path: res.get('photo'),
-                excercise_names: en,
-                excercise_ids: eid,
-                edit:true,
-                excercisesIds:excercisesIds,
-                excercisesNames:excercisesNames,
-                description:description,
-                repetition:repetition,
-                setName:setName,
-                setId:trID,
-                series:series
-            })
-            return
-        }
-        else
-        res.redirect('/home/userssets')
-    }
-    catch(error){
-        console.log(error)
-    }
-    res.redirect('/home/minesets')
-})
 
 router.post('/sets/start', endSet)
 
