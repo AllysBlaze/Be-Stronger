@@ -36,7 +36,7 @@
                         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
                         
-                        document.getElementById("countdown").innerHTML = hours + "h " +
+                        document.getElementById("countdownBreak").innerHTML = hours + "h " +
                         minutes + "m " + seconds + "s ";
                         
                         
@@ -79,10 +79,18 @@
                     }, 1000);
                 }
                 </script>
+
                 <h3 class="mx-auto">Nazwa zestawu treningowego</h3>
-                <h3 class="mx-auto" id='next' style="display: none;" > Następne ćwiczenie: </h3>
-                <h3 class="mx-auto" id='excName'></h3>
-                <h3 class="mx-auto" id='countdown'></h3>
+                <div class="row">
+
+                    <h3 class="mx-auto" id='next' style="display: none;" > Następne ćwiczenie: </h3>
+                    <h3 class="mx-auto" id='excName'></h3>
+                </div>
+                <div class="row">
+                    <h3 class="mx-auto" id='countdown'></h3>
+                    <h3 class="mx-auto" id='countdownBreak' style="color: aqua;"></h3>
+                </div>
+                
                 <button id='startTren' class="btn btn-lg btn-warning openbtn" onclick="start(0)" style="margin-top: 150px; width: 200px; height: 70px;">Start</button>
                 <form method="post" action='/home/sets/start'>
                     <input type="hidden" name='set_id' value="<%= set_id %>">
