@@ -583,10 +583,11 @@ router.get('/sets/start', async function (req, res) {
     var setName;
     try {
         const set = await training_sets.getSetDetails(req.query.id)
+        console.log(set)
         setName=set[0].set_name;
         series = set[0].series
         for (var j = 0; j < series; j++) {
-            for (var i = 0; i < set.s; i++) {
+            for (var i = 0; i < set.length; i++) {
                 exName.push(set[i].excercise_name)
                 exRep.push(set[i].excercise_repetiton)
                 exDur.push(set[i].time * set[i].excercise_repetiton)
