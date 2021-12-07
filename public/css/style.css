@@ -62,7 +62,7 @@ h1{
     top:0;
     width: 100%;
     overflow: hidden;
-    z-index: 2;
+    z-index: 3;
 }
 
 #log_btn{
@@ -83,10 +83,10 @@ h1{
   height: 80%; 
   width: 0; 
   position: fixed; 
-  z-index: 1;
+  z-index: 2;
   top: 110px;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.815);
+  background-color: rgba(0, 0, 0, 0.877);
   overflow-x: hidden;
   padding-top: 60px;
   transition: 0.5s;
@@ -166,7 +166,7 @@ h1{
 
 @media (min-width: 900px){
   .sidebar {width: 270px;}
-  .bck {width: 270px;}
+  #bck {width: 270px;}
   #main {margin-left: 270px;}
 }
 

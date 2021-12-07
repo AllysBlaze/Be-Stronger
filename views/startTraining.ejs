@@ -5,7 +5,7 @@
     <div id=main>
         <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Menu</button>
         <div class="container">
-            <div class="col-lg-9 bg-light mx-auto mt-5 text-center" style="min-height: 500px;">
+            <div class="col-lg-9 bg-light mx-auto mt-5 text-center p-4" style="min-height: 500px;">
 
                 <script>
                     function addSeconds(seconds) {
@@ -54,6 +54,7 @@
                     }
                     document.getElementById("excName").innerHTML = exRep[value] + 'x ' + exName[value]
                     document.getElementById('next').style.display="none"
+
                     
                     countDownDate = addSeconds(count[value] + 2).getTime()
                     x = setInterval(function () {
@@ -79,11 +80,11 @@
                     }, 1000);
                 }
                 </script>
-                <h3 class="mx-auto"><%=setName%></h3>
-                <h3 class="mx-auto" id='next' style="display: none;" > Następne ćwiczenie: </h3>
-                <h3 class="mx-auto" id='excName'></h3>
-                <h3 class="mx-auto" id='countdown'></h3>
+                <h3 class="mx-auto mb-5"><%=setName%></h3>
                 <button id='startTren' class="btn btn-lg btn-warning openbtn" onclick="start(0)" style="margin-top: 150px; width: 200px; height: 70px;">Start</button>
+                <h3 class="mx-auto" id='next' style="display: none;" > Następne ćwiczenie: </h3>
+                <h3 class="mx-auto" id='excName'></h3>'
+                <h1 class="mx-auto" id='countdown' style="margin-top: 50px;"></h1>
                 <form method="post" action='/home/sets/start'>
                     <input type="hidden" name='set_id' value="<%= set_id %>">
                     <button class="btn btn-lg btn-warning openbtn" id='endTren' style="display: none; margin-top: 150px; width: 200px; height: 70px"> Zakończ Trening</button>
