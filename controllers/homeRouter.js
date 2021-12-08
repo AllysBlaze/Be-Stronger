@@ -243,7 +243,6 @@ router.get('/history', async function (req, res) {
                 break;
         }
     }
-
     res.render('history', {
         user_name: username,
         photo_path: res.get('photo'),
