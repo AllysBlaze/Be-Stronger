@@ -5,7 +5,7 @@
     <div id=main>
         <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Menu</button>
         <div class="container">
-            <div class="col-lg-9 bg-light mx-auto mt-5 text-center p-4" style="min-height: 500px;">
+            <div class="col-lg-9 mx-auto mt-5 text-center p-4" style="min-height: 500px; background-color: white;">
 
                 <script>
                     function addSeconds(seconds) {
@@ -21,7 +21,12 @@
                 
                 function setBreak(value) {
                     document.getElementById('next').style.display="";
-                    document.getElementById("excName").innerHTML = exRep[value] + 'x ' + exName[value]
+                    document.getElementById('excName').style.color="white";
+                    document.getElementById("NexcName").style.display = ""
+                    document.getElementById("Ncountdown").style.display = ""
+                    document.getElementById("nextExercise").style.display = ""
+
+                    document.getElementById("NexcName").innerHTML = exRep[value] + 'x ' + exName[value]
                     var countDownDate = addSeconds(7).getTime()
                     x = setInterval(function () {
                         
@@ -36,8 +41,7 @@
                         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
                         
-                        document.getElementById("countdown").innerHTML = hours + "h " +
-                        minutes + "m " + seconds + "s ";
+                        document.getElementById("Ncountdown").innerHTML = minutes + "m " + seconds + "s ";
                         
                         
                     }, 1000);
@@ -48,12 +52,18 @@
                     document.getElementById("startTren").style.display = "none"
                     if (value >= count.length) {
                         document.getElementById("excName").style.display = "none"
+                        document.getElementById("NexcName").style.display = "none"
+                        document.getElementById("Ncountdown").style.display = "none"
                         document.getElementById("endTren").style.display = ""
                         document.getElementById("countdown").style.display = "none"
+                        document.getElementById("nextExercise").style.display = "none"
                         document.getElementById('next').style.display="none"
                     }
                     document.getElementById("excName").innerHTML = exRep[value] + 'x ' + exName[value]
-                    document.getElementById('next').style.display="none"
+                    document.getElementById('excName').style.color="black";
+                    document.getElementById("NexcName").style.display = "none"
+                    document.getElementById("Ncountdown").style.display = "none"
+
 
                     
                     countDownDate = addSeconds(count[value] + 2).getTime()
@@ -80,14 +90,38 @@
                     }, 1000);
                 }
                 </script>
-                <h3 class="mx-auto mb-5"><%=setName%></h3>
-                <button id='startTren' class="btn btn-lg btn-warning openbtn" onclick="start(0)" style="margin-top: 150px; width: 200px; height: 70px;">Start</button>
-                <h3 class="mx-auto" id='next' style="display: none;" > Następne ćwiczenie: </h3>
-                <h3 class="mx-auto" id='excName'></h3>'
-                <h1 class="mx-auto" id='countdown' style="margin-top: 50px;"></h1>
+                <h3 class="mx-auto mb-3 p-2" style="border-bottom: solid 1px black;"><%=setName%></h3>
+
+                <div id="nextExercise" class="row pb-2" style="border-bottom: solid 1px rgb(214, 214, 214); display: none;">
+                    <div class="col-lg-4">
+                        <h5 class="mx-auto" id='next' style="display: none;" > Następne ćwiczenie: </h5>
+                    </div>
+                    <div class="col-lg-4">
+                        <h5 class="mx-auto" id='NexcName'></h5>
+                    </div>
+                    <div class="col-lg-2">
+                        <h5 class="mx-auto fw-bold" id='Ncountdown' style="color: rgb(141, 3, 83);"></h5>
+                    </div>
+
+                </div>
+               
+                <div class="row mt-5 text-center">
+                    <div class="col mt-5">
+                        <h3 class="mx-auto mb-0" id='excName'></h3>
+                        <h1 class="mx-auto mt-1" id='countdown'></h1>
+                    </div>
+                </div>
+
+                <!--
+
+                    <h3 class="mx-auto" id='next' style="display: none;" > Następne ćwiczenie: </h3>
+                    <h3 class="mx-auto" id='excName'></h3>'
+                    <h1 class="mx-auto" id='countdown' style="margin-top: 50px;"></h1>
+                -->
+                <button id='startTren' class="btn btn-lg btn-warning openbtn" onclick="start(0)" style=" margin-top: 15px; width: 200px; height: 70px;">Start</button>
                 <form method="post" action='/home/sets/start'>
                     <input type="hidden" name='set_id' value="<%= set_id %>">
-                    <button class="btn btn-lg btn-warning openbtn" id='endTren' style="display: none; margin-top: 150px; width: 200px; height: 70px"> Zakończ Trening</button>
+                    <button class="btn btn-lg btn-warning openbtn" id='endTren' style="display: none; margin-top: 15px; width: 200px; height: 70px"> Zakończ Trening</button>
                 </form>
             </div>
         </div>
