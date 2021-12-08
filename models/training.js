@@ -1,6 +1,6 @@
 const pool = require('../utils/connection');
 
-getUserTrainingHistory = (values) => { //user_id
+const getUserTrainingHistory = (values) => { //user_id
     return new Promise((resolve, reject) => {
         pool.query("SELECT trainings.training_id AS id, trainings.training_category, training_sets.set_name, " +
             "  trainings.training_date,trainings.training_duration, trainings.kcal" +
@@ -16,29 +16,29 @@ getUserTrainingHistory = (values) => { //user_id
     });
 };
 
-getTrainingById=(values)=>{//set_id
+const getTrainingById = (values) => { //set_id
     return new Promise((resolve, reject) => {
-        pool.query("SELECT  user_id FROM trainings WHERE training_id= ? " , values, (error, elements) => {
-                if (error) {
-                    return reject(error);
-                }
-                return resolve(elements);
-            });
+        pool.query("SELECT  user_id FROM trainings WHERE training_id= ? ", values, (error, elements) => {
+            if (error) {
+                return reject(error);
+            }
+            return resolve(elements);
+        });
     });
 }
 
-deleteTrainingById=(values)=>{
+const deleteTrainingById = (values) => {
     return new Promise((resolve, reject) => {
-        pool.query("DELETE FROM trainings WHERE training_id= ? " , values, (error, elements) => {
-                if (error) {
-                    return reject(error);
-                }
-                return resolve(elements);
-            });
+        pool.query("DELETE FROM trainings WHERE training_id= ? ", values, (error, elements) => {
+            if (error) {
+                return reject(error);
+            }
+            return resolve(elements);
+        });
     });
 }
 
-addNewTraining = (values) => { //[user_id, training_date,training_category,training_duration]
+const addNewTraining = (values) => { //[user_id, training_date,training_category,training_duration]
     return new Promise((resolve, reject) => {
         pool.query('INSERT INTO trainings' +
             ' (user_id, training_date, training_category, training_duration)' +
@@ -51,18 +51,19 @@ addNewTraining = (values) => { //[user_id, training_date,training_category,train
     });
 };
 
-insertCustomTraining = (values) => { //[user_id, training_date,training_duration,training_custom_id]
+const insertCustomTraining = (values) => { //[user_id, training_date,training_duration,training_custom_id]
     return new Promise((resolve, reject) => {
-        pool.query("INSERT INTO trainings ( training_date, user_id,training_custom_id) VALUES (NOW(), ?) ", [values], (error, elements) => {
-            if (error) {
-                return reject(error);
-            }
-            return resolve(elements.insertId);
-        })
+        pool.query("INSERT INTO trainings ( training_date, user_id,training_custom_id) VALUES (NOW(), ?) ",
+            [values], (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements.insertId);
+            })
     });
 }
 
-updateCustomTrainingTime = (values) => { //training_id
+const updateCustomTrainingTime = (values) => { //training_id
     return new Promise((resolve, reject) => {
         pool.query("UPDATE trainings" +
             " JOIN training_sets ON training_custom_id=set_id" +
@@ -76,7 +77,7 @@ updateCustomTrainingTime = (values) => { //training_id
     })
 }
 
-updateCustomTrainingKcal = (values) => { //training_id
+const updateCustomTrainingKcal = (values) => { //training_id
     return new Promise((resolve, reject) => {
         pool.query("UPDATE trainings" +
             " JOIN training_sets ON training_custom_id=set_id" +
@@ -90,7 +91,7 @@ updateCustomTrainingKcal = (values) => { //training_id
     })
 }
 
-updateTrainingKcal = (values) => { //training_id
+const updateTrainingKcal = (values) => { //training_id
     return new Promise((resolve, reject) => {
         pool.query("UPDATE trainings" +
             " JOIN training_categories ON training_category=category" +
@@ -114,7 +115,7 @@ async function addCustomTraining(values) { //[user_id, training_custom_id]
     }
 }
 
-deleteTraining = (values) => { //training_id
+const deleteTraining = (values) => { //training_id
     return new Promise((resolve, reject) => {
         pool.query('DELETE FROM trainings WHERE training_id= ? ', values, (error, elements) => {
             if (error) {
@@ -134,7 +135,7 @@ async function addTraining(values) {
     }
 }
 
-getCategories = () => {
+const getCategories = () => {
     return new Promise((resolve, reject) => {
         pool.query('SELECT category FROM training_categories ORDER BY category', (error, elements) => {
             if (error) {

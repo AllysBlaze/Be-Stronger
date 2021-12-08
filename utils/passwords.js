@@ -13,16 +13,18 @@ hashPassword = (password) => {
     });
 }
 
-comparePasswords=(password,hashedPassword)=>{
-    return new Promise((resolve,reject)=>{
-        bcrypt.compare(password,hashedPassword,function(error,result)
-        {
-            if(error){
-                return reject(error)//hasła nie pasują
+comparePasswords = (password, hashedPassword) => {
+    return new Promise((resolve, reject) => {
+        bcrypt.compare(password, hashedPassword, function (error, result) {
+            if (error) {
+                return reject(error) //hasła nie pasują
             }
             return resolve(result)
         })
     })
 }
 
-module.exports={hashPassword,comparePasswords};
+module.exports = {
+    hashPassword,
+    comparePasswords
+};

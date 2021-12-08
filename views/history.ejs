@@ -6,19 +6,19 @@
     <div id="main">
         <button class="btn btn-outline-dark openbtn mb-4" onclick="openNav()">&#9776; Menu</button>
         <div class="container-fluid"></div>
-            <div class="col-sm-9 mx-auto">
+        <div class="col-sm-9 mx-auto">
             <div class="text-center">
                 <h1>Historia treningów</h1>
             </div>
             <table class="table" id="historyTable" style="background-color: rgba(202, 200, 200, 0.815);">
                 <thead class="thead-dark">
                     <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Aktywność</th>
-                    <th scope="col">Czas trwania</th>
-                    <th scope="col">Kalorie</th>
-                    <th scope="col">Data</th>
-                    <th scope="col">Usuń</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Aktywność</th>
+                        <th scope="col">Czas trwania</th>
+                        <th scope="col">Kalorie</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Usuń</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,16 +27,23 @@
                         <th scope="row"><%= i+1 %></th>
                         <td>
                             <img src="/images/activity_icons/<%=img[i]%>.png" style="width: 30px;" class="mr-3">
+                            <%if(act[i]==null){%>
+                            <%='Zestaw treningowy'%>
+                            <%}else{%>
                             <%= act[i] %>
+                            <%}%>
                         </td>
                         <td><%= duration[i] %></td>
                         <td><%= kcal[i]%> kcal</td>
                         <td><%= date[i] %></td>
                         <td>
                             <a class="btn btn-outline-danger" href="/home/delete-act?id=<%=ids[i]%>">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
-                                    <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z" />
+                                    <path fill-rule="evenodd"
+                                        d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" />
                                 </svg>
                             </a>
                         </td>
@@ -66,5 +73,6 @@
     </script>
 
   <%- include('footer.ejs') %>
-  </body>
+</body>
+
 </html>
