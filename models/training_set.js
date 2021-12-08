@@ -3,12 +3,13 @@ const pool = require('../utils/connection');
 
 const createNewSet = (values) => { //[user_id, set_name,set_desc,series]
     return new Promise((resolve, reject) => {
-        pool.query('INSERT INTO training_sets (set_author_id,set_name,set_description,series) VALUES ( ? ) ', [values], (error, elements) => {
-            if (error) {
-                return reject(error);
-            }
-            return resolve(elements.insertId);
-        })
+        pool.query('INSERT INTO training_sets (set_author_id,set_name,set_description,series) VALUES ( ? ) ',
+            [values], (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements.insertId);
+            })
     })
 }
 
@@ -16,19 +17,21 @@ const createNewSet = (values) => { //[user_id, set_name,set_desc,series]
 
 const addExcerisesToSet = (values) => { //[[excercise,repetition,order,set_id],[excercise,repetition,order,set_id],...]
     return new Promise((resolve, reject) => {
-        pool.query('INSERT INTO set_excercise (excercise_id,excercise_repetiton,excercise_order,set_id) VALUES ?', [values], (error, elements) => {
-            if (error) {
-                return reject(error);
-            }
-            return resolve(elements);
-        })
+        pool.query('INSERT INTO set_excercise (excercise_id,excercise_repetiton,excercise_order,set_id) VALUES ?',
+            [values], (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            })
     })
 }
 
 const updateSetDuration = (values) => { //set_id
     return new Promise((resolve, reject) => {
         pool.query('UPDATE training_sets AS tr, ' +
-            ' (SELECT set_excercise.set_id,SEC_TO_TIME(SUM( TIME_TO_SEC(single_excercises.excercise_duration) * set_excercise.excercise_repetiton ))  AS duration ' +
+            ' (SELECT set_excercise.set_id, ' +
+            ' SEC_TO_TIME(SUM( TIME_TO_SEC(single_excercises.excercise_duration) * set_excercise.excercise_repetiton ))  AS duration ' +
             ' FROM set_excercise' +
             ' INNER JOIN single_excercises ON single_excercises.excercise_id = set_excercise.excercise_id' +
             ' WHERE set_id= ? ) AS tr2' +
@@ -46,7 +49,8 @@ const updateSetDuration = (values) => { //set_id
 const updateSetKcal = (values) => { //set_id
     return new Promise((resolve, reject) => {
         pool.query('UPDATE training_sets AS tr, ' +
-            ' (SELECT set_excercise.set_id,SUM((single_excercises.kcal_per_100) /100 * set_excercise.excercise_repetiton ) AS kcal ' +
+            ' (SELECT set_excercise.set_id, ' +
+            ' SUM((single_excercises.kcal_per_100) /100 * set_excercise.excercise_repetiton ) AS kcal ' +
             ' FROM set_excercise' +
             ' INNER JOIN single_excercises ON single_excercises.excercise_id = set_excercise.excercise_id' +
             ' WHERE set_id= ? ) AS tr2' +
@@ -74,12 +78,13 @@ const doesNameExists = (values) => { //set_name
 const getLastNameNumber = (values) => { //set_name
     set_name = values + ' #%'
     return new Promise((resolve, reject) => {
-        pool.query("Select set_id, set_name FROM training_sets WHERE set_name LIKE  ? ORDER BY set_id DESC LIMIT 1 ", set_name, (error, elements) => {
-            if (error) {
-                return reject(error);
-            }
-            return resolve(elements);
-        })
+        pool.query("Select set_id, set_name FROM training_sets WHERE set_name LIKE  ? ORDER BY set_id DESC LIMIT 1 ",
+            set_name, (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            })
     })
 }
 
@@ -132,7 +137,8 @@ const getUserSets = (values) => { //user_id
 
 const getSets = () => {
     return new Promise((resolve, reject) => {
-        pool.query('SELECT set_id, set_name, user_name, set_duration, set_description, kcal, user_photo FROM training_sets' +
+        pool.query('SELECT set_id, set_name, user_name, set_duration, ' +
+            ' set_description, kcal, user_photo FROM training_sets' +
             ' JOIN users ON set_author_id=user_id ORDER BY set_id', (error, elements) => {
                 if (error) {
                     return reject(error);
@@ -144,7 +150,8 @@ const getSets = () => {
 
 const getSetDetails = (values) => { //set_id
     return new Promise((resolve, reject) => {
-        pool.query('SELECT excercise_id, excercise_name, excercise_repetiton, excercise_description, series, set_name, ' +
+        pool.query('SELECT excercise_id, excercise_name, excercise_repetiton, ' +
+            ' excercise_description, series, set_name, ' +
             ' TIME_TO_SEC(excercise_duration) AS time, set_description' +
             ' FROM set_excercise' +
             ' JOIN single_excercises USING (excercise_id)' +
@@ -158,46 +165,45 @@ const getSetDetails = (values) => { //set_id
     })
 }
 
-deleteSetExcercise=(values)=>{
+const deleteSetExcercise = (values) => {
     return new Promise((resolve, reject) => {
-        pool.query('DELETE FROM set_excercise WHERE set_id = ?',values, (error, elements) => {
-                if (error) {
-                    return reject(error);
-                }
-                return resolve(elements);
-            })
+        pool.query('DELETE FROM set_excercise WHERE set_id = ?', values, (error, elements) => {
+            if (error) {
+                return reject(error);
+            }
+            return resolve(elements);
+        })
     })
 }
 
-deletTrainingSet = (values) => {
+const deletTrainingSet = (values) => {
     return new Promise((resolve, reject) => {
-        pool.query('DELETE FROM training_sets WHERE set_id = ?',values, (error, elements) => {
-                if (error) {
-                    return reject(error);
-                }
-                return resolve(elements);
-            })
+        pool.query('DELETE FROM training_sets WHERE set_id = ?', values, (error, elements) => {
+            if (error) {
+                return reject(error);
+            }
+            return resolve(elements);
+        })
     })
 }
 
-async function deleteSet(values){
-    try{
+async function deleteSet(values) {
+    try {
         await deleteSetExcercise(values);
         await deletTrainingSet(values);
-    }
-    catch(error){
+    } catch (error) {
         console.log(error)
     }
 }
 
-const getSetAuthorId=(values)=>{
+const getSetAuthorId = (values) => {
     return new Promise((resolve, reject) => {
-        pool.query('SELECT set_author_id FROM training_sets WHERE set_id = ?',values, (error, elements) => {
-                if (error) {
-                    return reject(error);
-                }
-                return resolve(elements);
-            })
+        pool.query('SELECT set_author_id FROM training_sets WHERE set_id = ?', values, (error, elements) => {
+            if (error) {
+                return reject(error);
+            }
+            return resolve(elements);
+        })
     })
 }
 

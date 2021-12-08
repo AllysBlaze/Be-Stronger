@@ -82,7 +82,7 @@ const signup = async (req, res) => {
             var weight = req.body.weight;
             var height = req.body.height;
             var birthdate = req.body.birthdate;
-            const goal='02:00:00'
+            const goal = '02:00:00'
             if (weight == '')
                 weight = null
             if (height == '')

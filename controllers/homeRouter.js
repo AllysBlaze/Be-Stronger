@@ -21,18 +21,6 @@ const updatePhoto = async (req, res) => {
     res.redirect('/home/profile')
 }
 
-const changeweight = async (req, res) => {
-    const id = res.get('id')
-    const newWeight = req.body.waga;
-    if (newWeight != '') {
-        try {
-            await user.updateUserweight(newWeight, id)
-        } catch (error) {
-            console.log(error)
-        }
-        res.redirect('/home/weight')
-    }
-}
 
 const newTraining = async (req, res) => {
     const id = parseInt(res.get('id'))
@@ -193,7 +181,7 @@ router.get('/history', async function (req, res) {
     var date = []
     var img = [];
     var kcal = [];
-    var ids=[];
+    var ids = [];
     try {
         const history = await training.getUserTrainingHistory(id);
         for (var i = 0; i < history.length; i++) {
@@ -250,8 +238,8 @@ router.get('/history', async function (req, res) {
         date: date,
         duration: duration,
         img: img,
-        kcal:kcal,
-        ids:ids
+        kcal: kcal,
+        ids: ids
     })
 });
 
@@ -403,28 +391,6 @@ router.get('/minesets', async function (req, res) {
     })
 });
 
-router.get('/weight', async function (req, res) {
-
-    const username = res.get('username');
-
-    const id = res.get('id')
-
-    try {
-        const curWeight = await user.getUserWeight(id[0].user_id)
-        var cw = curWeight[0].user_weight
-        if (cw == null) {
-            cw = 50
-        }
-    } catch (error) {
-        console.log(error)
-    }
-    res.render('weight', {
-        user_name: username,
-        photo_path: res.get('photo'),
-        curWeight: cw
-    })
-})
-router.post('/weight', changeweight);
 
 
 router.get('/newtraining', async function (req, res) {
@@ -472,37 +438,33 @@ router.get('/newset', async function (req, res) {
 
 router.post('/newset', addSet)
 
-router.get("/delete-act",async function(req,res){
-    const userID=res.get('id');
-    const trID=req.query.id;
-    try{
-        var idFromDB=(await training.getTrainingById(trID))[0].user_id;
-        if(idFromDB==userID){
+router.get("/delete-act", async function (req, res) {
+    const userID = res.get('id');
+    const trID = req.query.id;
+    try {
+        var idFromDB = (await training.getTrainingById(trID))[0].user_id;
+        if (idFromDB == userID) {
             await training.deleteTrainingById(trID)
-            
-        }
-        else
-        res.redirect('/home/')
-    }
-    catch(error){
+
+        } else
+            res.redirect('/home/')
+    } catch (error) {
         console.log(error)
     }
     res.redirect('/home/history')
 })
 
-router.get("/delete-set",async function(req,res){
-    const userID=res.get('id');
-    const trID=req.query.id;
-    try{
-        var idFromDB=(await training_sets.getSetAuthorId(trID))[0].set_author_id
-        if(userID==idFromDB){
+router.get("/delete-set", async function (req, res) {
+    const userID = res.get('id');
+    const trID = req.query.id;
+    try {
+        var idFromDB = (await training_sets.getSetAuthorId(trID))[0].set_author_id
+        if (userID == idFromDB) {
             await training_sets.deleteSet(trID);
             res.redirect('/home/minesets')
-        }
-        else
-        res.redirect('/home/userssets')
-    }
-    catch(error){
+        } else
+            res.redirect('/home/userssets')
+    } catch (error) {
         console.log(error)
     }
     res.redirect('/home/minesets')
@@ -551,7 +513,7 @@ router.get('/sets/list', async function (req, res) {
             btn = true;
             for (var i = 0; i < ex.length; i++) {
                 names.push(ex[i].excercise_name);
-                rep.push((ex[i].excercise_repetiton +' x '));
+                rep.push((ex[i].excercise_repetiton + ' x '));
                 ex_id.push(ex[i].excercise_id);
                 ex_desc.push(ex[i].excercise_description)
             }
@@ -583,7 +545,7 @@ router.get('/sets/start', async function (req, res) {
     try {
         const set = await training_sets.getSetDetails(req.query.id)
         console.log(set)
-        setName=set[0].set_name;
+        setName = set[0].set_name;
         series = set[0].series
         for (var j = 0; j < series; j++) {
             for (var i = 0; i < set.length; i++) {
@@ -602,7 +564,7 @@ router.get('/sets/start', async function (req, res) {
         exDur: exDur,
         exRep: exRep,
         set_id: req.query.id,
-        setName:setName
+        setName: setName
     })
 })
 

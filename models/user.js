@@ -1,6 +1,6 @@
 const pool = require('../utils/connection');
 
-addUser = (values) => { //wszystkie dane usera
+const addUser = (values) => { //wszystkie dane usera
     return new Promise((resolve, reject) => {
         pool.query("INSERT INTO users (user_name,email,user_password) VALUES (?)", [values], (error, elements) => {
             if (error) {
@@ -11,7 +11,7 @@ addUser = (values) => { //wszystkie dane usera
     });
 };
 
-getUser = (values) => { //user_email
+const getUser = (values) => { //user_email
     return new Promise((resolve, reject) => {
         pool.query('SELECT user_name,user_password FROM users WHERE email= ?', values, (error, elements) => {
             if (error) {
@@ -22,7 +22,7 @@ getUser = (values) => { //user_email
     });
 };
 
-getUserPhoto = (values) => { //user_id
+const getUserPhoto = (values) => { //user_id
     return new Promise((resolve, reject) => {
         pool.query('SELECT user_photo FROM users WHERE user_id= ?', values, (error, elements) => {
             if (error) {
@@ -33,7 +33,7 @@ getUserPhoto = (values) => { //user_id
     });
 };
 
-getUserID = (values) => { //user_name
+const getUserID = (values) => { //user_name
     return new Promise((resolve, reject) => {
         pool.query('SELECT user_id FROM users WHERE user_name= ?', values, (error, elements) => {
             if (error) {
@@ -45,7 +45,7 @@ getUserID = (values) => { //user_name
 };
 
 
-getUserExtended = (values) => {
+const getUserExtended = (values) => {
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM users WHERE user_id= ?', values, (error, elements) => {
             if (error) {
@@ -56,19 +56,9 @@ getUserExtended = (values) => {
     })
 }
 
-getUserWeight = (values) => {
-    return new Promise((resolve, reject) => {
-        pool.query('SELECT user_weight FROM users WHERE user_id= ?', values, (error, elements) => {
-            if (error) {
-                return reject(error)
-            }
-            return resolve(elements);
-        });
-    })
-}
 
 
-updateUser = (weight, height, birth, goal, user_name) => {
+const updateUser = (weight, height, birth, goal, user_name) => {
     const values = [weight, height, birth, goal, user_name];
     return new Promise((resolve, reject) => {
         pool.query('UPDATE users SET user_weight= ? ,user_height= ? ,user_birth= ? , training_weekly_time_goal= ? ' +
@@ -82,7 +72,7 @@ updateUser = (weight, height, birth, goal, user_name) => {
 
 }
 
-updatePhoto = (values) => { //[photo, user_i d]
+const updatePhoto = (values) => { //[photo, user_i d]
     return new Promise((resolve, reject) => {
         pool.query('UPDATE users SET user_photo = ? WHERE user_id= ? ', values, (error, elements) => {
             if (error) {
@@ -93,19 +83,8 @@ updatePhoto = (values) => { //[photo, user_i d]
     })
 }
 
-updateUserweight = (weight, id) => {
-    return new Promise((resolve, reject) => {
-        pool.query('UPDATE users SET user_weight= ? ' +
-            'WHERE user_id= ? ', [weight, id], (error, elements) => {
-                if (error) {
-                    return reject(error)
-                }
-                return resolve(elements);
-            });
-    })
-}
 
-getUserGoal = (values) => {
+const getUserGoal = (values) => {
     return new Promise((resolve, reject) => {
         pool.query('SELECT training_weekly_time_goal AS goal FROM users WHERE user_id= ?', values, (error, elements) => {
             if (error) {
@@ -117,7 +96,6 @@ getUserGoal = (values) => {
 }
 
 const user = {
-    updateUserweight,
     addUser,
     getUser,
     updateUser,
@@ -125,7 +103,6 @@ const user = {
     getUserID,
     getUserPhoto,
     getUserGoal,
-    getUserWeight,
     updatePhoto
 }
 
