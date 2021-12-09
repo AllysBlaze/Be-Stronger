@@ -166,7 +166,6 @@ h1{
 
 @media (min-width: 900px){
   .sidebar {width: 270px;}
-  #bck {width: 270px;}
   #main {margin-left: 270px;}
 }
 
