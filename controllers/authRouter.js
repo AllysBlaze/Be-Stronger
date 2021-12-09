@@ -33,11 +33,11 @@ const login = async (req, res) => {
                 res.redirect('/home')
             }
             res.render('login', {
-                err_msg: 'Nieprawodłowy adres email lub hasło'
+                err_msg: 'Nieprawidłowy adres email lub hasło'
             })
         } else {
             res.render('login', {
-                err_msg: 'Nieprawodłowy adres email lub hasło'
+                err_msg: 'Nieprawidłowy adres email lub hasło'
             })
         }
     } catch (error) {
