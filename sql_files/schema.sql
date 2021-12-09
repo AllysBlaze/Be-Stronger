@@ -20,12 +20,12 @@ CREATE TABLE users (
     user_height FLOAT,
     user_birth DATE,
     user_photo VARCHAR(200) DEFAULT '/images/jobs.png',
-    training_weekly_time_goal TIME DEFAULT ('02:00:00')
+    training_weekly_time_goal TIME DEFAULT '02:00:00'
 );
 
 CREATE TABLE training_sets(
     set_id  INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    set_duration TIME DEFAULT ('00:00:00'),
+    set_duration TIME DEFAULT '00:00:00',
     set_author_id INT UNSIGNED,
     set_name VARCHAR(50) DEFAULT 'trening',
     set_description VARCHAR(400),
