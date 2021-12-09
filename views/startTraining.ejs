@@ -5,7 +5,7 @@
     <div id=main>
         <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Menu</button>
         <div class="container">
-            <div class="col-lg-9 mx-auto mt-5 text-center p-4" style="min-height: 500px; background-color: white;">
+            <div class="col-lg-9 mx-auto mt-5 text-center p-4" style="min-height: 620px; background-color: white;">
 
                 <script>
                     function addSeconds(seconds) {
@@ -26,7 +26,7 @@
                     document.getElementById("Ncountdown").style.display = ""
                     document.getElementById("nextExercise").style.display = ""
 
-                    document.getElementById("NexcName").innerHTML = exRep[value] + 'x ' + exName[value]
+                    document.getElementById("NexcName").innerHTML =exRep[value] + 'x ' + exName[value]
                     var countDownDate = addSeconds(7).getTime()
                     x = setInterval(function () {
                         
@@ -41,7 +41,7 @@
                         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
                         
-                        document.getElementById("Ncountdown").innerHTML = minutes + "m " + seconds + "s ";
+                        document.getElementById("Ncountdown").innerHTML =minutes + "m " + seconds + "s ";
                         
                         
                     }, 1000);
@@ -62,7 +62,6 @@
                     document.getElementById("excName").innerHTML = exRep[value] + 'x ' + exName[value]
                     document.getElementById('excName').style.color="black";
                     document.getElementById("NexcName").style.display = "none"
-                    document.getElementById("Ncountdown").style.display = "none"
 
 
                     
@@ -93,14 +92,18 @@
                 <h3 class="mx-auto mb-3 p-2" style="border-bottom: solid 1px black;"><%=setName%></h3>
 
                 <div id="nextExercise" class="row pb-2" style="border-bottom: solid 1px rgb(214, 214, 214); display: none;">
+                    
+                    
                     <div class="col-lg-4">
                         <h5 class="mx-auto" id='next' style="display: none;" > Następne ćwiczenie: </h5>
                     </div>
-                    <div class="col-lg-4">
+                    
+                    <div class="col-lg-6">
                         <h5 class="mx-auto" id='NexcName'></h5>
                     </div>
+
                     <div class="col-lg-2">
-                        <h5 class="mx-auto fw-bold" id='Ncountdown' style="color: rgb(141, 3, 83);"></h5>
+                        <h4 class="mx-auto fw-bolder mb-1" id='Ncountdown' style="color: rgb(141, 3, 83);"></h4>
                     </div>
 
                 </div>
@@ -113,15 +116,14 @@
                 </div>
 
                 <!--
-
                     <h3 class="mx-auto" id='next' style="display: none;" > Następne ćwiczenie: </h3>
                     <h3 class="mx-auto" id='excName'></h3>'
                     <h1 class="mx-auto" id='countdown' style="margin-top: 50px;"></h1>
                 -->
-                <button id='startTren' class="btn btn-lg btn-warning openbtn" onclick="start(0)" style=" margin-top: 15px; width: 200px; height: 70px;">Start</button>
+                <button id='startTren' class="btn btn-lg btn-warning openbtn" onclick="start(0)" style=" margin-top: 0; width: 200px; height: 70px;">Start</button>
                 <form method="post" action='/home/sets/start'>
                     <input type="hidden" name='set_id' value="<%= set_id %>">
-                    <button class="btn btn-lg btn-warning openbtn" id='endTren' style="display: none; margin-top: 15px; width: 200px; height: 70px"> Zakończ Trening</button>
+                    <button class="btn btn-lg btn-warning openbtn" id='endTren' style="display: none; margin-top: 90px; width: 200px; height: 70px"> Zakończ Trening</button>
                 </form>
             </div>
         </div>
