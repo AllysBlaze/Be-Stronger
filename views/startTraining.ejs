@@ -20,10 +20,10 @@
                 const exRep = "<%= exRep%>".split(',');
                 
                 function setBreak(value) {
-                    document.getElementById('next').style.display="";
                     document.getElementById('excName').style.color="white";
-                    document.getElementById("NexcName").style.display = ""
+                    document.getElementById('next').style.display="";
                     document.getElementById("Ncountdown").style.display = ""
+                    document.getElementById("NexcName").style.display = ""
                     document.getElementById("nextExercise").style.display = ""
 
                     document.getElementById("NexcName").innerHTML =exRep[value] + 'x ' + exName[value]
@@ -64,6 +64,7 @@
                     document.getElementById("NexcName").style.display = "none"
 
 
+
                     
                     countDownDate = addSeconds(count[value] + 2).getTime()
                     x = setInterval(function () {
@@ -98,6 +99,7 @@
                         <h5 class="mx-auto" id='next' style="display: none;" > Następne ćwiczenie: </h5>
                     </div>
                     
+                   
                     <div class="col-lg-6">
                         <h5 class="mx-auto" id='NexcName'></h5>
                     </div>
@@ -116,6 +118,7 @@
                 </div>
 
                 <!--
+
                     <h3 class="mx-auto" id='next' style="display: none;" > Następne ćwiczenie: </h3>
                     <h3 class="mx-auto" id='excName'></h3>'
                     <h1 class="mx-auto" id='countdown' style="margin-top: 50px;"></h1>
