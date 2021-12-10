@@ -135,11 +135,25 @@ const getUserSets = (values) => { //user_id
     })
 }
 
-const getSets = () => {
+const getSets = (values) => { //user_id
     return new Promise((resolve, reject) => {
         pool.query('SELECT set_id, set_name, user_name, set_duration, ' +
             ' set_description, kcal, user_photo FROM training_sets' +
-            ' JOIN users ON set_author_id=user_id ORDER BY set_id', (error, elements) => {
+            ' JOIN users ON set_author_id=user_id WHERE user_id!= ? ORDER BY set_id', values, (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            })
+    })
+}
+
+const getReadySets = () => {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT set_id, set_name, user_name, set_duration, ' +
+            ' set_description, kcal, set_photo,user_photo FROM training_sets' +
+            ' JOIN users ON set_author_id=user_id WHERE user_name LIKE "superKarko" ORDER BY set_id',
+            (error, elements) => {
                 if (error) {
                     return reject(error);
                 }
@@ -213,7 +227,8 @@ trainingSet = {
     getSets,
     getUserSets,
     deleteSet,
-    getSetAuthorId
+    getSetAuthorId,
+    getReadySets
 };
 
 module.exports = trainingSet;

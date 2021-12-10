@@ -6,100 +6,35 @@
     <div id="main">
         <button class="btn btn-outline-dark openbtn mb-4" onclick="openNav()">&#9776; Menu</button>
         <div class="container-fluid"></div>
-            <div class="col-lg-9 mx-auto text-center">
-                <h1 class="mb-2">Wybierz przygotowany przez nas set treningowy</h1>
-                <div class="row text-center">
-                    <div class="card m-2 mx-auto bg-light" style="width: 21rem;">
-                        <img src="/images/card_pics/squad.png" class="card-img-top p-5 img-fluid" alt="Ikony sportowe">
-                        <div class="card-body">
-                            <h5 class="card-title">Ćwiczenia na mięśnie nóg</h5>
-                            <p class="card-text">Ten zestaw treningowy pozwoli ci wyzmuklić nogi i wzmocnić mięśnie łydek, ud i pośladków</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Czas trwania treningu: 1h</li>
-                            <li class="list-group-item">Liczba spalonych kalorii: 350kcal</li>
+        <div class="col-lg-9 mx-auto text-center">
+            <h1 class="mb-2">Wybierz przygotowany przez nas set treningowy</h1>
+            <div class="row text-center">
+                <% for(var i=0;i<set_id.length;i++){ %>
+                <div class="card m-2 mx-auto bg-light" style="width: 21rem;">
 
-                          </ul>
-                        <div class="card-body">
-                            <a  class="btn btn-warning" >Zobacz ćwiczenia</a>
-                        </div>
+                    <img src="<%=setPhoto[i]%>" class="card-img-top p-5 img-fluid" alt="Ikony sportowe">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= set_name[i] %></h5>
+                        <p class="card-text"><%=set_desc[i]%></p>
                     </div>
-                    <div class="card m-2 mx-auto bg-light" style="width: 21rem;">
-                        <img src="/images/card_pics/push-up.png" class="card-img-top p-5" alt="Ikony sportowe">
-                        <div class="card-body">
-                            <h5 class="card-title">Ćwiczenia na mięśnie ramion i pleców</h5>
-                            <p class="card-text">Wzmocnij ramiona i plecy dzięki kilku prostym ćwiczeniom, mocne mięsnie pleców to zdrowy kręgosłup </p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Czas trwania treningu: 30min</li>
-                            <li class="list-group-item">Liczba spalonych kalorii: 250kcal</li>
-                          </ul>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-warning">Rozpocznij trening</a>
-                        </div>
-                    </div>
-                    <div class="card m-2 mx-auto bg-light" style="width: 21rem;">
-                        <img src="/images/card_pics/fitness.png" class="card-img-top p-5" alt="Ikony sportowe">
-                        <div class="card-body">
-                            <h5 class="card-title">Ćwiczenia na mięśnie brzucha</h5>
-                            <p class="card-text">Ćwiczenia wzmacniające brzuch pozwolą ci wyrzeźbić tą partię ciała i spalić tłuszcz. Mocny brzuch gra ważną rolę w utrzymywaniu prawidłowej pozycji ciała</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Czas trwania treningu: 0,5h</li>
-                            <li class="list-group-item">Liczba spalonych kalorii: 200kcal</li>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Czas trwania treningu: <%=set_dur[i]%></li>
+                        <li class="list-group-item">Liczba spalonych kalorii: <%=kcal[i]%></li>
 
-                          </ul>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-warning">Rozpocznij trening</a>
-                        </div>
+                    </ul>
+                    <div class="card-body">
+                        <a href="/home/sets/list?id=<%= set_id[i] %>" class="btn btn-warning mx-auto"
+                            value="<%= set_id[i] %>">Zobacz ćwiczenia
+                        </a>
                     </div>
-                    <div class="card m-2 mx-auto bg-light" style="width: 21rem;">
-                        <img src="/images/card_pics/workout.png" class="card-img-top p-5" alt="Ikony sportowe">
-                        <div class="card-body">
-                            <h5 class="card-title">Ćwiczenia cardio</h5>
-                            <p class="card-text">Cardio to kondycyjne ćwiczenia, które poprawią twoją kondycję i spalą mnóstwo kalorii</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Czas trwania treningu: 1h</li>
-                            <li class="list-group-item">Liczba spalonych kalorii: 500kcal</li>
-                          </ul>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-warning">Rozpocznij trening</a>
-                        </div>
-                    </div>
-                    <div class="card m-2 mx-auto bg-light" style="width: 21rem;">
-                        <img src="/images/card_pics/streching.png" class="card-img-top p-5" alt="Ikony sportowe">
-                        <div class="card-body">
-                            <h5 class="card-title">Ćwiczenia rozciągające</h5>
-                            <p class="card-text">Rozciąganie to druga najważniejsza część treningu zaraz po rozgrzewce, pozwala powrócić mięśniom do formy sprzed treningu</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Czas trwania treningu: 0,5h</li>
-                            <li class="list-group-item">Liczba spalonych kalorii: 50kcal</li>
-                          </ul>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-warning">Rozpocznij trening</a>
-                        </div>
-                    </div>
-                    <div class="card m-2 mx-auto bg-light" style="width: 21rem;">
-                        <img src="/images/card_pics/warming-up.png" class="card-img-top p-5" alt="Ikony sportowe">
-                        <div class="card-body">
-                            <h5 class="card-title">Ćwiczenia rozgrzewkowe</h5>
-                            <p class="card-text">Rozgrzewka to obowiązkowa część każdego treningu, dzięki niej przygotujesz ciało do treningu i zmniejszysz ryzyko kontuzji</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Czas trwania treningu: 20min</li>
-                            <li class="list-group-item">Liczba spalonych kalorii: 150kcal</li>
-                          </ul>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-warning">Rozpocznij trening</a>
-                        </div>
-                    </div>
-                    
                 </div>
+                <%}%>
+                    
+                
             </div>
         </div>
 
   <%- include('footer.ejs') %>
-  </body>
+</body>
+
 </html>

@@ -83,7 +83,7 @@ const endSet = async (req, res) => {
     } catch (error) {
         console.log(error)
     }
-    res.redirect('/home/userssets')
+    res.redirect('/home/history')
 }
 
 
@@ -322,7 +322,7 @@ router.get('/userssets', async function (req, res) {
     var img = [];
     const id = res.get('id');
     try {
-        const data = await training_sets.getSets()
+        const data = await training_sets.getSets(id)
 
         for (var i = 0; i < data.length; i++) {
             set_id.push(data[i].set_id);
@@ -475,9 +475,43 @@ router.post('/sets/start', endSet)
 
 router.get('/sets', async function (req, res) {
     const username = res.get('username');
+    var set_id = [];
+    var set_name = [];
+    var set_dur = [];
+    var set_desc = [];
+    var set_author = [];
+    var kcal = [];
+    var img = [];
+    var setPhoto=[];
+    const id = res.get('id');
+    try {
+        const data = await training_sets.getReadySets()
+
+        for (var i = 0; i < data.length; i++) {
+            set_id.push(data[i].set_id);
+            set_name.push(data[i].set_name);
+            set_dur.push(data[i].set_duration);
+            set_desc.push(data[i].set_description)
+            set_author.push(data[i].user_name);
+            kcal.push(data[i].kcal);
+            img.push(data[i].user_photo);
+            setPhoto.push(data[i].set_photo)
+
+        }
+    } catch (error) {
+        console.log(error)
+    }
     res.render('appTraining', {
         user_name: username,
-        photo_path: res.get('photo')
+        photo_path: res.get('photo'),
+        set_name: set_name,
+        set_id: set_id,
+        set_dur: set_dur,
+        set_desc: set_desc,
+        set_author: set_author,
+        kcal: kcal,
+        img: img,
+        setPhoto:setPhoto
     })
 })
 
