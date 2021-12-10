@@ -21,10 +21,9 @@
                 
                 function setBreak(value) {
                     document.getElementById('excName').style.color="white";
-                    document.getElementById('next').style.display="";
-                    document.getElementById("Ncountdown").style.display = ""
-                    document.getElementById("NexcName").style.display = ""
-                    document.getElementById("nextExercise").style.display = ""
+                    document.getElementById("NexcName").style.display="";
+
+
 
                     document.getElementById("NexcName").innerHTML =exRep[value] + 'x ' + exName[value]
                     var countDownDate = addSeconds(7).getTime()
@@ -58,10 +57,18 @@
                         document.getElementById("countdown").style.display = "none"
                         document.getElementById("nextExercise").style.display = "none"
                         document.getElementById('next').style.display="none"
+
+                        return;
                     }
                     document.getElementById("excName").innerHTML = exRep[value] + 'x ' + exName[value]
                     document.getElementById('excName').style.color="black";
                     document.getElementById("NexcName").style.display = "none"
+                    document.getElementById('next').style.display="";
+                    document.getElementById("Ncountdown").style.display = "";
+
+                    document.getElementById("nextExercise").style.display = "";
+
+
 
 
 
@@ -117,13 +124,7 @@
                     </div>
                 </div>
 
-                <!--
-
-                    <h3 class="mx-auto" id='next' style="display: none;" > Następne ćwiczenie: </h3>
-                    <h3 class="mx-auto" id='excName'></h3>'
-                    <h1 class="mx-auto" id='countdown' style="margin-top: 50px;"></h1>
-                -->
-                <button id='startTren' class="btn btn-lg btn-warning openbtn" onclick="start(0)" style=" margin-top: 0; width: 200px; height: 70px;">Start</button>
+                <button id='startTren' class="btn btn-lg btn-warning openbtn" onclick="start(0)" style=" margin-top: 60px; width: 200px; height: 70px;">Start</button>
                 <form method="post" action='/home/sets/start'>
                     <input type="hidden" name='set_id' value="<%= set_id %>">
                     <button class="btn btn-lg btn-warning openbtn" id='endTren' style="display: none; margin-top: 90px; width: 200px; height: 70px"> Zakończ Trening</button>
