@@ -33,7 +33,7 @@ h1{
     width: 100%;
     padding: 50px;
     height:817px;
-    background-image: url("/images/background.jpg");
+    background-image: url("/images/ski.jpg");
     background-position:center;
     background-size: cover;
 }
@@ -63,6 +63,17 @@ h1{
     width: 100%;
     overflow: hidden;
     z-index: 3;
+}
+
+#linkText{
+  font-size: larger;
+
+}
+
+#link{
+  color: darkblue;
+  font-weight: bolder;
+  font-size: larger;
 }
 
 #log_btn{
