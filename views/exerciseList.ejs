@@ -17,7 +17,7 @@
                 <div class="accordion-item">
                     
                         <h4 class="accordion-header" id="flush-headingOne">
-                            <button class="accordion-button collapsed btn btn-secondary btn-lg text-wrap" style="width: 400px;"
+                            <button id="excListElement" class="accordion-button collapsed btn btn-secondary btn-lg wrp"
                             type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= i %>"
                             aria-expanded="false" aria-controls="flush-collapseOne">
                                 <%= rep[i]+names[i] %>
@@ -26,7 +26,7 @@
             
                     <div id="collapse<%= i %>" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                         data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body m-2" style="padding-left: 100px; padding-right:100px"> <%= ex_desc[i] %></div>
+                        <div class="accordion-body m-2 mx-auto p-2" style=" border: solid black 1px;"> <%= ex_desc[i] %></div>
                     </div>
                 </div>
                 <% } %>

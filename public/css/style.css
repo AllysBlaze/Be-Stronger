@@ -21,7 +21,7 @@ h3{
 
 h1{
     margin-bottom: 10px;
-    padding:10px;
+    padding:25px;
     color: rgb(22, 22, 22);
     letter-spacing: 5px;
     font-family: sans-serif;
@@ -169,10 +169,21 @@ h1{
 }
 
 @media (max-width: 500px) {
-  .sidebar {padding-top: 15px;}
+  .sidebar {padding-top: 15px; background-color: rgb(53, 53, 53);}
   .sidebar a {font-size: 18px;}
   .dropMenu li a {font-size: 14px;}
+  #profileRow{display: block;}
+  #profile_photo {margin-bottom: 10px;}
+  h1{font-size: 28px;}
+  h2{font-size: 24px;}
+  h3{font-size: 20px;}
+  #excListElement{width: 250px;}
+  .accordion-body{width: 100%;}
+}
 
+@media (min-width:500px){
+  #excListElement{width: 500px;}
+  .accordion-body{width: 80%;}
 }
 
 @media (min-width: 900px){
@@ -184,6 +195,11 @@ h1{
   .sidebar {padding-top: 5px;}
   .sidebar a {font-size: 18px;}
   .dropMenu li a {font-size: 14px;}
+}
+
+.wrp{
+  white-space: normal;
+  word-wrap: break-word;
 }
 
 
