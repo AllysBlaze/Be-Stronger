@@ -576,6 +576,11 @@ router.get('/sets/start', async function (req, res) {
     var exDur = [];
     var series;
     var setName;
+    var breakTime=req.query.break
+    if(breakTime==""){
+        breakTime=5
+    }
+    breakTime=parseInt(breakTime)
     try {
         const set = await training_sets.getSetDetails(req.query.id)
         setName = set[0].set_name;
@@ -597,7 +602,8 @@ router.get('/sets/start', async function (req, res) {
         exDur: exDur,
         exRep: exRep,
         set_id: req.query.id,
-        setName: setName
+        setName: setName,
+        breakTime:breakTime
     })
 })
 

@@ -15,33 +15,58 @@
             <div class="accordion accordion-flush bg-light" id="accordionFlushExample">
                 <% for(var i=0;i<names.length;i++){ %>
                 <div class="accordion-item">
-                    
-                        <h4 class="accordion-header" id="flush-headingOne">
-                            <button id="excListElement" class="accordion-button collapsed btn btn-secondary btn-lg wrp"
+
+                    <h4 class="accordion-header" id="flush-headingOne">
+                        <button id="excListElement" class="accordion-button collapsed btn btn-secondary btn-lg wrp"
                             type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= i %>"
                             aria-expanded="false" aria-controls="flush-collapseOne">
-                                <%= rep[i]+names[i] %>
+                            <%= rep[i]+names[i] %>
                         </button>
                     </h4>
-            
+
                     <div id="collapse<%= i %>" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                         data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body m-2 mx-auto p-2" style=" border: solid black 1px;"> <%= ex_desc[i] %></div>
+                        <div class="accordion-body m-2 mx-auto p-2" style=" border: solid black 1px;"> <%= ex_desc[i] %>
+                        </div>
                     </div>
                 </div>
                 <% } %>
             </div>
 
-            <div class="row mx-auto">
-                <a id='buttonStart' href="/home/sets/start?id=<%= set_id %>" class="btn btn-warning btn-lg mx-auto my-4"
-                    value="<%= set_id[i] %>">Rozpocznij</a>
+            <div class="row mx-auto" id="toHide">
+                <div class="col">
+                    <label for="breakTime" class="control-label">Długość przerwy między ćwiczeniami</label>
+                    <input type="number" class="form-control" value="5" id='breakTime' min='5' max="60"> <span>s</span>
+                </div>
+                <div class="col">
+                    <a id='buttonStart' href="/home/sets/start?id=<%= set_id %>&break="
+                        class="btn btn-warning btn-lg mx-auto my-4" value="<%= set_id[i] %>">Rozpocznij</a>
+                </div>
             </div>
         </div>
 
         <script>
-            if('<%=setName%>'== "Wszystkie ćwiczenia"){
+            if ('<%=setName%>' == "Wszystkie ćwiczenia") {
                 document.getElementById('series').style.display = "none"
-                document.getElementById('buttonStart').style.display = "none"
+                document.getElementById('toHide').style.display = "none"
+            }
+
+            const input = document.querySelector('input');
+
+            input.addEventListener('change', updateValue);
+            var btn=document.getElementById("buttonStart")
+            function updateValue(e) {
+                var val=e.target.value
+                if((val).length==1){
+                    val="0"+val
+                }
+                if(btn.href[(btn.href).length-1]!="="){
+                    btn.href=(btn.href).substring(0,(btn.href).length - 2);
+                    
+                
+                }
+                btn.href=btn.href+val
+                console.log(btn.href)
             }
         </script>
     </div>

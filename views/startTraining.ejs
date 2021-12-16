@@ -26,7 +26,9 @@
 
 
                     document.getElementById("NexcName").innerHTML =exRep[value] + 'x ' + exName[value]
-                    var countDownDate = addSeconds(7).getTime()
+                    var bt=parseInt("<%=breakTime%>")
+                    var countDownDate = addSeconds(bt+2).getTime()
+                    console.log(countDownDate)
                     x = setInterval(function () {
                         
                         var now = new Date().getTime();
