@@ -608,18 +608,47 @@ router.get('/sets/start', async function (req, res) {
 })
 
 
-router.get('/cos', async function (req, res) {
+router.get('/ranking', async function (req, res) {
     const username = res.get('username');
-    var set;
+    var users1;
+    var users2;
+    var names1=[];
+    (names1.length)=10;
+    names1.fill("--")
+    var names2=[];
+    (names2.length)=10;
+    names2.fill("--")
+    var kcal=[];
+    (kcal.length)=10;
+    kcal.fill("--")
+    var dur=[];
+    (dur.length)=10;
+    dur.fill("--")
     try {
-        set = await training_sets.getSetDetails(4)
+        users1 = await user.getBestCalorieUsers()
+        for(var i=0;i<users1.length;i++){
+            names1[i]=users1[i].user_name
+            kcal[i]=users1[i].kalorie
+        }
     } catch (error) {
         console.log(error)
     }
-    res.render('exerciseList', {
+    try {
+        users2=await user.getBestTimeUsers()
+        for(var i=0;i<users2.length;i++){
+            names2[i]=users2[i].user_name
+            dur[i]=users2[i].czas
+        }
+    } catch (error) {
+        console.log(error)
+    }
+    res.render('ranking', {
         user_name: username,
         photo_path: res.get('photo'),
-        set: set
+        names1:names1,
+        names2:names2,
+        kcal:kcal,
+        dur:dur
     })
 })
 

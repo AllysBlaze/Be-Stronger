@@ -1,0 +1,50 @@
+<%- include('header.ejs') %>
+
+<body>
+    <%- include('sideBarMenu.ejs') %>
+
+    <div id="main">
+        <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Menu</button>
+        <div class="row">
+            <div class='col'>
+                <table>
+                    <thead>
+                        <th>#</th>
+                        <th>Nazwa Użytkownika</th>
+                        <th>Suma spalonych kalorii</th>
+
+                    </thead>
+                    <% for(var i=0;i<names1.length;i++){ %>
+                    <tr>
+                        <td><%=i+1%></td>
+                        <td><%=names1[i]%></td>
+                        <td><%=kcal[i]%></td>
+                    </tr>
+                    <%}%>
+                </table>
+            </div>
+            <div class='col'>
+            <table>
+                <thead>
+                    <th>#</th>
+                    <th>Nazwa Użytkownika</th>
+                    <th>Suma czasu spędzonego na ćwiczenia</th>
+
+                </thead>
+                <% for(var i=0;i<names2.length;i++){ %>
+                    <tr>
+                        <td><%=i+1%></td>
+                        <td><%=names2[i]%></td>
+                        <td><%=dur[i]%></td>
+                    </tr>
+                    <%}%>
+            </table>
+        </div>
+    </div>
+    </div>
+</body>
+<%- include('footer.ejs') %>
+
+</body>
+
+</html>
