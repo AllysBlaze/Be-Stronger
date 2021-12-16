@@ -1,15 +1,10 @@
-DROP DATABASE IF EXISTS projekt;
 
-CREATE DATABASE projekt;
-
-
-USE projekt;
 DROP TABLE IF EXISTS set_excercise;
 DROP TABLE IF EXISTS single_excercises;
 DROP TABLE IF EXISTS training_sets;
 DROP TABLE IF EXISTS trainings;
 DROP TABLE IF EXISTS users;
-
+DROP TABLE IF EXISTS training_categories;
 
 CREATE TABLE users (
     user_id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
