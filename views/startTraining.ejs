@@ -9,106 +9,150 @@
 
                 <script>
                     function addSeconds(seconds) {
-                    var dt = new Date();
-                    dt.setSeconds(dt.getSeconds() + seconds);
-                    return dt;
-                }
-                const count = "<%= exDur%>".split(',').map(function (item) {
-                    return parseInt(item, 10);
-                });
-                const exName = "<%= exName%>".split(',');
-                const exRep = "<%= exRep%>".split(',');
-                
-                function setBreak(value) {
-                    document.getElementById('excName').style.color="white";
-                    document.getElementById("NexcName").style.display="";
-
-
-
-                    document.getElementById("NexcName").innerHTML =exRep[value] + 'x ' + exName[value]
-                    var bt=parseInt("<%=breakTime%>")
-                    var countDownDate = addSeconds(bt+2).getTime()
-                    console.log(countDownDate)
-                    x = setInterval(function () {
-                        
-                        var now = new Date().getTime();
-                        
-                        var distance = countDownDate - now;
-                        if (distance < 999) {
-                            clearInterval(x);
-                            start(value);
-                        }
-                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                        
-                        document.getElementById("Ncountdown").innerHTML =minutes + "m " + seconds + "s ";
-                        
-                        
-                    }, 1000);
-                }
-                
-
-                function start(value) {
-                    document.getElementById("startTren").style.display = "none"
-                    if (value >= count.length) {
-                        document.getElementById("excName").style.display = "none"
-                        document.getElementById("NexcName").style.display = "none"
-                        document.getElementById("Ncountdown").style.display = "none"
-                        document.getElementById("endTren").style.display = ""
-                        document.getElementById("countdown").style.display = "none"
-                        document.getElementById("nextExercise").style.display = "none"
-                        document.getElementById('next').style.display="none"
-
-                        return;
+                        var dt = new Date();
+                        dt.setSeconds(dt.getSeconds() + seconds);
+                        return dt;
                     }
-                    document.getElementById("excName").innerHTML = exRep[value] + 'x ' + exName[value]
-                    document.getElementById('excName').style.color="black";
-                    document.getElementById("NexcName").style.display = "none"
-                    document.getElementById('next').style.display="";
-                    document.getElementById("Ncountdown").style.display = "";
+                    const count = "<%= exDur%>".split(',').map(function (item) {
+                        return parseInt(item, 10);
+                    });
+                    const exName = "<%= exName%>".split(',');
+                    const exRep = "<%= exRep%>".split(',');
 
-                    document.getElementById("nextExercise").style.display = "";
+                    var running = true
+                    var y;
+                    var distance2;
+                    var current;
+                    var x;
+                    var distance;
+
+                    function setBreak(value) {
+                        current = value
+                        document.getElementById('excName').style.color = "white";
+                        document.getElementById("NexcName").style.display = "";
 
 
 
+                        document.getElementById("NexcName").innerHTML = exRep[value] + 'x ' + exName[value]
+                        var bt = parseInt("<%=breakTime%>")
+                        if (distance2 == null) {
 
-
-                    
-                    countDownDate = addSeconds(count[value] + 2).getTime()
-                    x = setInterval(function () {
-                        
-                        var now = new Date().getTime();
-                        
-                        var distance = countDownDate - now;
-                        if (distance < 999) {
-                            clearInterval(x);
-                            if (value +1 < count.length)
-                            setBreak(value + 1);
-                            else
-                            start(value+1)
+                            countDownDate = addSeconds(bt+ 2).getTime()
+                        } else {
+                            countDownDate = (new Date()).getTime() + distance2
                         }
-                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                        
-                        document.getElementById("countdown").innerHTML = hours + "h " +
-                        minutes + "m " + seconds + "s ";
-                        
-                        
-                    }, 1000);
-                }
+                        y = setInterval(function () {
+
+                            var now = new Date().getTime();
+
+                            distance2 = countDownDate - now;
+                            if (distance2 < 999) {
+                                clearInterval(y);
+                                
+                                distance2=null
+                                start(value);
+                            }
+
+                            var hours = Math.floor((distance2 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                            var minutes = Math.floor((distance2 % (1000 * 60 * 60)) / (1000 * 60));
+                            var seconds = Math.floor((distance2 % (1000 * 60)) / 1000);
+
+                            document.getElementById("Ncountdown").innerHTML = minutes + "m " + seconds + "s ";
+
+
+                        }, 1000);
+                    }
+
+                    function start(value) {
+                        current = value
+                        document.getElementById("startTren").style.display = "none"
+                        if (value >= count.length) {
+                            document.getElementById("excName").style.display = "none"
+                            document.getElementById("NexcName").style.display = "none"
+                            document.getElementById("Ncountdown").style.display = "none"
+                            document.getElementById("endTren").style.display = ""
+                            document.getElementById("countdown").style.display = "none"
+                            document.getElementById("stopCountdown").style.display = "none"
+                            document.getElementById("nextExercise").style.display = "none"
+                            document.getElementById('next').style.display = "none"
+
+                            return;
+                        }
+                        document.getElementById("stopCountdown").style.display = ""
+                        document.getElementById("excName").innerHTML = exRep[value] + 'x ' + exName[value]
+                        document.getElementById('excName').style.color = "black";
+                        document.getElementById("NexcName").style.display = "none"
+                        document.getElementById('next').style.display = "";
+                        document.getElementById("Ncountdown").style.display = "";
+
+                        document.getElementById("nextExercise").style.display = "";
+
+
+
+
+                        if (distance == null) {
+
+                            countDownDate = addSeconds(count[value] + 2).getTime()
+                        } else {
+                            countDownDate = (new Date()).getTime() + distance
+                        }
+                        x = setInterval(function () {
+
+                            var now = new Date().getTime();
+                            distance = countDownDate - now;
+                            if (distance < 999) {
+                                distance=null
+                                clearInterval(x);
+                                if (value + 1 < count.length)
+                                    setBreak(value + 1);
+                                else
+                                    start(value + 1)
+                            }
+                            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                            document.getElementById("countdown").innerHTML = hours + "h " +
+                                minutes + "m " + seconds + "s ";
+
+
+                        }, 1000);
+                    }
+
+                    function stopCountdown() {
+                        if (running) {
+                            running = false
+                            document.getElementById("stopCountdown").innerHTML="Wznów"
+                            clearInterval(x)
+                            clearInterval(y)
+                            console.log(distance)
+                            console.log(distance2)
+                            if (distance < 999)
+                                distance = null;
+                            if (distance2 < 999)
+                                distance2 = null;
+                        } else {
+                            running = true;
+                            document.getElementById("stopCountdown").innerHTML="Pauza"
+                            if (distance == null) {
+                                setBreak(current)
+                            } else {
+                                start(current)
+                            }
+                        }
+                    }
                 </script>
                 <h3 class="mx-auto mb-3 p-2" style="border-bottom: solid 1px black;"><%=setName%></h3>
 
-                <div id="nextExercise" class="row pb-2" style="border-bottom: solid 1px rgb(214, 214, 214); display: none;">
-                    
-                    
+                <div id="nextExercise" class="row pb-2"
+                    style="border-bottom: solid 1px rgb(214, 214, 214); display: none;">
+
+
                     <div class="col-lg-4">
-                        <h5 class="mx-auto" id='next' style="display: none;" > Następne ćwiczenie: </h5>
+                        <h5 class="mx-auto" id='next' style="display: none;"> Następne ćwiczenie: </h5>
                     </div>
-                    
-                   
+
+
                     <div class="col-lg-6">
                         <h5 class="mx-auto" id='NexcName'></h5>
                     </div>
@@ -118,18 +162,21 @@
                     </div>
 
                 </div>
-               
+
                 <div class="row mt-5 text-center">
                     <div class="col mt-5">
                         <h3 class="mx-auto mb-0" id='excName'></h3>
                         <h1 class="mx-auto mt-1" id='countdown'></h1>
+                        <button onclick="stopCountdown()" id="stopCountdown" class="btn btn-lg btn-warning openbtn" style="display: none;">Pauza</button>
                     </div>
                 </div>
 
-                <button id='startTren' class="btn btn-lg btn-warning openbtn" onclick="start(0)" style=" margin-top: 60px; width: 200px; height: 70px;">Start</button>
+                <button id='startTren' class="btn btn-lg btn-warning openbtn" onclick="start(0)"
+                    style=" margin-top: 60px; width: 200px; height: 70px;">Start</button>
                 <form method="post" action='/home/sets/start'>
                     <input type="hidden" name='set_id' value="<%= set_id %>">
-                    <button class="btn btn-lg btn-warning openbtn" id='endTren' style="display: none; margin-top: 90px; width: 200px; height: 70px"> Zakończ Trening</button>
+                    <button class="btn btn-lg btn-warning openbtn" id='endTren'
+                        style="display: none; margin-top: 90px; width: 200px; height: 70px"> Zakończ Trening</button>
                 </form>
             </div>
         </div>
