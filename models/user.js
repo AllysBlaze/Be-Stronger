@@ -98,7 +98,7 @@ const getUserGoal = (values) => {
 const getBestCalorieUsers=()=>{
     return new Promise((resolve,reject)=>{
         pool.query('SELECT user_name, SUM(kcal) as kalorie FROM trainings '+
-        ' JOIN users ON trainings.user_id=users.user_id GROUP BY user_name ORDER BY kalorie LIMIT 10', (error, elements) => {
+        ' JOIN users ON trainings.user_id=users.user_id GROUP BY user_name ORDER BY kalorie DESC LIMIT 10', (error, elements) => {
             if (error) {
                 return reject(error)
             }
@@ -110,7 +110,7 @@ const getBestCalorieUsers=()=>{
 const getBestTimeUsers=()=>{
     return new Promise((resolve,reject)=>{
         pool.query('SELECT user_name, SEC_TO_TIME(SUM(TIME_TO_SEC(training_duration))) as czas FROM trainings '+
-        ' JOIN users ON trainings.user_id=users.user_id GROUP BY user_name ORDER BY czas LIMIT 10', (error, elements) => {
+        ' JOIN users ON trainings.user_id=users.user_id GROUP BY user_name ORDER BY czas DESC LIMIT 10', (error, elements) => {
             if (error) {
                 return reject(error)
             }
