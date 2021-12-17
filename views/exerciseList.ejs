@@ -19,7 +19,7 @@
                     <h4 class="accordion-header" id="flush-headingOne">
                         <button id="excListElement" class="accordion-button collapsed btn btn-secondary btn-lg wrp"
                             type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= i %>"
-                            aria-expanded="false" aria-controls="flush-collapseOne">
+                            aria-expanded="false" aria-controls="flush-collapseOne" >
                             <%= rep[i]+names[i] %>
                         </button>
                     </h4>
@@ -33,17 +33,25 @@
                 <% } %>
             </div>
 
-            <div class="row mx-auto" id="toHide">
-                <div class="col">
-                    <label for="breakTime" class="control-label">Długość przerwy między ćwiczeniami</label>
-                    <input type="number" class="form-control" value="5" id='breakTime' min='5' max="60"> <span>s</span>
+            <div class="col" id="toHide">
+                <div class="row">
+                    <div class="col-sm-4 mx-auto mt-4">
+                        <label for="breakTime" class="form-label">Długość przerwy między ćwiczeniami</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" value="5" id='breakTime' min='5' max="60">
+                            <span class="input-group-text">sekund</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="col">
-                    <a id='buttonStart' href="/home/sets/start?id=<%= set_id %>&break="
-                        class="btn btn-warning btn-lg mx-auto my-4" value="<%= set_id[i] %>">Rozpocznij</a>
+                <div class="row mx-auto" >
+                    
+                    <div class="col">
+                        <a id='buttonStart' href="/home/sets/start?id=<%= set_id %>&break="
+                            class="btn btn-warning btn-lg mx-auto my-4" value="<%= set_id[i] %>">Rozpocznij</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
         <script>
             if ('<%=setName%>' == "Wszystkie ćwiczenia") {

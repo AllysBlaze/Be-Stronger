@@ -5,13 +5,70 @@
 
     <div id="main">
         <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Menu</button>
+
+        <div class="container-fluid bg-light">
+
+            <div class="row text-center">
+                <h1 class="fw-bolder mx-auto">Ranking "TOP 10" użytkowników</h1>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 p-4">
+                    
+                    <table class="table table-dark">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nazwa użytkownika</th>
+                            <th scope="col">Suma spalonych kalroii</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=0;i<names1.length;i++){ %>
+                                <tr>
+                                    <th scope="row"><%=i+1%></th>
+                                    <td><%=names1[i]%></td>
+                                    <td><%=kcal[i]%></td>
+                                </tr>
+                            <%}%>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="col-lg-6 p-4">
+                    
+                    <table class="table table-dark">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nazwa użytkownika</th>
+                            <th scope="col">Suma czasu spędzonego na ćwiczeniach</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=0;i<names2.length;i++){ %>
+                                <tr>
+                                    <th scope="row"><%=i+1%></th>
+                                    <td><%=names2[i]%></td>
+                                    <td><%=dur[i]%></td>
+                                </tr>
+                            <%}%>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+</div>
+
+        <!--
+
+    
         <div class="row">
             <div class='col'>
-                <table>
+                <table class="table-dark">
                     <thead>
-                        <th>#</th>
-                        <th>Nazwa Użytkownika</th>
-                        <th>Suma spalonych kalorii</th>
+                        <th scope='col'>#</th>
+                        <th scope="col" style="color: blueviolet;">Nazwa Użytkownika</th>
+                        <th scope="col">Suma spalonych kalorii</th>
 
                     </thead>
                     <% for(var i=0;i<names1.length;i++){ %>
@@ -24,7 +81,7 @@
                 </table>
             </div>
             <div class='col'>
-            <table>
+            <table class="table-dark">
                 <thead>
                     <th>#</th>
                     <th>Nazwa Użytkownika</th>
@@ -41,6 +98,7 @@
             </table>
         </div>
     </div>
+-->
     </div>
 </body>
 <%- include('footer.ejs') %>
