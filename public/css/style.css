@@ -173,7 +173,7 @@ h1{
 }
 
 @media (max-width: 600px) {
-  .sidebar {padding-top: 15px; background-color: rgb(53, 53, 53);}
+  .sidebar {padding-top: 15px; background-color: rgb(44, 44, 44);}
   .sidebar a {font-size: 18px;}
   .dropMenu li a {font-size: 14px;}
   #profileRow{display: block;}

@@ -10,7 +10,7 @@
             <div class="text-center">
                 <h1>Historia treningów</h1>
             </div>
-            <table class="table" id="historyTable" style="background-color: rgba(202, 200, 200, 0.815); display: none;">
+            <table class="table table-responsive-sm" id="historyTable" style="background-color: rgba(202, 200, 200, 0.815); display: none;">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>
@@ -25,8 +25,8 @@
                     <% for (var i=0;i<act.length;i++){ %>
                     <tr id="his">
                         <th scope="row"><%= i+1 %></th>
-                        <td>
-                            <img src="/images/activity_icons/<%=img[i]%>.png" style="width: 30px;" class="mr-3">
+                        <td class="text-center">
+                            <img src="/images/activity_icons/<%=img[i]%>.png" style="width: 30px;" class="mx-auto">
                             <%if(act[i]==null){%>
                             <%='Zestaw treningowy'%>
                             <%}else{%>
