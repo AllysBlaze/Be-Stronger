@@ -22,17 +22,17 @@
       <form method="post" action="/sign-up">
         <div class="form-group required">
           <label for="InputNick2" class="control-label">Wybierz nick</label>
-          <input name='user_name' type="text" class="form-control" id="InputNick2" aria-describedby="emailHelp"
+          <input name='user_name' type="text" class="form-control" id="InputNick2" maxlength="25" aria-describedby="emailHelp"
             placeholder="nick" required>
         </div>
         <div class="form-group required">
           <label for="InputEmail2" class="control-label">Adres mailowy</label>
-          <input name='email' type="email" class="form-control" id="InputEmail2" aria-describedby="emailHelp"
+          <input name='email' type="email" class="form-control" id="InputEmail2" maxlength="25" aria-describedby="emailHelp"
             placeholder="email" required>
         </div>
         <div class="form-group required">
           <label for="InputPassword2" class="control-label">Hasło</label>
-          <input name='user_password' type="password" class="form-control" id="InputPassword2" placeholder="Hasło"
+          <input name='user_password' type="password" class="form-control" id="InputPassword2" maxlength="25" placeholder="Hasło"
             required required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
           <small class="form-text text-muted">Hasło powinno zawierać co najmniej 8 znaków cyfrę, jedną wielką i jedną
             małą literę</small>
@@ -40,7 +40,7 @@
         </div>
         <div class="form-group required">
           <label for="InputPassword3" class="control-label">Powtórz hasło</label>
-          <input name='confirm_password' type="password" class="form-control" id="InputPassword3" placeholder="Hasło">
+          <input name='confirm_password' type="password" class="form-control" id="InputPassword3" maxlength="25" placeholder="Hasło">
         </div>
     </div>
     <div class="form-outline">

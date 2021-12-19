@@ -145,6 +145,10 @@ h1{
   color: rgb(236, 221, 10);
 }
 
+.sidebarLinks button a:hover{
+  color: rgb(236, 221, 10);
+}
+
 .userName{
   color: aliceblue;
 }
