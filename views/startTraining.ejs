@@ -8,6 +8,18 @@
             <div class="col-lg-9 mx-auto mt-5 text-center p-4" style="min-height: 600px; background-color: white;">
 
                 <script>
+
+                    function play(x){
+                        if(x=="start"){
+
+                            var audio = new Audio('/sound/start.mp3');
+                            audio.play();
+                        }
+                        if(x=="stop"){
+                            var audio = new Audio('/sound/stop.mp3');
+                            audio.play();
+                        }
+                    }
                     function addSeconds(seconds) {
                         var dt = new Date();
                         dt.setSeconds(dt.getSeconds() + seconds);
@@ -27,11 +39,11 @@
                     var distance;
 
                     function setBreak(value) {
+                        play("stop")
+
                         current = value
                         document.getElementById('excName').style.color = "white";
                         document.getElementById("NexcName").style.display = "";
-
-
 
                         document.getElementById("NexcName").innerHTML = exRep[value] + 'x ' + exName[value]
                         var bt = parseInt("<%=breakTime%>")
@@ -64,6 +76,7 @@
                     }
 
                     function start(value) {
+                        play("start")
                         current = value
                         document.getElementById("startTren").style.display = "none"
                         if (value >= count.length) {
@@ -166,8 +179,8 @@
 
                 <div class="row mt-5 text-center">
                     <div class="col mt-5">
-                        <h3 class="mx-auto mb-0" id='excName'></h3>
-                        <h1 class="mx-auto mt-1" id='countdown'></h1>
+                        <h2 class="mx-auto mb-0" id='excName'></h2>
+                        <h1 class="mx-auto mt-1" id='countdown' style="font-weight: bolder; font-size: 50px; color: rgb(73, 14, 38);"></h1>
                         <button onclick="stopCountdown()" id="stopCountdown" class="btn btn-lg btn-warning openbtn" style="display: none;">Pauza</button>
                     </div>
                 </div>

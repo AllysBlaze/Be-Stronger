@@ -6,7 +6,7 @@
     <div id="main">
         <button class="btn btn-outline-dark openbtn mb-4" onclick="openNav()">&#9776; Menu</button>
         <div class="container-fluid"></div>
-        <div class="col-sm-9 mx-auto">
+        <div class="col-lg-9 mx-auto">
             <div class="text-center">
                 <h1>Historia treningów</h1>
             </div>
@@ -25,8 +25,8 @@
                     <% for (var i=0;i<act.length;i++){ %>
                     <tr id="his">
                         <th scope="row"><%= i+1 %></th>
-                        <td class="text-center">
-                            <img src="/images/activity_icons/<%=img[i]%>.png" style="width: 30px;" class="mx-auto">
+                        <td id="tableColumn">
+                            <img src="/images/activity_icons/<%=img[i]%>.png" style="width: 30px;" class="mx-2">
                             <%if(act[i]==null){%>
                             <%='Zestaw treningowy'%>
                             <%}else{%>

@@ -14,7 +14,7 @@ body{
 }
 
 
-h3{
+h3, h2{
   letter-spacing: 5px;
   font-family: sans-serif;
 }
@@ -168,12 +168,15 @@ h1{
 
 #main {
   transition: margin-left .5s; 
-  padding: 0;
-  padding-top: 20px;
+  padding: 20px;
   margin-top: 110px;
 }
 
-@media (max-width: 600px) {
+@media(max-width:500px){
+  #main{padding:0; padding-top: 20px;}
+}
+
+@media (max-width: 650px) {
   .sidebar {padding-top: 15px; background-color: rgb(44, 44, 44);}
   .sidebar a {font-size: 18px;}
   .dropMenu li a {font-size: 14px;}
@@ -184,11 +187,15 @@ h1{
   h3{font-size: 20px;}
   #excListElement{width: 230px;}
   .accordion-body{width: 100%;}
+  #tableColumn{text-align: center;}
+
 }
 
-@media (min-width:600px){
+@media (min-width:650px){
   #excListElement{width: 400px;}
   .accordion-body{width: 70%;}
+
+
 }
 
 @media (min-width: 900px){

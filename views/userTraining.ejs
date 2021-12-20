@@ -6,31 +6,30 @@
     <div id="main">
         <button class="btn btn-outline-dark openbtn mb-4" onclick="openNav()">&#9776; Menu</button>
         <div class="container-fluid"></div>
-        <div class="col-lg-9 mx-auto text-center my-auto bg-light px-5 py-2" style="min-height: 800px;">
+        <div class="col-lg-9 mx-auto text-center my-auto bg-light" style="min-height: 800px;">
             <h1><%= texth1 %></h1>
             <div class="row text-center" id='karty'>
                 <%for (var i=0;i<set_id.length ; i++) { %>
-                <div class="card m-2 mx-auto" style="width: 23rem;">
-
+                <div class="card m-2 mx-auto px-2 py-2" style="width: 23rem;">
                     <div class="card-body text-left">
                         <h5 class="card-title text-center"><%= set_name[i] %></h5>
                         <table class="table">
                             <tr>
                                 <td> Autor:</td>
-                                <td id='inputWeight'><span> <img src="<%= img[i] %>" style="width: 30px;">
+                                <td><span> <img src="<%= img[i] %>" style="width: 30px;">
                                         <%= set_author[i] %></span></td>
                             </tr>
                             <tr>
                                 <td> Czas trwania treningu:</td>
-                                <td id='inputWeight'><span><%= set_dur[i] %> </span></td>
+                                <td><span><%= set_dur[i] %> </span></td>
                             </tr>
                             <tr>
                                 <td> Spalone kalorie:</td>
-                                <td id='inputAge'> <span><%= kcal[i] %> kcal</span></td>
+                                <td> <span><%= kcal[i] %> kcal</span></td>
                             </tr>
                             <tr>
                                 <td>Opis:</td>
-                                <td id='inputHeight'><span><%= set_desc[i] %></span></td>
+                                <td><span><%= set_desc[i] %></span></td>
                             </tr>
                         </table>
                         <div class="row text-center">
@@ -60,7 +59,7 @@
                         <h4 class="mx-auto my-2" id="historyInfo" >Wygląda na to, że nie ma jeszcze utworzonych żadnych zestawów treningowych, aby dodać nowy przejdź do zakładki "Ułóż własny trening" i stwórz listę ćwiczeń dostosowaną do twoich potrzeb.</h4>
                     </div>
                     <div class="row">
-                        <img src="/images/diff/lazy_mw.jpg" alt="userPhoto" class="img-fluid mx-auto mb-5" id="profile_photo" style="width: 400px; height: 400px;">
+                        <img src="/images/diff/lazy_mw.jpg" alt="userPhoto" class="img-fluid mx-auto mb-5" id="empty_photo1" style="width: 400px;">
                     </div>
                 </div>
             </div>
