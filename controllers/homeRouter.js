@@ -151,6 +151,9 @@ const updateUser = async (req, res) => {
     var weight = req.body.weight;
     var height = req.body.height;
     var birthdate = req.body.age;
+    if (birthdate.trim() == "") {
+        birthdate = null
+    }
     var minutes = req.body.minutes;
     var hours = req.body.hours
     if (minutes == '')
@@ -255,15 +258,16 @@ router.get('/profile', async function (req, res) {
         if (us[0].user_birth)
             age = new Date().getFullYear() - us[0].user_birth.getFullYear()
         var d = us[0].user_birth;
-        var month = (d.getMonth() + 1).toString()
-        var year = d.getFullYear()
-        var day = d.getDate().toString();
-        if (day.length == 1)
-            day = '0' + day
-        if (month.length == 1)
-            month = '0' + month;
-        birth = year + '-' + month + '-' + day
-
+        if (d != null) {
+            var month = (d.getMonth() + 1).toString()
+            var year = d.getFullYear()
+            var day = d.getDate().toString();
+            if (day.length == 1)
+                day = '0' + day
+            if (month.length == 1)
+                month = '0' + month;
+            birth = year + '-' + month + '-' + day
+        }
 
     } catch (error) {
         console.log(error)
