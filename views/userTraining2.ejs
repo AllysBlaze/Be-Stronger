@@ -76,8 +76,8 @@
                     <div class="col-lg-11 mx-auto">
                         <div class="input-group mt-5">
                             <span class="input-group-text my-1">Ćwiczenie</span>
-                            <input list="exerciseList" name="exercise" class="form-control my-1" id='excercise_name' style="min-width: 130px;"
-                                required>
+                            <input list="exerciseList" name="exercise" class="form-control my-1" id='excercise_name'
+                                style="min-width: 130px;" required>
 
                             <datalist id="exerciseList">
                                 <% for(var i=0;i<excercise_names.length;i++){ %>
@@ -86,7 +86,8 @@
                             </datalist>
                             <span class="input-group-text my-1">Powtórzenia</span>
                             <input id='repetition' type="number" class="form-control my-1" aria-label="Ilość powtórzeń"
-                                min="1" max="200" value='1' style="min-width: 80px;" required>
+                                min="1" max="200" value='1' style="min-width: 80px;" required pattern="[0-9]{10}"
+                                oninput="this.value = Math.abs(this.value)">
 
                             <button class="btn btn-warning mx-auto my-1" onclick="addEx()">Dodaj do listy</button>
                         </div>
@@ -97,12 +98,13 @@
                     <div class="row bg-light mb-5">
                         <div class="col-lg-8 mx-auto mt-3">
                             <label for="setName" class="form-label">Wpisz nazwę swojego zestawu treningowego</label>
-                            <input name='set_name' type="text" id="setName" maxlength="35" class="form-control" required>
+                            <input name='set_name' type="text" id="setName" maxlength="35" class="form-control"
+                                required>
                         </div>
                         <div class="col-lg-2 mx-auto mt-3">
                             <label for="setSeries" class="form-label">Liczba serii:</label>
                             <input name='set_series' type="number" id="setSeries" class="form-control" value="1" min="1"
-                                max="200" required>
+                                max="200" required pattern="[0-9]{10}" oninput="this.value = Math.abs(this.value)">
                         </div>
                         <div class="col-lg-8 mx-auto mt-3">
                             <label for="setDesc" class="form-label">Krótki opis treningu</label>

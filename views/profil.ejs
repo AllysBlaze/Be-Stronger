@@ -23,6 +23,8 @@
                             weight.removeChild(span[0])
                             var inputWeight = document.createElement('input');
                             inputWeight.setAttribute('name', 'weight');
+                            inputWeight.setAttribute('pattern', "[0-9]{10}")
+                            inputWeight.setAttribute('oninput', "this.value = Math.abs(this.value)")
                             inputWeight.setAttribute('value', '<%= weight %>')
                             inputWeight.setAttribute('type', 'number');
                             inputWeight.setAttribute('class', "form-control");
@@ -56,7 +58,10 @@
                             height.removeChild(span[0])
                             var inputHeight = document.createElement('input');
                             inputHeight.setAttribute('name', 'height');
+
+                            inputHeight.setAttribute('pattern', "[0-9]{10}")
                             inputHeight.setAttribute('value', '<%= height %>')
+                            inputHeight.setAttribute('oninput', "this.value = Math.abs(this.value)")
                             inputHeight.setAttribute('type', 'number');
                             inputHeight.setAttribute('class', "form-control");
                             height.appendChild(inputHeight)
@@ -71,6 +76,9 @@
                             var inputGoal = document.createElement('input');
                             inputGoal.setAttribute('name', 'hours');
                             inputGoal.setAttribute('placeholder', 'godziny');
+
+                            inputGoal.setAttribute('pattern', "[0-9]{10}")
+                            inputGoal.setAttribute('oninput', "this.value = Math.abs(this.value)")
                             inputGoal.setAttribute('value', '<%=goal%>'.split(':')[0])
                             inputGoal.setAttribute('type', 'number');
                             inputGoal.setAttribute('class', "form-control");
@@ -79,6 +87,8 @@
                             inputGoalMin.setAttribute('placeholder', 'minuty');
                             inputGoalMin.setAttribute('value', '<%=goal%>'.split(':')[1])
                             inputGoalMin.setAttribute('type', 'number');
+                            inputGoalMin.setAttribute('oninput', "this.value = Math.abs(this.value)")
+                            inputGoalMin.setAttribute('pattern', "[0-9]{10}")
                             inputGoalMin.setAttribute('class', "form-control");
                             div.appendChild(inputGoal)
                             div.appendChild(inputGoalMin)
@@ -98,7 +108,7 @@
 
 
                     <div class="col">
-                        
+
                         <form id='formularz' method="post" action="/home/profile/info">
                             <table class="table">
                                 <tr>
@@ -122,28 +132,33 @@
                                             type='button' id='editButton' onclick="editMode()">Edytuj</button>
                                     </td>
                                 </tr>
-                            
+
                             </table>
-                     </form>
+                        </form>
                     </div>
                 </div>
 
                 <div class="row text-center">
                     <p class="mx-auto">
-                        <button class="btn btn-outline-dark mx-auto wrp" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                          <span class="mr-2"> Informacje o tygodniowym celu treningowym </span> 
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-down" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-                            <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-                          </svg>
+                        <button class="btn btn-outline-dark mx-auto wrp" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            <span class="mr-2"> Informacje o tygodniowym celu treningowym </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-chevron-double-down" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                                <path fill-rule="evenodd"
+                                    d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                            </svg>
                         </button>
-                      </p>
-                      <div class="collapse" id="collapseExample">
+                    </p>
+                    <div class="collapse" id="collapseExample">
                         <div class="card card-body px-5">
-                          Cel treningowy to ilość godzin, która ma zostać poświęcona na trening. Możesz go zmienić w każdej chwili edytując informacje o użytkowniku. Gdy ustalisz cel
-                          będzie on również widoczny w wykresie ilustrującym twoje aktywności.
+                            Cel treningowy to ilość godzin, która ma zostać poświęcona na trening. Możesz go zmienić w
+                            każdej chwili edytując informacje o użytkowniku. Gdy ustalisz cel
+                            będzie on również widoczny w wykresie ilustrującym twoje aktywności.
                         </div>
-                      </div>
+                    </div>
                 </div>
 
                 <div class="row mt-2 border-top">

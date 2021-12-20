@@ -19,7 +19,7 @@
                     <h4 class="accordion-header" id="flush-headingOne">
                         <button id="excListElement" class="accordion-button collapsed btn btn-secondary btn-lg wrp"
                             type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= i %>"
-                            aria-expanded="false" aria-controls="flush-collapseOne" >
+                            aria-expanded="false" aria-controls="flush-collapseOne">
                             <%= rep[i]+names[i] %>
                         </button>
                     </h4>
@@ -38,20 +38,21 @@
                     <div class="col-sm-4 mx-auto mt-4">
                         <label for="breakTime" class="form-label">Długość przerwy między ćwiczeniami</label>
                         <div class="input-group">
-                            <input type="number" class="form-control" value="5" id='breakTime' min='5' max="60">
+                            <input type="number" class="form-control" value="5" id='breakTime' min='5' max="60"
+                                pattern="[0-9]{10}" oninput="this.value = Math.abs(this.value)">
                             <span class="input-group-text">sekund</span>
                         </div>
                     </div>
                 </div>
-                <div class="row mx-auto" >
-                    
+                <div class="row mx-auto">
+
                     <div class="col">
                         <a id='buttonStart' href="/home/sets/start?id=<%= set_id %>&break="
                             class="btn btn-warning btn-lg mx-auto my-4" value="<%= set_id[i] %>">Rozpocznij</a>
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
         <script>
             if ('<%=setName%>' == "Wszystkie ćwiczenia") {
@@ -62,18 +63,19 @@
             const input = document.querySelector('input');
 
             input.addEventListener('change', updateValue);
-            var btn=document.getElementById("buttonStart")
+            var btn = document.getElementById("buttonStart")
+
             function updateValue(e) {
-                var val=e.target.value
-                if((val).length==1){
-                    val="0"+val
+                var val = e.target.value
+                if ((val).length == 1) {
+                    val = "0" + val
                 }
-                if(btn.href[(btn.href).length-1]!="="){
-                    btn.href=(btn.href).substring(0,(btn.href).length - 2);
-                    
-                
+                if (btn.href[(btn.href).length - 1] != "=") {
+                    btn.href = (btn.href).substring(0, (btn.href).length - 2);
+
+
                 }
-                btn.href=btn.href+val
+                btn.href = btn.href + val
                 console.log(btn.href)
             }
         </script>
