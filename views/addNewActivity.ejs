@@ -6,14 +6,15 @@
     <script>
       function myFunction() {
         const currentValue = document.getElementById('actList').value;
-        document.getElementById("sub").disabled = currentValue.length === 0 ||
-          document.querySelector('option[value="' + currentValue + '"]' === null);
+        document.getElementById("sub").disabled =
+          currentValue.length === 0 ||
+          document.querySelector('option[value="' + currentValue + '"]') === null;
       }
 
       function checkEmpty() {
         var hours = document.getElementById("hours").value;
         var minutes = document.getElementById("minutes").value;
-        if ((!hours||hours==0)&&(!minutes||minutes==0)) {
+        if ((!hours || hours == 0) && (!minutes || minutes == 0)) {
           console.log('here')
           return false;
         }
@@ -42,11 +43,9 @@
               <span>Wybierz czas trwania aktywności</span>
               <div class="input-group mb-3">
                 <input type="number" class="form-control" id='hours' name='hours' placeholder="Godziny"
-                  aria-label="Godziny" pattern="[0-9]{10}" oninput="this.value = Math.abs(this.value)"
-                  oninput='timeFunction()'>
+                  aria-label="Godziny" pattern="[0-9]{10}" oninput="this.value = Math.abs(this.value)">
                 <input type="number" class="form-control" id='minutes' name='minutes' placeholder="Minuty"
-                  aria-label="Minuty" pattern="[0-9]{10}" oninput="this.value = Math.abs(this.value)"
-                  oninput='myFunction()'>
+                  aria-label="Minuty" pattern="[0-9]{10}" oninput="this.value = Math.abs(this.value)">
               </div>
 
               <div class="form-group">
@@ -66,7 +65,8 @@
 
                 document.getElementById('date').setAttribute('max', today)
               </script>
-              <button class="btn btn-warning" id="sub" onclick='return checkEmpty()' type="submit">Dodaj aktywność</button>
+              <button class="btn btn-warning" id="sub" onclick='return checkEmpty()' type="submit">Dodaj
+                aktywność</button>
             </form>
           </div>
         </div>
