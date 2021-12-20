@@ -5,6 +5,13 @@
     <div id="main">
         <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Menu</button>
         <script>
+            function checkEmpty() {
+                var repetition = document.getElementById("repetition").value;
+                if (!repetition || repetition == 0) {
+                    return false;
+                }
+            }
+
             function deleteEx(id) {
                 var ul = document.getElementById("list");
                 ul.removeChild(id)
@@ -12,8 +19,9 @@
             }
 
             function addEx() {
-                if (document.getElementById('excercise_name').value != '' && document.getElementById('repetition')
-                    .value != '') {
+                if (document.getElementById('excercise_name').value != '' && (document.getElementById('repetition')
+                        .value != '' && document.getElementById('repetition')
+                        .value != 0)) {
                     var header = document.getElementById("headerList")
                     var btn = document.getElementById("btnList")
                     var ul = document.getElementById("list");
@@ -117,7 +125,8 @@
                         <h4 id="headerList">Twoja lista ćwiczeń</h4>
                         <ul class="list-group" id='list'>
                         </ul>
-                        <button class="btn btn-warning mx-auto my-2" type="submit" id="btnList">Zatwierdź</button>
+                        <button class="btn btn-warning mx-auto my-2" type="submit" onclick='return checkEmpty()'
+                            id="btnList">Zatwierdź</button>
                     </div>
                 </form>
 
