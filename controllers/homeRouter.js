@@ -482,7 +482,7 @@ router.get('/sets', async function (req, res) {
     var set_author = [];
     var kcal = [];
     var img = [];
-    var setPhoto=[];
+    var setPhoto = [];
     const id = res.get('id');
     try {
         const data = await training_sets.getReadySets()
@@ -511,7 +511,7 @@ router.get('/sets', async function (req, res) {
         set_author: set_author,
         kcal: kcal,
         img: img,
-        setPhoto:setPhoto
+        setPhoto: setPhoto
     })
 })
 
@@ -576,11 +576,17 @@ router.get('/sets/start', async function (req, res) {
     var exDur = [];
     var series;
     var setName;
-    var breakTime=req.query.break
-    if(breakTime==""){
-        breakTime=5
+    var breakTime = req.query.break
+    if (breakTime == "") {
+        breakTime = 5
     }
-    breakTime=parseInt(breakTime)
+    breakTime = parseInt(breakTime)
+    if (breakTime < 5)
+        breakTime = 5;
+
+    else if (breakTime > 60)
+        breakTime = 60
+
     try {
         const set = await training_sets.getSetDetails(req.query.id)
         setName = set[0].set_name;
@@ -603,7 +609,7 @@ router.get('/sets/start', async function (req, res) {
         exRep: exRep,
         set_id: req.query.id,
         setName: setName,
-        breakTime:breakTime
+        breakTime: breakTime
     })
 })
 
@@ -612,32 +618,32 @@ router.get('/ranking', async function (req, res) {
     const username = res.get('username');
     var users1;
     var users2;
-    var names1=[];
-    (names1.length)=10;
+    var names1 = [];
+    (names1.length) = 10;
     names1.fill("--")
-    var names2=[];
-    (names2.length)=10;
+    var names2 = [];
+    (names2.length) = 10;
     names2.fill("--")
-    var kcal=[];
-    (kcal.length)=10;
+    var kcal = [];
+    (kcal.length) = 10;
     kcal.fill("--")
-    var dur=[];
-    (dur.length)=10;
+    var dur = [];
+    (dur.length) = 10;
     dur.fill("--")
     try {
         users1 = await user.getBestCalorieUsers()
-        for(var i=0;i<users1.length;i++){
-            names1[i]=users1[i].user_name
-            kcal[i]=users1[i].kalorie
+        for (var i = 0; i < users1.length; i++) {
+            names1[i] = users1[i].user_name
+            kcal[i] = users1[i].kalorie
         }
     } catch (error) {
         console.log(error)
     }
     try {
-        users2=await user.getBestTimeUsers()
-        for(var i=0;i<users2.length;i++){
-            names2[i]=users2[i].user_name
-            dur[i]=users2[i].czas
+        users2 = await user.getBestTimeUsers()
+        for (var i = 0; i < users2.length; i++) {
+            names2[i] = users2[i].user_name
+            dur[i] = users2[i].czas
         }
     } catch (error) {
         console.log(error)
@@ -645,10 +651,10 @@ router.get('/ranking', async function (req, res) {
     res.render('ranking', {
         user_name: username,
         photo_path: res.get('photo'),
-        names1:names1,
-        names2:names2,
-        kcal:kcal,
-        dur:dur
+        names1: names1,
+        names2: names2,
+        kcal: kcal,
+        dur: dur
     })
 })
 
