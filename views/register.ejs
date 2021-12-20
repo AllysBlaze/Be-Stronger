@@ -23,7 +23,8 @@
         <div class="form-group required">
           <label for="InputNick2" class="control-label">Wybierz nick</label>
           <input name='user_name' type="text" class="form-control" id="InputNick2" maxlength="25" aria-describedby="emailHelp"
-            placeholder="nick" required>
+            placeholder="nick" required pattern="^[^óśźżąćęłĄĆĘŁÓŚŹŻ]*">
+            <small class="form-text text-muted">Nie może zawierać polskich znaków</small>
         </div>
         <div class="form-group required">
           <label for="InputEmail2" class="control-label">Adres mailowy</label>
@@ -62,12 +63,12 @@
     </script>
     <div class="form-outline">
       <label class="form-label" for="weight">Waga:</label>
-      <input type="number" id="weight" name="weight" class="form-control" min="1" max="300">
+      <input type="number" id="weight" name="weight" class="form-control" min="1" max="300" pattern="[0-9]{10}">
     </div>
 
     <div class="form-outline">
       <label class="form-label" for="height">Wzrost(cm):</label>
-      <input type="number" id="height" name="height" class="form-control" min="1" max="230">
+      <input type="number" id="height" name="height" class="form-control" min="1" max="230" pattern="[0-9]{10}">
     </div>
 
     <div class="text-center">
