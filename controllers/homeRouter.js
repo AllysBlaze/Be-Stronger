@@ -302,10 +302,10 @@ router.get('/progress', async function (req, res) {
     var temp
     for (var i=0;i<dane[4].length;i++){
         temp=(dane[4][i]).split(':')
-        lab.push(parseInt(+temp[0])+parseInt((+temp[1])/60))
+        lab.push((parseInt(+temp[0])+parseFloat((+temp[1])/60)).toFixed(2))
     }
     temp=dane[5].split(':')
-    var goal=parseInt(+temp[0])+parseInt((+temp[1])/60)
+    var goal=(parseInt(+temp[0])+parseFloat((+temp[1])/60)).toFixed(2)
     res.render('progress', {
         x1: dane[0],
         y1: dane[1],
