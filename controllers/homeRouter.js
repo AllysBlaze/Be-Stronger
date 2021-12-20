@@ -298,14 +298,22 @@ router.get('/progress', async function (req, res) {
     } catch (error) {
         console.log(error)
     }
+    var lab=[];
+    var temp
+    for (var i=0;i<dane[4].length;i++){
+        temp=(dane[4][i]).split(':')
+        lab.push(parseInt(+temp[0])+parseInt((+temp[1])/60))
+    }
+    temp=dane[5].split(':')
+    var goal=parseInt(+temp[0])+parseInt((+temp[1])/60)
     res.render('progress', {
         x1: dane[0],
         y1: dane[1],
         x2: dane[2],
         y2: dane[3],
-        labels: dane[4],
+        labels: lab,
         user_name: username,
-        goal: dane[5],
+        goal: goal,
         photo_path: res.get('photo'),
         month: data.toLocaleString('default', {
             month: 'long'

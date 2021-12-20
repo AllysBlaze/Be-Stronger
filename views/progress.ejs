@@ -85,9 +85,8 @@
             const y2 = "<%= y2 %>".split(',').map(function (item) {
                 return parseInt(item, 10);
             });
-            const labels = "<%= labels %>".split(',').map(time => '2020-01-08 ' + time);
-            const goal = "2020-01-08 " + "<%= goal %>"
-            console.log(labels)
+            const labels = "<%= labels %>".split(',');
+            const goal ="<%= goal %>"
             const goals = []
             for (var i = 0; i < x2.length; i++) {
                 goals.push(goal)
@@ -95,8 +94,9 @@
             var layoutBar = {
 
                 yaxis: {
-                    tickformat: '%H:%M',
-                    title: 'Czas Godziny:Minuty'
+                    //tickformat: '%H:%M',
+                    title: 'Czas ',
+                    dtick:0.5
                 },
                 xaxis: {
                     dtick: 1,
