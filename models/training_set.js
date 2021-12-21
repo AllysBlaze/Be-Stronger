@@ -54,7 +54,7 @@ const updateSetKcal = (values) => { //set_id
             ' FROM set_excercise' +
             ' INNER JOIN single_excercises ON single_excercises.excercise_id = set_excercise.excercise_id' +
             ' WHERE set_id= ? ) AS tr2' +
-            ' SET tr.kcal=tr2.kcal' +
+            ' SET tr.kcal=tr2.kcal*tr.kcal' +
             ' WHERE tr.set_id=tr2.set_id', values, (error, elements) => {
                 if (error) {
                     return reject(error);
