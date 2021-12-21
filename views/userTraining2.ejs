@@ -6,9 +6,12 @@
         <button class="btn btn-outline-dark openbtn" onclick="openNav()">&#9776; Menu</button>
         <script>
             function checkEmpty() {
-                var repetition = document.getElementById("repetition").value;
+                var repetition = document.getElementById("setSeries").value;
+                console.log(repetition)
                 if (!repetition || repetition == 0) {
+                    console.log('here')
                     return false;
+
                 }
             }
 
