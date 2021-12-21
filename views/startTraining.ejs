@@ -12,11 +12,11 @@
                     function play(x){
                         if(x=="start"){
 
-                            var audio = new Audio('/sound/start.mp3');
+                            var audio = new Audio('/sound/start1.mp3');
                             audio.play();
                         }
                         if(x=="stop"){
-                            var audio = new Audio('/sound/stop.mp3');
+                            var audio = new Audio('/sound/stop1.mp3');
                             audio.play();
                         }
                     }
@@ -44,6 +44,8 @@
                         current = value
                         document.getElementById('excName').style.color = "white";
                         document.getElementById("NexcName").style.display = "";
+                        document.getElementById("Ncountdown").style.display = "";
+
 
                         document.getElementById("NexcName").innerHTML = exRep[value] + 'x ' + exName[value]
                         var bt = parseInt("<%=breakTime%>")
@@ -95,8 +97,8 @@
                         document.getElementById("excName").innerHTML = exRep[value] + 'x ' + exName[value]
                         document.getElementById('excName').style.color = "black";
                         document.getElementById("NexcName").style.display = "none"
+                        document.getElementById("Ncountdown").style.display = "none"
                         document.getElementById('next').style.display = "";
-                        document.getElementById("Ncountdown").style.display = "";
 
                         document.getElementById("nextExercise").style.display = "";
 
@@ -125,8 +127,8 @@
                             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                            document.getElementById("countdown").innerHTML = hours + "h " +
-                                minutes + "m " + seconds + "s ";
+                            document.getElementById("countdown").innerHTML = hours + " : " +
+                                minutes + " : " + seconds;
 
 
                         }, 1000);
@@ -180,8 +182,8 @@
                 <div class="row mt-5 text-center">
                     <div class="col mt-5">
                         <h2 class="mx-auto mb-0" id='excName'></h2>
-                        <h1 class="mx-auto mt-1" id='countdown' style="font-weight: bolder; font-size: 50px; color: rgb(73, 14, 38);"></h1>
-                        <button onclick="stopCountdown()" id="stopCountdown" class="btn btn-lg btn-warning openbtn" style="display: none;">Pauza</button>
+                        <h1 class="mx-auto mt-1" id='countdown' style="color: rgb(100, 14, 49);"></h1>
+                        <button onclick="stopCountdown()" id="stopCountdown" class="btn btn-lg btn-warning openbtn mt-4" style="display: none; width: 150px;">Pauza</button>
                     </div>
                 </div>
 
