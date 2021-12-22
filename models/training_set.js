@@ -170,7 +170,7 @@ const getSetDetails = (values) => { //set_id
             ' FROM set_excercise' +
             ' JOIN single_excercises USING (excercise_id)' +
             ' JOIN training_sets USING (set_id) ' +
-            ' WHERE set_id= ? ', values, (error, elements) => {
+            ' WHERE set_id= ? ORDER BY excercise_order', values, (error, elements) => {
                 if (error) {
                     return reject(error);
                 }
